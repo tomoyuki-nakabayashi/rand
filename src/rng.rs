@@ -383,28 +383,40 @@ impl_fill!(i8, i16, i32, i64, isize,);
 #[cfg(not(target_os = "emscripten"))]
 impl_fill!(i128);
 
-macro_rules! impl_fill_arrays {
-    ($n:expr,) => {};
-    ($n:expr, $N:ident) => {
-        impl<T> Fill for [T; $n] where [T]: Fill {
-            fn try_fill<R: Rng + ?Sized>(&mut self, rng: &mut R) -> Result<(), Error> {
-                self[..].try_fill(rng)
-            }
-        }
-    };
-    ($n:expr, $N:ident, $($NN:ident,)*) => {
-        impl_fill_arrays!($n, $N);
-        impl_fill_arrays!($n - 1, $($NN,)*);
-    };
-    (!div $n:expr,) => {};
-    (!div $n:expr, $N:ident, $($NN:ident,)*) => {
-        impl_fill_arrays!($n, $N);
-        impl_fill_arrays!(!div $n / 2, $($NN,)*);
-    };
+#[cfg(feature = "const_generics")]
+impl<T, const N: usize> Fill for [T; N] where [T]: Fill {
+    fn try_fill<R: Rng + ?Sized>(&mut self, rng: &mut R) -> Result<(), Error> {
+        self[..].try_fill(rng)
+    }
 }
+
+#[cfg(not(feature = "const_generics"))]
 #[rustfmt::skip]
-impl_fill_arrays!(32, N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,);
-impl_fill_arrays!(!div 4096, N,N,N,N,N,N,N,);
+mod impls {
+    use super::*;
+
+    macro_rules! impl_fill_arrays {
+        ($n:expr,) => {};
+        ($n:expr, $N:ident) => {
+            impl<T> Fill for [T; $n] where [T]: Fill {
+                fn try_fill<R: Rng + ?Sized>(&mut self, rng: &mut R) -> Result<(), Error> {
+                    self[..].try_fill(rng)
+                }
+            }
+        };
+        ($n:expr, $N:ident, $($NN:ident,)*) => {
+            impl_fill_arrays!($n, $N);
+            impl_fill_arrays!($n - 1, $($NN,)*);
+        };
+        (!div $n:expr,) => {};
+        (!div $n:expr, $N:ident, $($NN:ident,)*) => {
+            impl_fill_arrays!($n, $N);
+            impl_fill_arrays!(!div $n / 2, $($NN,)*);
+        };
+    }
+    impl_fill_arrays!(32, N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,);
+    impl_fill_arrays!(!div 4096, N,N,N,N,N,N,N,);
+}
 
 #[cfg(test)]
 mod test {

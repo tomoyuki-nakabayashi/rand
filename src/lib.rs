@@ -50,6 +50,7 @@
 #![doc(test(attr(allow(unused_variables), deny(warnings))))]
 #![cfg_attr(not(feature = "std"), no_std)]
 #![cfg_attr(all(feature = "simd_support", feature = "nightly"), feature(stdsimd))]
+#![cfg_attr(feature = "const_generics", feature(const_generics))]
 #![allow(
     clippy::excessive_precision,
     clippy::unreadable_literal,
