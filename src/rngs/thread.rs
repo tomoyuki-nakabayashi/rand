@@ -55,7 +55,7 @@ const THREAD_RNG_RESEED_THRESHOLD: u64 = 1024 * 64;
 /// [`StdRng`]: crate::rngs::StdRng
 #[derive(Copy, Clone, Debug)]
 pub struct ThreadRng {
-    // type if neither Send nor Sync
+    // type is neither Send nor Sync
     _phantom: PhantomData<*const ()>,
 }
 
