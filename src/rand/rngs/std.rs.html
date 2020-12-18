@@ -100,6 +100,7 @@
 <span id="99"> 99</span>
 <span id="100">100</span>
 <span id="101">101</span>
+<span id="102">102</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2018 Developers of the Rand project.</span>
 <span class="comment">//</span>
@@ -125,9 +126,9 @@
 <span class="doccomment">/// on the current platform, to be statistically strong and unpredictable</span>
 <span class="doccomment">/// (meaning a cryptographically secure PRNG).</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// The current algorithm used is the ChaCha block cipher with 20 rounds.</span>
-<span class="doccomment">/// This may change as new evidence of cipher security and performance</span>
-<span class="doccomment">/// becomes available.</span>
+<span class="doccomment">/// The current algorithm used is the ChaCha block cipher with 12 rounds. Please</span>
+<span class="doccomment">/// see this relevant [rand issue] for the discussion. This may change as new </span>
+<span class="doccomment">/// evidence of cipher security and performance becomes available.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// The algorithm is deterministic but should not be considered reproducible</span>
 <span class="doccomment">/// due to dependence on configuration and possible replacement in future</span>
@@ -135,6 +136,7 @@
 <span class="doccomment">/// the [rand_chacha] crate directly.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// [rand_chacha]: https://crates.io/crates/rand_chacha</span>
+<span class="doccomment">/// [rand issue]: https://github.com/rust-random/rand/issues/932</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std_rng&quot;</span>)))]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StdRng</span>(<span class="ident">Rng</span>);
