@@ -178,10 +178,10 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_normal_inverse_gaussian_invalid_param</span>() {
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">NormalInverseGaussian</span>::<span class="ident">new</span>(<span class="op">-</span><span class="number">1.0</span>, <span class="number">1.0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">NormalInverseGaussian</span>::<span class="ident">new</span>(<span class="op">-</span><span class="number">1.0</span>, <span class="op">-</span><span class="number">1.0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">NormalInverseGaussian</span>::<span class="ident">new</span>(<span class="number">1.0</span>, <span class="number">2.0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">NormalInverseGaussian</span>::<span class="ident">new</span>(<span class="number">2.0</span>, <span class="number">1.0</span>).<span class="ident">is_ok</span>());
+        <span class="macro">assert!</span>(<span class="ident">NormalInverseGaussian</span>::<span class="ident">new</span>(<span class="op">-</span><span class="number">1.0</span>, <span class="number">1.0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">NormalInverseGaussian</span>::<span class="ident">new</span>(<span class="op">-</span><span class="number">1.0</span>, <span class="op">-</span><span class="number">1.0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">NormalInverseGaussian</span>::<span class="ident">new</span>(<span class="number">1.0</span>, <span class="number">2.0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">NormalInverseGaussian</span>::<span class="ident">new</span>(<span class="number">2.0</span>, <span class="number">1.0</span>).<span class="ident">is_ok</span>());
     }
 }
 </pre></div>

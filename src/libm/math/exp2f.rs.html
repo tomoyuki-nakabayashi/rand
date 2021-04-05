@@ -242,7 +242,7 @@
         <span class="kw">if</span> <span class="ident">ui</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0x80000000</span> {
             <span class="comment">/* x &lt; -126 */</span>
             <span class="kw">if</span> <span class="ident">ui</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0xc3160000</span> <span class="op">|</span><span class="op">|</span> (<span class="ident">ui</span> <span class="op">&amp;</span> <span class="number">0x0000ffff</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>) {
-                <span class="macro">force_eval</span><span class="macro">!</span>(<span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="number">0x80000001</span>) <span class="op">/</span> <span class="ident">x</span>);
+                <span class="macro">force_eval!</span>(<span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="number">0x80000001</span>) <span class="op">/</span> <span class="ident">x</span>);
             }
             <span class="kw">if</span> <span class="ident">ui</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0xc3160000</span> {
                 <span class="comment">/* x &lt;= -150 */</span>

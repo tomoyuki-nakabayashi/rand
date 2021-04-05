@@ -436,7 +436,7 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">fma_segfault</span>() {
         <span class="comment">// These two inputs cause fma to segfault on release due to overflow:</span>
-        <span class="macro">assert_eq</span><span class="macro">!</span>(
+        <span class="macro">assert_eq!</span>(
             <span class="ident">fma</span>(
                 <span class="op">-</span><span class="number">0.0000000000000002220446049250313</span>,
                 <span class="op">-</span><span class="number">0.0000000000000002220446049250313</span>,
@@ -445,7 +445,7 @@
             <span class="op">-</span><span class="number">0.00000000000000022204460492503126</span>,
         );
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">fma</span>(<span class="op">-</span><span class="number">0.992</span>, <span class="op">-</span><span class="number">0.992</span>, <span class="op">-</span><span class="number">0.992</span>), <span class="op">-</span><span class="number">0.00793599999988632</span>,);
+        <span class="macro">assert_eq!</span>(<span class="ident">fma</span>(<span class="op">-</span><span class="number">0.992</span>, <span class="op">-</span><span class="number">0.992</span>, <span class="op">-</span><span class="number">0.992</span>), <span class="op">-</span><span class="number">0.00793599999988632</span>,);
     }
 }
 </pre></div>

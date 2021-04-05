@@ -43,7 +43,7 @@
     <span class="kw">if</span> <span class="ident">e</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
         <span class="ident">i</span> <span class="op">&lt;</span><span class="op">&lt;</span><span class="op">=</span> <span class="number">9</span>;
         <span class="kw">if</span> <span class="ident">i</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="macro">force_eval</span><span class="macro">!</span>(<span class="number">0.0</span> <span class="op">/</span> <span class="number">0.0</span>);
+            <span class="macro">force_eval!</span>(<span class="number">0.0</span> <span class="op">/</span> <span class="number">0.0</span>);
             <span class="kw">return</span> <span class="ident">FP_ILOGB0</span>;
         }
         <span class="comment">/* subnormal x */</span>
@@ -54,7 +54,7 @@
         }
         <span class="ident">e</span>
     } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">e</span> <span class="op">=</span><span class="op">=</span> <span class="number">0xff</span> {
-        <span class="macro">force_eval</span><span class="macro">!</span>(<span class="number">0.0</span> <span class="op">/</span> <span class="number">0.0</span>);
+        <span class="macro">force_eval!</span>(<span class="number">0.0</span> <span class="op">/</span> <span class="number">0.0</span>);
         <span class="kw">if</span> (<span class="ident">i</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">9</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
             <span class="ident">FP_ILOGBNAN</span>
         } <span class="kw">else</span> {

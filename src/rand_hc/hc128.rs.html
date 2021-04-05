@@ -636,7 +636,7 @@
 <span class="comment">// Custom Debug implementation that does not expose the internal state</span>
 <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">Hc128Core</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
-        <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;Hc128Core {{}}&quot;</span>)
+        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Hc128Core {{}}&quot;</span>)
     }
 }
 
@@ -645,7 +645,7 @@
     <span class="kw">type</span> <span class="ident">Results</span> <span class="op">=</span> [<span class="ident">u32</span>; <span class="number">16</span>];
 
     <span class="kw">fn</span> <span class="ident">generate</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">results</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>::<span class="ident">Results</span>) {
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">counter1024</span> <span class="op">%</span> <span class="number">16</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span>);
+        <span class="macro">assert!</span>(<span class="self">self</span>.<span class="ident">counter1024</span> <span class="op">%</span> <span class="number">16</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span>);
 
         <span class="kw">let</span> <span class="ident">cc</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counter1024</span> <span class="op">%</span> <span class="number">512</span>;
         <span class="kw">let</span> <span class="ident">dd</span> <span class="op">=</span> (<span class="ident">cc</span> <span class="op">+</span> <span class="number">16</span>) <span class="op">%</span> <span class="number">512</span>;
@@ -653,9 +653,9 @@
         <span class="comment">// These asserts let the compiler optimize out the bounds checks.</span>
         <span class="comment">// Some of them may be superflous, and that&#39;s fine:</span>
         <span class="comment">// they&#39;ll be optimized out if that&#39;s the case.</span>
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">ee</span> <span class="op">+</span> <span class="number">15</span> <span class="op">&lt;</span> <span class="number">512</span>);
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">cc</span> <span class="op">+</span> <span class="number">15</span> <span class="op">&lt;</span> <span class="number">512</span>);
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">dd</span> <span class="op">&lt;</span> <span class="number">512</span>);
+        <span class="macro">assert!</span>(<span class="ident">ee</span> <span class="op">+</span> <span class="number">15</span> <span class="op">&lt;</span> <span class="number">512</span>);
+        <span class="macro">assert!</span>(<span class="ident">cc</span> <span class="op">+</span> <span class="number">15</span> <span class="op">&lt;</span> <span class="number">512</span>);
+        <span class="macro">assert!</span>(<span class="ident">dd</span> <span class="op">&lt;</span> <span class="number">512</span>);
 
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">counter1024</span> <span class="op">&amp;</span> <span class="number">512</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
             <span class="comment">// P block</span>
@@ -741,7 +741,7 @@
     }
 
     <span class="kw">fn</span> <span class="ident">sixteen_steps</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">counter1024</span> <span class="op">%</span> <span class="number">16</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span>);
+        <span class="macro">assert!</span>(<span class="self">self</span>.<span class="ident">counter1024</span> <span class="op">%</span> <span class="number">16</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span>);
 
         <span class="kw">let</span> <span class="ident">cc</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">counter1024</span> <span class="op">%</span> <span class="number">512</span>;
         <span class="kw">let</span> <span class="ident">dd</span> <span class="op">=</span> (<span class="ident">cc</span> <span class="op">+</span> <span class="number">16</span>) <span class="op">%</span> <span class="number">512</span>;
@@ -749,9 +749,9 @@
         <span class="comment">// These asserts let the compiler optimize out the bounds checks.</span>
         <span class="comment">// Some of them may be superflous, and that&#39;s fine:</span>
         <span class="comment">// they&#39;ll be optimized out if that&#39;s the case.</span>
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">ee</span> <span class="op">+</span> <span class="number">15</span> <span class="op">&lt;</span> <span class="number">512</span>);
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">cc</span> <span class="op">+</span> <span class="number">15</span> <span class="op">&lt;</span> <span class="number">512</span>);
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">dd</span> <span class="op">&lt;</span> <span class="number">512</span>);
+        <span class="macro">assert!</span>(<span class="ident">ee</span> <span class="op">+</span> <span class="number">15</span> <span class="op">&lt;</span> <span class="number">512</span>);
+        <span class="macro">assert!</span>(<span class="ident">cc</span> <span class="op">+</span> <span class="number">15</span> <span class="op">&lt;</span> <span class="number">512</span>);
+        <span class="macro">assert!</span>(<span class="ident">dd</span> <span class="op">&lt;</span> <span class="number">512</span>);
 
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">counter1024</span> <span class="op">&lt;</span> <span class="number">512</span> {
             <span class="comment">// P block</span>
@@ -896,7 +896,7 @@
                         <span class="number">0xde122fc6</span>, <span class="number">0xa7dc29b6</span>, <span class="number">0x62a68527</span>, <span class="number">0x8b75ec68</span>,
                         <span class="number">0x9036db1e</span>, <span class="number">0x81896005</span>, <span class="number">0x00ade078</span>, <span class="number">0x491fbf9a</span>,
                         <span class="number">0x1cdc3013</span>, <span class="number">0x6c3d6e24</span>, <span class="number">0x90f664b2</span>, <span class="number">0x9cd57102</span>];
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -916,7 +916,7 @@
                         <span class="number">0x36fc6724</span>, <span class="number">0xc82c6eec</span>, <span class="number">0x1b1c38a7</span>, <span class="number">0xc9b42a95</span>,
                         <span class="number">0x323ef123</span>, <span class="number">0x0a6a908b</span>, <span class="number">0xce757b68</span>, <span class="number">0x9f14f7bb</span>,
                         <span class="number">0xe4cde011</span>, <span class="number">0xaeb5173f</span>, <span class="number">0x89608c94</span>, <span class="number">0xb5cf46ca</span>];
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -936,7 +936,7 @@
                         <span class="number">0xbcb4a47a</span>, <span class="number">0x5722480b</span>, <span class="number">0x2bf99f72</span>, <span class="number">0xcdc0e566</span>,
                         <span class="number">0x310f0c56</span>, <span class="number">0xd3cc83e8</span>, <span class="number">0x663db8ef</span>, <span class="number">0x62dfe07f</span>,
                         <span class="number">0x593e1790</span>, <span class="number">0xc5ceaa9c</span>, <span class="number">0xab03806f</span>, <span class="number">0xc9a6e5a0</span>];
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -955,7 +955,7 @@
                         <span class="number">0xa7dc29b6de122fc6</span>, <span class="number">0x8b75ec6862a68527</span>,
                         <span class="number">0x818960059036db1e</span>, <span class="number">0x491fbf9a00ade078</span>,
                         <span class="number">0x6c3d6e241cdc3013</span>, <span class="number">0x9cd5710290f664b2</span>];
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
 
         <span class="comment">// The RNG operates in a P block of 512 results and next a Q block.</span>
         <span class="comment">// After skipping 2*800 u32 results we end up somewhere in the Q block</span>
@@ -972,7 +972,7 @@
                         <span class="number">0xd800de5bc37a8653</span>, <span class="number">0x7bae1f88c0dfbb4c</span>,
                         <span class="number">0x3bfe1f374e6d4d14</span>, <span class="number">0x424b55676be3fa06</span>,
                         <span class="number">0xe3a1e8758cbff579</span>, <span class="number">0x417f7198c5652bcd</span>];
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -1004,13 +1004,13 @@
         <span class="comment">// filling the remainder of the buffer.</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buffer</span> <span class="op">=</span> [<span class="number">0u8</span>; <span class="number">16</span> <span class="op">*</span> <span class="number">4</span> <span class="op">*</span> <span class="number">2</span>];
         <span class="comment">// Consume a value so that we have a remainder.</span>
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">rng</span>.<span class="ident">next_u64</span>() <span class="op">=</span><span class="op">=</span> <span class="number">0x04b4930a518251a4</span>);
+        <span class="macro">assert!</span>(<span class="ident">rng</span>.<span class="ident">next_u64</span>() <span class="op">=</span><span class="op">=</span> <span class="number">0x04b4930a518251a4</span>);
         <span class="ident">rng</span>.<span class="ident">fill_bytes</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buffer</span>);
 
         <span class="comment">// [u8; 128] doesn&#39;t implement PartialEq</span>
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">buffer</span>.<span class="ident">len</span>(), <span class="ident">expected</span>.<span class="ident">len</span>());
+        <span class="macro">assert_eq!</span>(<span class="ident">buffer</span>.<span class="ident">len</span>(), <span class="ident">expected</span>.<span class="ident">len</span>());
         <span class="kw">for</span> (<span class="ident">b</span>, <span class="ident">e</span>) <span class="kw">in</span> <span class="ident">buffer</span>.<span class="ident">iter</span>().<span class="ident">zip</span>(<span class="ident">expected</span>.<span class="ident">iter</span>()) {
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">b</span>, <span class="ident">e</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">b</span>, <span class="ident">e</span>);
         }
     }
 
@@ -1022,7 +1022,7 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng1</span> <span class="op">=</span> <span class="ident">Hc128Rng</span>::<span class="ident">from_seed</span>(<span class="ident">seed</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng2</span> <span class="op">=</span> <span class="ident">rng1</span>.<span class="ident">clone</span>();
         <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">16</span> {
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng1</span>.<span class="ident">next_u32</span>(), <span class="ident">rng2</span>.<span class="ident">next_u32</span>());
+            <span class="macro">assert_eq!</span>(<span class="ident">rng1</span>.<span class="ident">next_u32</span>(), <span class="ident">rng2</span>.<span class="ident">next_u32</span>());
         }
     }
 }

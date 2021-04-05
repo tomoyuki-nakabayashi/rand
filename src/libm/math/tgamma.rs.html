@@ -378,7 +378,7 @@ most ideas and constants are from boost and python
         <span class="comment">/* |x| &gt;= 184 */</span>
         <span class="kw">if</span> <span class="ident">sign</span> {
             <span class="kw">let</span> <span class="ident">x1p_126</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x3810000000000000</span>); <span class="comment">// 0x1p-126 == 2^-126</span>
-            <span class="macro">force_eval</span><span class="macro">!</span>((<span class="ident">x1p_126</span> <span class="op">/</span> <span class="ident">x</span>) <span class="kw">as</span> <span class="ident">f32</span>);
+            <span class="macro">force_eval!</span>((<span class="ident">x1p_126</span> <span class="op">/</span> <span class="ident">x</span>) <span class="kw">as</span> <span class="ident">f32</span>);
             <span class="kw">if</span> <span class="ident">floor</span>(<span class="ident">x</span>) <span class="op">*</span> <span class="number">0.5</span> <span class="op">=</span><span class="op">=</span> <span class="ident">floor</span>(<span class="ident">x</span> <span class="op">*</span> <span class="number">0.5</span>) {
                 <span class="kw">return</span> <span class="number">0.0</span>;
             } <span class="kw">else</span> {

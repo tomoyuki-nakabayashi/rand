@@ -159,7 +159,7 @@
         }
         <span class="kw">if</span> <span class="ident">signb</span> {
             <span class="comment">/* underflow */</span>
-            <span class="macro">force_eval</span><span class="macro">!</span>(<span class="op">-</span><span class="ident">x1p_126</span> <span class="op">/</span> <span class="ident">x</span>);
+            <span class="macro">force_eval!</span>(<span class="op">-</span><span class="ident">x1p_126</span> <span class="op">/</span> <span class="ident">x</span>);
             <span class="kw">if</span> <span class="ident">hx</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0x42cff1b5</span> {
                 <span class="comment">/* x &lt;= -103.972084f */</span>
                 <span class="kw">return</span> <span class="number">0.</span>;
@@ -190,7 +190,7 @@
         <span class="ident">lo</span> <span class="op">=</span> <span class="number">0.</span>;
     } <span class="kw">else</span> {
         <span class="comment">/* raise inexact */</span>
-        <span class="macro">force_eval</span><span class="macro">!</span>(<span class="ident">x1p127</span> <span class="op">+</span> <span class="ident">x</span>);
+        <span class="macro">force_eval!</span>(<span class="ident">x1p127</span> <span class="op">+</span> <span class="ident">x</span>);
         <span class="kw">return</span> <span class="number">1.</span> <span class="op">+</span> <span class="ident">x</span>;
     }
 

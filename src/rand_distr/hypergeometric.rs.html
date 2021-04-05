@@ -782,10 +782,10 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_hypergeometric_invalid_params</span>() {
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Hypergeometric</span>::<span class="ident">new</span>(<span class="number">100</span>, <span class="number">101</span>, <span class="number">5</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Hypergeometric</span>::<span class="ident">new</span>(<span class="number">100</span>, <span class="number">10</span>, <span class="number">101</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Hypergeometric</span>::<span class="ident">new</span>(<span class="number">100</span>, <span class="number">101</span>, <span class="number">101</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Hypergeometric</span>::<span class="ident">new</span>(<span class="number">100</span>, <span class="number">10</span>, <span class="number">5</span>).<span class="ident">is_ok</span>());
+        <span class="macro">assert!</span>(<span class="ident">Hypergeometric</span>::<span class="ident">new</span>(<span class="number">100</span>, <span class="number">101</span>, <span class="number">5</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Hypergeometric</span>::<span class="ident">new</span>(<span class="number">100</span>, <span class="number">10</span>, <span class="number">101</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Hypergeometric</span>::<span class="ident">new</span>(<span class="number">100</span>, <span class="number">101</span>, <span class="number">101</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Hypergeometric</span>::<span class="ident">new</span>(<span class="number">100</span>, <span class="number">10</span>, <span class="number">5</span>).<span class="ident">is_ok</span>());
     }
 
     <span class="kw">fn</span> <span class="ident">test_hypergeometric_mean_and_variance</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Rng</span><span class="op">&gt;</span>(<span class="ident">n</span>: <span class="ident">u64</span>, <span class="ident">k</span>: <span class="ident">u64</span>, <span class="ident">s</span>: <span class="ident">u64</span>, <span class="ident">rng</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>)
@@ -805,11 +805,11 @@
         }
 
         <span class="kw">let</span> <span class="ident">mean</span> <span class="op">=</span> <span class="ident">results</span>.<span class="ident">iter</span>().<span class="ident">sum</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>() <span class="op">/</span> <span class="ident">results</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">f64</span>;
-        <span class="macro">assert</span><span class="macro">!</span>((<span class="ident">mean</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">-</span> <span class="ident">expected_mean</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="ident">expected_mean</span> <span class="op">/</span> <span class="number">50.0</span>);
+        <span class="macro">assert!</span>((<span class="ident">mean</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">-</span> <span class="ident">expected_mean</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="ident">expected_mean</span> <span class="op">/</span> <span class="number">50.0</span>);
 
         <span class="kw">let</span> <span class="ident">variance</span> <span class="op">=</span>
             <span class="ident">results</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> (<span class="ident">x</span> <span class="op">-</span> <span class="ident">mean</span>) <span class="op">*</span> (<span class="ident">x</span> <span class="op">-</span> <span class="ident">mean</span>)).<span class="ident">sum</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>() <span class="op">/</span> <span class="ident">results</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">f64</span>;
-        <span class="macro">assert</span><span class="macro">!</span>((<span class="ident">variance</span> <span class="op">-</span> <span class="ident">expected_variance</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="ident">expected_variance</span> <span class="op">/</span> <span class="number">10.0</span>);
+        <span class="macro">assert!</span>((<span class="ident">variance</span> <span class="op">-</span> <span class="ident">expected_variance</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="ident">expected_variance</span> <span class="op">/</span> <span class="number">10.0</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>

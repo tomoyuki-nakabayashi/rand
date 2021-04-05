@@ -61,7 +61,7 @@
     <span class="kw">if</span> <span class="ident">w</span> <span class="op">&lt;</span> <span class="number">0x3fe62e42</span> {
         <span class="kw">if</span> <span class="ident">w</span> <span class="op">&lt;</span> <span class="number">0x3ff00000</span> <span class="op">-</span> (<span class="number">26</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">20</span>) {
             <span class="kw">let</span> <span class="ident">x1p120</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x4770000000000000</span>);
-            <span class="macro">force_eval</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">x1p120</span>);
+            <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">x1p120</span>);
             <span class="kw">return</span> <span class="number">1.</span>;
         }
         <span class="kw">let</span> <span class="ident">t</span> <span class="op">=</span> <span class="ident">expm1</span>(<span class="ident">x</span>); <span class="comment">// exponential minus 1</span>

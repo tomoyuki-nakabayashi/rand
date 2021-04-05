@@ -57,7 +57,7 @@
         <span class="kw">if</span> <span class="ident">e</span> <span class="op">&lt;</span> <span class="number">0x3ff</span> <span class="op">-</span> <span class="number">32</span> {
             <span class="comment">/* handle underflow */</span>
             <span class="kw">if</span> <span class="ident">e</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
-                <span class="macro">force_eval</span><span class="macro">!</span>(<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f32</span>);
+                <span class="macro">force_eval!</span>(<span class="ident">y</span> <span class="kw">as</span> <span class="ident">f32</span>);
             }
         } <span class="kw">else</span> {
             <span class="comment">/* |x| &lt; 0.5, up to 1.7ulp error */</span>

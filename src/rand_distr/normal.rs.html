@@ -675,11 +675,11 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_normal_cv</span>() {
         <span class="kw">let</span> <span class="ident">norm</span> <span class="op">=</span> <span class="ident">Normal</span>::<span class="ident">from_mean_cv</span>(<span class="number">1024.0</span>, <span class="number">1.0</span> <span class="op">/</span> <span class="number">256.0</span>).<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq</span><span class="macro">!</span>((<span class="ident">norm</span>.<span class="ident">mean</span>, <span class="ident">norm</span>.<span class="ident">std_dev</span>), (<span class="number">1024.0</span>, <span class="number">4.0</span>));
+        <span class="macro">assert_eq!</span>((<span class="ident">norm</span>.<span class="ident">mean</span>, <span class="ident">norm</span>.<span class="ident">std_dev</span>), (<span class="number">1024.0</span>, <span class="number">4.0</span>));
     }
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_normal_invalid_sd</span>() {
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Normal</span>::<span class="ident">from_mean_cv</span>(<span class="number">10.0</span>, <span class="op">-</span><span class="number">1.0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Normal</span>::<span class="ident">from_mean_cv</span>(<span class="number">10.0</span>, <span class="op">-</span><span class="number">1.0</span>).<span class="ident">is_err</span>());
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -693,25 +693,25 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_log_normal_cv</span>() {
         <span class="kw">let</span> <span class="ident">lnorm</span> <span class="op">=</span> <span class="ident">LogNormal</span>::<span class="ident">from_mean_cv</span>(<span class="number">0.0</span>, <span class="number">0.0</span>).<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq</span><span class="macro">!</span>((<span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">mean</span>, <span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">std_dev</span>), (<span class="op">-</span><span class="ident">core</span>::<span class="ident">f64</span>::<span class="ident">INFINITY</span>, <span class="number">0.0</span>));
+        <span class="macro">assert_eq!</span>((<span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">mean</span>, <span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">std_dev</span>), (<span class="op">-</span><span class="ident">core</span>::<span class="ident">f64</span>::<span class="ident">INFINITY</span>, <span class="number">0.0</span>));
 
         <span class="kw">let</span> <span class="ident">lnorm</span> <span class="op">=</span> <span class="ident">LogNormal</span>::<span class="ident">from_mean_cv</span>(<span class="number">1.0</span>, <span class="number">0.0</span>).<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq</span><span class="macro">!</span>((<span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">mean</span>, <span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">std_dev</span>), (<span class="number">0.0</span>, <span class="number">0.0</span>));
+        <span class="macro">assert_eq!</span>((<span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">mean</span>, <span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">std_dev</span>), (<span class="number">0.0</span>, <span class="number">0.0</span>));
 
         <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">core</span>::<span class="ident">f64</span>::<span class="ident">consts</span>::<span class="ident">E</span>;
         <span class="kw">let</span> <span class="ident">lnorm</span> <span class="op">=</span> <span class="ident">LogNormal</span>::<span class="ident">from_mean_cv</span>(<span class="ident">e</span>.<span class="ident">sqrt</span>(), (<span class="ident">e</span> <span class="op">-</span> <span class="number">1.0</span>).<span class="ident">sqrt</span>()).<span class="ident">unwrap</span>();
-        <span class="macro">assert_almost_eq</span><span class="macro">!</span>(<span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">mean</span>, <span class="number">0.0</span>, <span class="number">2e-16</span>);
-        <span class="macro">assert_almost_eq</span><span class="macro">!</span>(<span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">std_dev</span>, <span class="number">1.0</span>, <span class="number">2e-16</span>);
+        <span class="macro">assert_almost_eq!</span>(<span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">mean</span>, <span class="number">0.0</span>, <span class="number">2e-16</span>);
+        <span class="macro">assert_almost_eq!</span>(<span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">std_dev</span>, <span class="number">1.0</span>, <span class="number">2e-16</span>);
 
         <span class="kw">let</span> <span class="ident">lnorm</span> <span class="op">=</span> <span class="ident">LogNormal</span>::<span class="ident">from_mean_cv</span>(<span class="ident">e</span>.<span class="ident">powf</span>(<span class="number">1.5</span>), (<span class="ident">e</span> <span class="op">-</span> <span class="number">1.0</span>).<span class="ident">sqrt</span>()).<span class="ident">unwrap</span>();
-        <span class="macro">assert_almost_eq</span><span class="macro">!</span>(<span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">mean</span>, <span class="number">1.0</span>, <span class="number">1e-15</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">std_dev</span>, <span class="number">1.0</span>);
+        <span class="macro">assert_almost_eq!</span>(<span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">mean</span>, <span class="number">1.0</span>, <span class="number">1e-15</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">lnorm</span>.<span class="ident">norm</span>.<span class="ident">std_dev</span>, <span class="number">1.0</span>);
     }
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_log_normal_invalid_sd</span>() {
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">LogNormal</span>::<span class="ident">from_mean_cv</span>(<span class="op">-</span><span class="number">1.0</span>, <span class="number">1.0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">LogNormal</span>::<span class="ident">from_mean_cv</span>(<span class="number">0.0</span>, <span class="number">1.0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">LogNormal</span>::<span class="ident">from_mean_cv</span>(<span class="number">1.0</span>, <span class="op">-</span><span class="number">1.0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">LogNormal</span>::<span class="ident">from_mean_cv</span>(<span class="op">-</span><span class="number">1.0</span>, <span class="number">1.0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">LogNormal</span>::<span class="ident">from_mean_cv</span>(<span class="number">0.0</span>, <span class="number">1.0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">LogNormal</span>::<span class="ident">from_mean_cv</span>(<span class="number">1.0</span>, <span class="op">-</span><span class="number">1.0</span>).<span class="ident">is_err</span>());
     }
 }
 </pre></div>

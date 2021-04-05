@@ -231,7 +231,7 @@
     } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">hx</span> <span class="op">&lt;</span> <span class="number">0x3c900000</span> {
         <span class="comment">/* |x| &lt; 2**-54, return x */</span>
         <span class="kw">if</span> <span class="ident">hx</span> <span class="op">&lt;</span> <span class="number">0x00100000</span> {
-            <span class="macro">force_eval</span><span class="macro">!</span>(<span class="ident">x</span>);
+            <span class="macro">force_eval!</span>(<span class="ident">x</span>);
         }
         <span class="kw">return</span> <span class="ident">x</span>;
     } <span class="kw">else</span> {
@@ -287,7 +287,7 @@
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">sanity_check</span>() {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="kw">super</span>::<span class="ident">expm1</span>(<span class="number">1.1</span>), <span class="number">2.0041660239464334</span>);
+        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::<span class="ident">expm1</span>(<span class="number">1.1</span>), <span class="number">2.0041660239464334</span>);
     }
 }
 </pre></div>

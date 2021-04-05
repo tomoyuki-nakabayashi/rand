@@ -142,9 +142,9 @@
             <span class="comment">/* |x| &lt; 2**-26 */</span>
             <span class="comment">/* raise inexact if x != 0 and underflow if subnormal*/</span>
             <span class="kw">if</span> <span class="ident">ix</span> <span class="op">&lt;</span> <span class="number">0x00100000</span> {
-                <span class="macro">force_eval</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">/</span> <span class="ident">x1p120</span>);
+                <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">/</span> <span class="ident">x1p120</span>);
             } <span class="kw">else</span> {
-                <span class="macro">force_eval</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">x1p120</span>);
+                <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">x1p120</span>);
             }
             <span class="kw">return</span> <span class="ident">x</span>;
         }
@@ -170,7 +170,7 @@
 <span class="kw">fn</span> <span class="ident">test_near_pi</span>() {
     <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x400921fb000FD5DD</span>); <span class="comment">// 3.141592026217707</span>
     <span class="kw">let</span> <span class="ident">sx</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x3ea50d15ced1a4a2</span>); <span class="comment">// 6.273720864039205e-7</span>
-    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">sin</span>(<span class="ident">x</span>), <span class="ident">sx</span>);
+    <span class="macro">assert_eq!</span>(<span class="ident">sin</span>(<span class="ident">x</span>), <span class="ident">sx</span>);
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="libm" data-search-js="../../../search-index.js"></div>

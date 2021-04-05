@@ -223,7 +223,7 @@
     } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">hx</span> <span class="op">&lt;</span> <span class="number">0x33000000</span> {
         <span class="comment">/* when |x|&lt;2**-25, return x */</span>
         <span class="kw">if</span> <span class="ident">hx</span> <span class="op">&lt;</span> <span class="number">0x00800000</span> {
-            <span class="macro">force_eval</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">*</span> <span class="ident">x</span>);
+            <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">*</span> <span class="ident">x</span>);
         }
         <span class="kw">return</span> <span class="ident">x</span>;
     } <span class="kw">else</span> {

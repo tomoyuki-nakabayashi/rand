@@ -83,18 +83,18 @@
     }
 
     <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Weight</span> {}
-    <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">impl_weight</span> {
+    <span class="macro">macro_rules!</span> <span class="ident">impl_weight</span> {
         () <span class="op">=</span><span class="op">&gt;</span> {};
         (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span>:<span class="ident">ident</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">more</span>:<span class="ident">ident</span>,)<span class="kw-2">*</span>) <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">impl</span> <span class="ident">Weight</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">T</span> {}
-            <span class="macro">impl_weight</span><span class="macro">!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">more</span>,)<span class="kw-2">*</span>);
+            <span class="macro">impl_weight!</span>($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">more</span>,)<span class="kw-2">*</span>);
         };
     }
-    <span class="macro">impl_weight</span><span class="macro">!</span>(<span class="ident">f64</span>, <span class="ident">f32</span>,);
-    <span class="macro">impl_weight</span><span class="macro">!</span>(<span class="ident">u8</span>, <span class="ident">u16</span>, <span class="ident">u32</span>, <span class="ident">u64</span>, <span class="ident">usize</span>,);
-    <span class="macro">impl_weight</span><span class="macro">!</span>(<span class="ident">i8</span>, <span class="ident">i16</span>, <span class="ident">i32</span>, <span class="ident">i64</span>, <span class="ident">isize</span>,);
+    <span class="macro">impl_weight!</span>(<span class="ident">f64</span>, <span class="ident">f32</span>,);
+    <span class="macro">impl_weight!</span>(<span class="ident">u8</span>, <span class="ident">u16</span>, <span class="ident">u32</span>, <span class="ident">u64</span>, <span class="ident">usize</span>,);
+    <span class="macro">impl_weight!</span>(<span class="ident">i8</span>, <span class="ident">i16</span>, <span class="ident">i32</span>, <span class="ident">i64</span>, <span class="ident">isize</span>,);
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;emscripten&quot;</span>))]</span>
-    <span class="macro">impl_weight</span><span class="macro">!</span>(<span class="ident">u128</span>, <span class="ident">i128</span>,);
+    <span class="macro">impl_weight!</span>(<span class="ident">u128</span>, <span class="ident">i128</span>,);
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="rand" data-search-js="../../../search-index.js"></div>

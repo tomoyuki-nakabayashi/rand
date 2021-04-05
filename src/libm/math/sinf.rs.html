@@ -136,7 +136,7 @@
         <span class="kw">if</span> <span class="ident">ix</span> <span class="op">&lt;</span> <span class="number">0x39800000</span> {
             <span class="comment">/* |x| &lt; 2**-12 */</span>
             <span class="comment">/* raise inexact if x!=0 and underflow if subnormal */</span>
-            <span class="macro">force_eval</span><span class="macro">!</span>(<span class="kw">if</span> <span class="ident">ix</span> <span class="op">&lt;</span> <span class="number">0x00800000</span> {
+            <span class="macro">force_eval!</span>(<span class="kw">if</span> <span class="ident">ix</span> <span class="op">&lt;</span> <span class="number">0x00800000</span> {
                 <span class="ident">x</span> <span class="op">/</span> <span class="ident">x1p120</span>
             } <span class="kw">else</span> {
                 <span class="ident">x</span> <span class="op">+</span> <span class="ident">x1p120</span>

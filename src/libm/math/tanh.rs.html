@@ -98,7 +98,7 @@
     } <span class="kw">else</span> {
         <span class="comment">/* |x| is subnormal */</span>
         <span class="comment">/* note: the branch above would not raise underflow in [0x1p-1023,0x1p-1022) */</span>
-        <span class="macro">force_eval</span><span class="macro">!</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span>);
+        <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span>);
         <span class="ident">t</span> <span class="op">=</span> <span class="ident">x</span>;
     }
 

@@ -154,7 +154,7 @@
             <span class="comment">/* |x| &lt; 2**-24 */</span>
             <span class="comment">/* underflow if subnormal */</span>
             <span class="kw">if</span> (<span class="ident">ix</span> <span class="op">&amp;</span> <span class="number">0x7f800000</span>) <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
-                <span class="macro">force_eval</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">*</span> <span class="ident">x</span>);
+                <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">*</span> <span class="ident">x</span>);
             }
             <span class="kw">return</span> <span class="ident">x</span>;
         }

@@ -174,7 +174,7 @@
     <span class="comment">// On wasm32 we know that LLVM&#39;s intrinsic will compile to an optimized</span>
     <span class="comment">// `f32.sqrt` native instruction, so we can leverage this for both code size</span>
     <span class="comment">// and speed.</span>
-    <span class="macro">llvm_intrinsically_optimized</span><span class="macro">!</span> {
+    <span class="macro">llvm_intrinsically_optimized!</span> {
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>)]</span> {
             <span class="kw">return</span> <span class="kw">if</span> <span class="ident">x</span> <span class="op">&lt;</span> <span class="number">0.0</span> {
                 ::<span class="ident">core</span>::<span class="ident">f32</span>::<span class="ident">NAN</span>
@@ -291,18 +291,18 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">sanity_check</span>() {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">sqrtf</span>(<span class="number">100.0</span>), <span class="number">10.0</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">sqrtf</span>(<span class="number">4.0</span>), <span class="number">2.0</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">sqrtf</span>(<span class="number">100.0</span>), <span class="number">10.0</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">sqrtf</span>(<span class="number">4.0</span>), <span class="number">2.0</span>);
     }
 
     <span class="doccomment">/// The spec: https://en.cppreference.com/w/cpp/numeric/math/sqrt</span>
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">spec_tests</span>() {
         <span class="comment">// Not Asserted: FE_INVALID exception is raised if argument is negative.</span>
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">sqrtf</span>(<span class="op">-</span><span class="number">1.0</span>).<span class="ident">is_nan</span>());
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">sqrtf</span>(<span class="ident">NAN</span>).<span class="ident">is_nan</span>());
+        <span class="macro">assert!</span>(<span class="ident">sqrtf</span>(<span class="op">-</span><span class="number">1.0</span>).<span class="ident">is_nan</span>());
+        <span class="macro">assert!</span>(<span class="ident">sqrtf</span>(<span class="ident">NAN</span>).<span class="ident">is_nan</span>());
         <span class="kw">for</span> <span class="ident">f</span> <span class="kw">in</span> [<span class="number">0.0</span>, <span class="op">-</span><span class="number">0.0</span>, <span class="ident">INFINITY</span>].<span class="ident">iter</span>().<span class="ident">copied</span>() {
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">sqrtf</span>(<span class="ident">f</span>), <span class="ident">f</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">sqrtf</span>(<span class="ident">f</span>), <span class="ident">f</span>);
         }
     }
 }

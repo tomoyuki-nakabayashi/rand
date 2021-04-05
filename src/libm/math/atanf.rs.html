@@ -181,7 +181,7 @@
             <span class="comment">/* |x| &lt; 2**-12 */</span>
             <span class="kw">if</span> <span class="ident">ix</span> <span class="op">&lt;</span> <span class="number">0x00800000</span> {
                 <span class="comment">/* raise underflow for subnormal x */</span>
-                <span class="macro">force_eval</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">*</span> <span class="ident">x</span>);
+                <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">*</span> <span class="ident">x</span>);
             }
             <span class="kw">return</span> <span class="ident">x</span>;
         }

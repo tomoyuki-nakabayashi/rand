@@ -574,11 +574,11 @@
 }
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">Array64</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
-        <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;Array64 {{}}&quot;</span>)
+        <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;Array64 {{}}&quot;</span>)
     }
 }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">chacha_impl</span> {
+<span class="macro">macro_rules!</span> <span class="ident">chacha_impl</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ChaChaXCore</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ChaChaXRng</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rounds</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">doc</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="attribute">#[<span class="ident">doc</span><span class="op">=</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">doc</span>]</span>
         <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
@@ -589,7 +589,7 @@
         <span class="comment">// Custom Debug implementation that does not expose the internal state</span>
         <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ChaChaXCore</span> {
             <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
-                <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;ChaChaXCore {{}}&quot;</span>)
+                <span class="macro">write!</span>(<span class="ident">f</span>, <span class="string">&quot;ChaChaXCore {{}}&quot;</span>)
             }
         }
 
@@ -777,9 +777,9 @@
     }
 }
 
-<span class="macro">chacha_impl</span><span class="macro">!</span>(<span class="ident">ChaCha20Core</span>, <span class="ident">ChaCha20Rng</span>, <span class="number">10</span>, <span class="string">&quot;ChaCha with 20 rounds&quot;</span>);
-<span class="macro">chacha_impl</span><span class="macro">!</span>(<span class="ident">ChaCha12Core</span>, <span class="ident">ChaCha12Rng</span>, <span class="number">6</span>, <span class="string">&quot;ChaCha with 12 rounds&quot;</span>);
-<span class="macro">chacha_impl</span><span class="macro">!</span>(<span class="ident">ChaCha8Core</span>, <span class="ident">ChaCha8Rng</span>, <span class="number">4</span>, <span class="string">&quot;ChaCha with 8 rounds&quot;</span>);
+<span class="macro">chacha_impl!</span>(<span class="ident">ChaCha20Core</span>, <span class="ident">ChaCha20Rng</span>, <span class="number">10</span>, <span class="string">&quot;ChaCha with 20 rounds&quot;</span>);
+<span class="macro">chacha_impl!</span>(<span class="ident">ChaCha12Core</span>, <span class="ident">ChaCha12Rng</span>, <span class="number">6</span>, <span class="string">&quot;ChaCha with 12 rounds&quot;</span>);
+<span class="macro">chacha_impl!</span>(<span class="ident">ChaCha8Core</span>, <span class="ident">ChaCha8Rng</span>, <span class="number">4</span>, <span class="string">&quot;ChaCha with 8 rounds&quot;</span>);
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">test</span> {
@@ -794,10 +794,10 @@
             <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>,
         ];
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng1</span> <span class="op">=</span> <span class="ident">ChaChaRng</span>::<span class="ident">from_seed</span>(<span class="ident">seed</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng1</span>.<span class="ident">next_u32</span>(), <span class="number">137206642</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">rng1</span>.<span class="ident">next_u32</span>(), <span class="number">137206642</span>);
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng2</span> <span class="op">=</span> <span class="ident">ChaChaRng</span>::<span class="ident">from_rng</span>(<span class="ident">rng1</span>).<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng2</span>.<span class="ident">next_u32</span>(), <span class="number">1325750369</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">rng2</span>.<span class="ident">next_u32</span>(), <span class="number">1325750369</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -816,7 +816,7 @@
             <span class="number">0xc70d778b</span>, <span class="number">0x7c5941da</span>, <span class="number">0x8d485751</span>, <span class="number">0x3fe02477</span>, <span class="number">0x374ad8b8</span>, <span class="number">0xf4b8436a</span>, <span class="number">0x1ca11815</span>,
             <span class="number">0x69b687c3</span>, <span class="number">0x8665eeb2</span>,
         ];
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
 
         <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="ident">results</span>.<span class="ident">iter_mut</span>() {
             <span class="kw-2">*</span><span class="ident">i</span> <span class="op">=</span> <span class="ident">rng</span>.<span class="ident">next_u32</span>();
@@ -826,7 +826,7 @@
             <span class="number">0xed7aee32</span>, <span class="number">0x7621b729</span>, <span class="number">0x434ee69c</span>, <span class="number">0xb03371d5</span>, <span class="number">0xd539d874</span>, <span class="number">0x281fed31</span>, <span class="number">0x45fb0a51</span>,
             <span class="number">0x1f0ae1ac</span>, <span class="number">0x6f4d794b</span>,
         ];
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -853,7 +853,7 @@
             <span class="number">0x5aaa49c9</span>, <span class="number">0xbb00ca8e</span>, <span class="number">0xda3ba7b4</span>, <span class="number">0xc4b592d1</span>, <span class="number">0xfdf2732f</span>, <span class="number">0x4436274e</span>, <span class="number">0x2561b3c8</span>,
             <span class="number">0xebdd4aa6</span>, <span class="number">0xa0136c00</span>,
         ];
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -880,8 +880,8 @@
         <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="ident">results</span>.<span class="ident">iter_mut</span>() {
             <span class="kw-2">*</span><span class="ident">i</span> <span class="op">=</span> <span class="ident">rng1</span>.<span class="ident">next_u32</span>();
         }
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng1</span>.<span class="ident">get_word_pos</span>(), <span class="ident">expected_end</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">rng1</span>.<span class="ident">get_word_pos</span>(), <span class="ident">expected_end</span>);
 
         <span class="comment">// Test block 2 by using `set_word_pos`</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng2</span> <span class="op">=</span> <span class="ident">ChaChaRng</span>::<span class="ident">from_seed</span>(<span class="ident">seed</span>);
@@ -889,22 +889,22 @@
         <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="ident">results</span>.<span class="ident">iter_mut</span>() {
             <span class="kw-2">*</span><span class="ident">i</span> <span class="op">=</span> <span class="ident">rng2</span>.<span class="ident">next_u32</span>();
         }
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng2</span>.<span class="ident">get_word_pos</span>(), <span class="ident">expected_end</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">rng2</span>.<span class="ident">get_word_pos</span>(), <span class="ident">expected_end</span>);
 
         <span class="comment">// Test skipping behaviour with other types</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> [<span class="number">0u8</span>; <span class="number">32</span>];
         <span class="ident">rng2</span>.<span class="ident">fill_bytes</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>[..]);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng2</span>.<span class="ident">get_word_pos</span>(), <span class="ident">expected_end</span> <span class="op">+</span> <span class="number">8</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">rng2</span>.<span class="ident">get_word_pos</span>(), <span class="ident">expected_end</span> <span class="op">+</span> <span class="number">8</span>);
         <span class="ident">rng2</span>.<span class="ident">fill_bytes</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>[<span class="number">0</span>..<span class="number">25</span>]);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng2</span>.<span class="ident">get_word_pos</span>(), <span class="ident">expected_end</span> <span class="op">+</span> <span class="number">15</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">rng2</span>.<span class="ident">get_word_pos</span>(), <span class="ident">expected_end</span> <span class="op">+</span> <span class="number">15</span>);
         <span class="ident">rng2</span>.<span class="ident">next_u64</span>();
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng2</span>.<span class="ident">get_word_pos</span>(), <span class="ident">expected_end</span> <span class="op">+</span> <span class="number">17</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">rng2</span>.<span class="ident">get_word_pos</span>(), <span class="ident">expected_end</span> <span class="op">+</span> <span class="number">17</span>);
         <span class="ident">rng2</span>.<span class="ident">next_u32</span>();
         <span class="ident">rng2</span>.<span class="ident">next_u64</span>();
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng2</span>.<span class="ident">get_word_pos</span>(), <span class="ident">expected_end</span> <span class="op">+</span> <span class="number">20</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">rng2</span>.<span class="ident">get_word_pos</span>(), <span class="ident">expected_end</span> <span class="op">+</span> <span class="number">20</span>);
         <span class="ident">rng2</span>.<span class="ident">fill_bytes</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>[<span class="number">0</span>..<span class="number">1</span>]);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng2</span>.<span class="ident">get_word_pos</span>(), <span class="ident">expected_end</span> <span class="op">+</span> <span class="number">21</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">rng2</span>.<span class="ident">get_word_pos</span>(), <span class="ident">expected_end</span> <span class="op">+</span> <span class="number">21</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -929,7 +929,7 @@
             <span class="number">0x3615b384</span>, <span class="number">0x11cfa18e</span>, <span class="number">0xd3c50049</span>, <span class="number">0x75c775f6</span>, <span class="number">0x434c6530</span>, <span class="number">0x2c5bad8f</span>, <span class="number">0x898881dc</span>,
             <span class="number">0x5f1c86d9</span>, <span class="number">0xc1f8e7f4</span>,
         ];
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -942,7 +942,7 @@
             <span class="number">118</span>, <span class="number">184</span>, <span class="number">224</span>, <span class="number">173</span>, <span class="number">160</span>, <span class="number">241</span>, <span class="number">61</span>, <span class="number">144</span>, <span class="number">64</span>, <span class="number">93</span>, <span class="number">106</span>, <span class="number">229</span>, <span class="number">83</span>, <span class="number">134</span>, <span class="number">189</span>, <span class="number">40</span>, <span class="number">189</span>, <span class="number">210</span>,
             <span class="number">25</span>, <span class="number">184</span>, <span class="number">160</span>, <span class="number">141</span>, <span class="number">237</span>, <span class="number">26</span>, <span class="number">168</span>, <span class="number">54</span>, <span class="number">239</span>, <span class="number">204</span>, <span class="number">139</span>, <span class="number">119</span>, <span class="number">13</span>, <span class="number">199</span>,
         ];
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -965,7 +965,7 @@
             <span class="number">0xc727ee54</span>, <span class="number">0x0e0e978a</span>, <span class="number">0xf3145c95</span>, <span class="number">0x1b748ea8</span>, <span class="number">0xf786c297</span>, <span class="number">0x99c28f5f</span>, <span class="number">0x628314e8</span>,
             <span class="number">0x398a19fa</span>, <span class="number">0x6ded1b53</span>,
         ];
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">results</span>, <span class="ident">expected</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -977,16 +977,16 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident">ChaChaRng</span>::<span class="ident">from_seed</span>(<span class="ident">seed</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">clone</span> <span class="op">=</span> <span class="ident">rng</span>.<span class="ident">clone</span>();
         <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">16</span> {
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng</span>.<span class="ident">next_u64</span>(), <span class="ident">clone</span>.<span class="ident">next_u64</span>());
+            <span class="macro">assert_eq!</span>(<span class="ident">rng</span>.<span class="ident">next_u64</span>(), <span class="ident">clone</span>.<span class="ident">next_u64</span>());
         }
 
         <span class="ident">rng</span>.<span class="ident">set_stream</span>(<span class="number">51</span>);
         <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">7</span> {
-            <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">rng</span>.<span class="ident">next_u32</span>() <span class="op">!</span><span class="op">=</span> <span class="ident">clone</span>.<span class="ident">next_u32</span>());
+            <span class="macro">assert!</span>(<span class="ident">rng</span>.<span class="ident">next_u32</span>() <span class="op">!</span><span class="op">=</span> <span class="ident">clone</span>.<span class="ident">next_u32</span>());
         }
         <span class="ident">clone</span>.<span class="ident">set_stream</span>(<span class="number">51</span>); <span class="comment">// switch part way through block</span>
         <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">7</span>..<span class="number">16</span> {
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng</span>.<span class="ident">next_u32</span>(), <span class="ident">clone</span>.<span class="ident">next_u32</span>());
+            <span class="macro">assert_eq!</span>(<span class="ident">rng</span>.<span class="ident">next_u32</span>(), <span class="ident">clone</span>.<span class="ident">next_u32</span>());
         }
     }
 
@@ -997,7 +997,7 @@
         <span class="comment">// refilling the buffer in set_word_pos will wrap the block counter to 0</span>
         <span class="kw">let</span> <span class="ident">last_block</span> <span class="op">=</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">68</span>) <span class="op">-</span> <span class="ident">u128</span>::<span class="ident">from</span>(<span class="ident">BUF_BLOCKS</span> <span class="op">*</span> <span class="ident">BLOCK_WORDS</span>);
         <span class="ident">rng</span>.<span class="ident">set_word_pos</span>(<span class="ident">last_block</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng</span>.<span class="ident">get_word_pos</span>(), <span class="ident">last_block</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">rng</span>.<span class="ident">get_word_pos</span>(), <span class="ident">last_block</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -1007,15 +1007,15 @@
         <span class="comment">// refilling the buffer in set_word_pos will wrap the block counter past 0</span>
         <span class="kw">let</span> <span class="ident">last_block</span> <span class="op">=</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">68</span>) <span class="op">-</span> <span class="ident">u128</span>::<span class="ident">from</span>(<span class="ident">BLOCK_WORDS</span>);
         <span class="ident">rng</span>.<span class="ident">set_word_pos</span>(<span class="ident">last_block</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng</span>.<span class="ident">get_word_pos</span>(), <span class="ident">last_block</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">rng</span>.<span class="ident">get_word_pos</span>(), <span class="ident">last_block</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_chacha_word_pos_zero</span>() {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident">ChaChaRng</span>::<span class="ident">from_seed</span>(<span class="ident">Default</span>::<span class="ident">default</span>());
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng</span>.<span class="ident">get_word_pos</span>(), <span class="number">0</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">rng</span>.<span class="ident">get_word_pos</span>(), <span class="number">0</span>);
         <span class="ident">rng</span>.<span class="ident">set_word_pos</span>(<span class="number">0</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">rng</span>.<span class="ident">get_word_pos</span>(), <span class="number">0</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">rng</span>.<span class="ident">get_word_pos</span>(), <span class="number">0</span>);
     }
 }
 </pre></div>

@@ -609,15 +609,15 @@
     ) {
         <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">if_same_then_else</span>)]</span> <span class="comment">// false positive</span>
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_forked</span>(<span class="ident">global_fork_counter</span>) {
-            <span class="macro">info</span><span class="macro">!</span>(<span class="string">&quot;Fork detected, reseeding RNG&quot;</span>);
+            <span class="macro">info!</span>(<span class="string">&quot;Fork detected, reseeding RNG&quot;</span>);
         } <span class="kw">else</span> {
-            <span class="macro">trace</span><span class="macro">!</span>(<span class="string">&quot;Reseeding RNG (periodic reseed)&quot;</span>);
+            <span class="macro">trace!</span>(<span class="string">&quot;Reseeding RNG (periodic reseed)&quot;</span>);
         }
 
         <span class="kw">let</span> <span class="ident">num_bytes</span> <span class="op">=</span> <span class="ident">results</span>.<span class="ident">as_ref</span>().<span class="ident">len</span>() <span class="op">*</span> <span class="ident">size_of</span>::<span class="op">&lt;</span><span class="op">&lt;</span><span class="ident">R</span> <span class="kw">as</span> <span class="ident">BlockRngCore</span><span class="op">&gt;</span>::<span class="ident">Item</span><span class="op">&gt;</span>();
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">reseed</span>() {
-            <span class="macro">warn</span><span class="macro">!</span>(<span class="string">&quot;Reseeding RNG failed: {}&quot;</span>, <span class="ident">e</span>);
+            <span class="macro">warn!</span>(<span class="string">&quot;Reseeding RNG failed: {}&quot;</span>, <span class="ident">e</span>);
             <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">e</span>;
         }
         <span class="self">self</span>.<span class="ident">fork_counter</span> <span class="op">=</span> <span class="ident">global_fork_counter</span>;
@@ -721,7 +721,7 @@
         <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">10</span> {
             <span class="ident">reseeding</span>.<span class="ident">fill</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>.<span class="number">0</span>);
             <span class="ident">reseeding</span>.<span class="ident">fill</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>.<span class="number">1</span>);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">buf</span>, <span class="ident">seq</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">buf</span>, <span class="ident">seq</span>);
         }
     }
 
@@ -737,7 +737,7 @@
         }
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng2</span> <span class="op">=</span> <span class="ident">rng1</span>.<span class="ident">clone</span>();
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">first</span>, <span class="ident">rng2</span>.<span class="ident">gen</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>());
+        <span class="macro">assert_eq!</span>(<span class="ident">first</span>, <span class="ident">rng2</span>.<span class="ident">gen</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>());
     }
 }
 </pre></div>

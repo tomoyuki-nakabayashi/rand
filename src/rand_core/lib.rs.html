@@ -877,7 +877,7 @@
     <span class="kw">fn</span> <span class="ident">from_entropy</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">seed</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">Seed</span>::<span class="ident">default</span>();
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>) <span class="op">=</span> <span class="ident">getrandom</span>::<span class="ident">getrandom</span>(<span class="ident">seed</span>.<span class="ident">as_mut</span>()) {
-            <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;from_entropy failed: {}&quot;</span>, <span class="ident">err</span>);
+            <span class="macro">panic!</span>(<span class="string">&quot;from_entropy failed: {}&quot;</span>, <span class="ident">err</span>);
         }
         <span class="self">Self</span>::<span class="ident">from_seed</span>(<span class="ident">seed</span>)
     }
@@ -979,19 +979,19 @@
             <span class="comment">// This is the binomial distribution B(64, 0.5), so chance of</span>
             <span class="comment">// weight &lt; 20 is binocdf(19, 64, 0.5) = 7.8e-4, and same for</span>
             <span class="comment">// weight &gt; 44.</span>
-            <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">weight</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">20</span> <span class="op">&amp;&amp;</span> <span class="ident">weight</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">44</span>);
+            <span class="macro">assert!</span>(<span class="ident">weight</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">20</span> <span class="op">&amp;&amp;</span> <span class="ident">weight</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">44</span>);
 
             <span class="kw">for</span> (<span class="ident">i2</span>, <span class="ident">r2</span>) <span class="kw">in</span> <span class="ident">results</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
                 <span class="kw">if</span> <span class="ident">i1</span> <span class="op">=</span><span class="op">=</span> <span class="ident">i2</span> {
                     <span class="kw">continue</span>;
                 }
                 <span class="kw">let</span> <span class="ident">diff_weight</span> <span class="op">=</span> (<span class="ident">r1</span> <span class="op">^</span> <span class="ident">r2</span>).<span class="ident">count_ones</span>();
-                <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">diff_weight</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">20</span>);
+                <span class="macro">assert!</span>(<span class="ident">diff_weight</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">20</span>);
             }
         }
 
         <span class="comment">// value-breakage test:</span>
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">results</span>[<span class="number">0</span>], <span class="number">5029875928683246316</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">results</span>[<span class="number">0</span>], <span class="number">5029875928683246316</span>);
     }
 }
 </pre></div>

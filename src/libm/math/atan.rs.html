@@ -273,7 +273,7 @@
             <span class="comment">/* |x| &lt; 2^-27 */</span>
             <span class="kw">if</span> <span class="ident">ix</span> <span class="op">&lt;</span> <span class="number">0x0010_0000</span> {
                 <span class="comment">/* raise underflow for subnormal x */</span>
-                <span class="macro">force_eval</span><span class="macro">!</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span>);
+                <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f32</span>);
             }
 
             <span class="kw">return</span> <span class="ident">x</span>;
@@ -314,7 +314,7 @@
         <span class="kw">return</span> <span class="ident">x</span> <span class="op">-</span> <span class="ident">x</span> <span class="op">*</span> (<span class="ident">s1</span> <span class="op">+</span> <span class="ident">s2</span>);
     }
 
-    <span class="kw">let</span> <span class="ident">z</span> <span class="op">=</span> <span class="macro">i</span><span class="macro">!</span>(<span class="ident">ATANHI</span>, <span class="ident">id</span> <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">-</span> (<span class="ident">x</span> <span class="op">*</span> (<span class="ident">s1</span> <span class="op">+</span> <span class="ident">s2</span>) <span class="op">-</span> <span class="macro">i</span><span class="macro">!</span>(<span class="ident">ATANLO</span>, <span class="ident">id</span> <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">-</span> <span class="ident">x</span>);
+    <span class="kw">let</span> <span class="ident">z</span> <span class="op">=</span> <span class="macro">i!</span>(<span class="ident">ATANHI</span>, <span class="ident">id</span> <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">-</span> (<span class="ident">x</span> <span class="op">*</span> (<span class="ident">s1</span> <span class="op">+</span> <span class="ident">s2</span>) <span class="op">-</span> <span class="macro">i!</span>(<span class="ident">ATANLO</span>, <span class="ident">id</span> <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">-</span> <span class="ident">x</span>);
 
     <span class="kw">if</span> <span class="ident">sign</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
         <span class="op">-</span><span class="ident">z</span>
@@ -340,7 +340,7 @@
         ]
         .<span class="ident">iter</span>()
         {
-            <span class="macro">assert</span><span class="macro">!</span>(
+            <span class="macro">assert!</span>(
                 (<span class="ident">atan</span>(<span class="kw-2">*</span><span class="ident">input</span>) <span class="op">-</span> <span class="ident">answer</span>) <span class="op">/</span> <span class="ident">answer</span> <span class="op">&lt;</span> <span class="number">1e-5</span>,
                 <span class="string">&quot;\natan({:.4}/16) = {:.4}, actual: {}&quot;</span>,
                 <span class="ident">input</span> <span class="op">*</span> <span class="number">16.0</span>,
@@ -352,22 +352,22 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">zero</span>() {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">atan</span>(<span class="number">0.0</span>), <span class="number">0.0</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">atan</span>(<span class="number">0.0</span>), <span class="number">0.0</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">infinity</span>() {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">atan</span>(<span class="ident">f64</span>::<span class="ident">INFINITY</span>), <span class="ident">f64</span>::<span class="ident">consts</span>::<span class="ident">FRAC_PI_2</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">atan</span>(<span class="ident">f64</span>::<span class="ident">INFINITY</span>), <span class="ident">f64</span>::<span class="ident">consts</span>::<span class="ident">FRAC_PI_2</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">minus_infinity</span>() {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">atan</span>(<span class="ident">f64</span>::<span class="ident">NEG_INFINITY</span>), <span class="op">-</span><span class="ident">f64</span>::<span class="ident">consts</span>::<span class="ident">FRAC_PI_2</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">atan</span>(<span class="ident">f64</span>::<span class="ident">NEG_INFINITY</span>), <span class="op">-</span><span class="ident">f64</span>::<span class="ident">consts</span>::<span class="ident">FRAC_PI_2</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">nan</span>() {
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">atan</span>(<span class="ident">f64</span>::<span class="ident">NAN</span>).<span class="ident">is_nan</span>());
+        <span class="macro">assert!</span>(<span class="ident">atan</span>(<span class="ident">f64</span>::<span class="ident">NAN</span>).<span class="ident">is_nan</span>());
     }
 }
 </pre></div>

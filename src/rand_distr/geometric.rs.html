@@ -405,14 +405,14 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_geo_invalid_p</span>() {
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="ident">core</span>::<span class="ident">f64</span>::<span class="ident">NAN</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="ident">core</span>::<span class="ident">f64</span>::<span class="ident">INFINITY</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="ident">core</span>::<span class="ident">f64</span>::<span class="ident">NEG_INFINITY</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="ident">core</span>::<span class="ident">f64</span>::<span class="ident">NAN</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="ident">core</span>::<span class="ident">f64</span>::<span class="ident">INFINITY</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="ident">core</span>::<span class="ident">f64</span>::<span class="ident">NEG_INFINITY</span>).<span class="ident">is_err</span>());
 
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="op">-</span><span class="number">0.5</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="number">0.0</span>).<span class="ident">is_ok</span>());
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="number">1.0</span>).<span class="ident">is_ok</span>());
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="number">2.0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="op">-</span><span class="number">0.5</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="number">0.0</span>).<span class="ident">is_ok</span>());
+        <span class="macro">assert!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="number">1.0</span>).<span class="ident">is_ok</span>());
+        <span class="macro">assert!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="number">2.0</span>).<span class="ident">is_err</span>());
     }
 
     <span class="kw">fn</span> <span class="ident">test_geo_mean_and_variance</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Rng</span><span class="op">&gt;</span>(<span class="ident">p</span>: <span class="ident">f64</span>, <span class="ident">rng</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) {
@@ -427,11 +427,11 @@
         }
 
         <span class="kw">let</span> <span class="ident">mean</span> <span class="op">=</span> <span class="ident">results</span>.<span class="ident">iter</span>().<span class="ident">sum</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>() <span class="op">/</span> <span class="ident">results</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">f64</span>;
-        <span class="macro">assert</span><span class="macro">!</span>((<span class="ident">mean</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">-</span> <span class="ident">expected_mean</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="ident">expected_mean</span> <span class="op">/</span> <span class="number">40.0</span>);
+        <span class="macro">assert!</span>((<span class="ident">mean</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">-</span> <span class="ident">expected_mean</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="ident">expected_mean</span> <span class="op">/</span> <span class="number">40.0</span>);
 
         <span class="kw">let</span> <span class="ident">variance</span> <span class="op">=</span>
             <span class="ident">results</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> (<span class="ident">x</span> <span class="op">-</span> <span class="ident">mean</span>) <span class="op">*</span> (<span class="ident">x</span> <span class="op">-</span> <span class="ident">mean</span>)).<span class="ident">sum</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>() <span class="op">/</span> <span class="ident">results</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">f64</span>;
-        <span class="macro">assert</span><span class="macro">!</span>((<span class="ident">variance</span> <span class="op">-</span> <span class="ident">expected_variance</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="ident">expected_variance</span> <span class="op">/</span> <span class="number">10.0</span>);
+        <span class="macro">assert!</span>((<span class="ident">variance</span> <span class="op">-</span> <span class="ident">expected_variance</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="ident">expected_variance</span> <span class="op">/</span> <span class="number">10.0</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -459,11 +459,11 @@
         }
 
         <span class="kw">let</span> <span class="ident">mean</span> <span class="op">=</span> <span class="ident">results</span>.<span class="ident">iter</span>().<span class="ident">sum</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>() <span class="op">/</span> <span class="ident">results</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">f64</span>;
-        <span class="macro">assert</span><span class="macro">!</span>((<span class="ident">mean</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">-</span> <span class="ident">expected_mean</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="ident">expected_mean</span> <span class="op">/</span> <span class="number">50.0</span>);
+        <span class="macro">assert!</span>((<span class="ident">mean</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">-</span> <span class="ident">expected_mean</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="ident">expected_mean</span> <span class="op">/</span> <span class="number">50.0</span>);
 
         <span class="kw">let</span> <span class="ident">variance</span> <span class="op">=</span>
             <span class="ident">results</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> (<span class="ident">x</span> <span class="op">-</span> <span class="ident">mean</span>) <span class="op">*</span> (<span class="ident">x</span> <span class="op">-</span> <span class="ident">mean</span>)).<span class="ident">sum</span>::<span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span>() <span class="op">/</span> <span class="ident">results</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">f64</span>;
-        <span class="macro">assert</span><span class="macro">!</span>((<span class="ident">variance</span> <span class="op">-</span> <span class="ident">expected_variance</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="ident">expected_variance</span> <span class="op">/</span> <span class="number">10.0</span>);
+        <span class="macro">assert!</span>((<span class="ident">variance</span> <span class="op">-</span> <span class="ident">expected_variance</span>).<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="ident">expected_variance</span> <span class="op">/</span> <span class="number">10.0</span>);
     }
 }</pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="rand_distr" data-search-js="../../search-index.js"></div>

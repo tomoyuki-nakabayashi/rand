@@ -448,7 +448,7 @@
     <span class="kw">fn</span> <span class="ident">wmul</span>(<span class="self">self</span>, <span class="ident">x</span>: <span class="ident">RHS</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">Output</span>;
 }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">wmul_impl</span> {
+<span class="macro">macro_rules!</span> <span class="ident">wmul_impl</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">wide</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">shift</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="kw">impl</span> <span class="ident">WideningMultiply</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span> {
             <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>);
@@ -484,11 +484,11 @@
         )<span class="op">+</span>
     };
 }
-<span class="macro">wmul_impl</span><span class="macro">!</span> { <span class="ident">u8</span>, <span class="ident">u16</span>, <span class="number">8</span> }
-<span class="macro">wmul_impl</span><span class="macro">!</span> { <span class="ident">u16</span>, <span class="ident">u32</span>, <span class="number">16</span> }
-<span class="macro">wmul_impl</span><span class="macro">!</span> { <span class="ident">u32</span>, <span class="ident">u64</span>, <span class="number">32</span> }
+<span class="macro">wmul_impl!</span> { <span class="ident">u8</span>, <span class="ident">u16</span>, <span class="number">8</span> }
+<span class="macro">wmul_impl!</span> { <span class="ident">u16</span>, <span class="ident">u32</span>, <span class="number">16</span> }
+<span class="macro">wmul_impl!</span> { <span class="ident">u32</span>, <span class="ident">u64</span>, <span class="number">32</span> }
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;emscripten&quot;</span>))]</span>
-<span class="macro">wmul_impl</span><span class="macro">!</span> { <span class="ident">u64</span>, <span class="ident">u128</span>, <span class="number">64</span> }
+<span class="macro">wmul_impl!</span> { <span class="ident">u64</span>, <span class="ident">u128</span>, <span class="number">64</span> }
 
 <span class="comment">// This code is a translation of the __mulddi3 function in LLVM&#39;s</span>
 <span class="comment">// compiler-rt. It is an optimised variant of the common method</span>
@@ -496,7 +496,7 @@
 <span class="comment">//</span>
 <span class="comment">// For some reason LLVM can optimise the C version very well, but</span>
 <span class="comment">// keeps shuffling registers in this Rust translation.</span>
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">wmul_impl_large</span> {
+<span class="macro">macro_rules!</span> <span class="ident">wmul_impl_large</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">half</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="kw">impl</span> <span class="ident">WideningMultiply</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span> {
             <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>);
@@ -552,11 +552,11 @@
     };
 }
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;emscripten&quot;</span>)]</span>
-<span class="macro">wmul_impl_large</span><span class="macro">!</span> { <span class="ident">u64</span>, <span class="number">32</span> }
+<span class="macro">wmul_impl_large!</span> { <span class="ident">u64</span>, <span class="number">32</span> }
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;emscripten&quot;</span>))]</span>
-<span class="macro">wmul_impl_large</span><span class="macro">!</span> { <span class="ident">u128</span>, <span class="number">64</span> }
+<span class="macro">wmul_impl_large!</span> { <span class="ident">u128</span>, <span class="number">64</span> }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">wmul_impl_usize</span> {
+<span class="macro">macro_rules!</span> <span class="ident">wmul_impl_usize</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ty</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="kw">impl</span> <span class="ident">WideningMultiply</span> <span class="kw">for</span> <span class="ident">usize</span> {
             <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> (<span class="ident">usize</span>, <span class="ident">usize</span>);
@@ -570,9 +570,9 @@
     };
 }
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_pointer_width</span> <span class="op">=</span> <span class="string">&quot;32&quot;</span>)]</span>
-<span class="macro">wmul_impl_usize</span><span class="macro">!</span> { <span class="ident">u32</span> }
+<span class="macro">wmul_impl_usize!</span> { <span class="ident">u32</span> }
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_pointer_width</span> <span class="op">=</span> <span class="string">&quot;64&quot;</span>)]</span>
-<span class="macro">wmul_impl_usize</span><span class="macro">!</span> { <span class="ident">u64</span> }
+<span class="macro">wmul_impl_usize!</span> { <span class="ident">u64</span> }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;simd_support&quot;</span>)]</span>
 <span class="kw">mod</span> <span class="ident">simd_wmul</span> {
@@ -580,7 +580,7 @@
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86&quot;</span>)]</span> <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">arch</span>::<span class="ident">x86</span>::<span class="kw-2">*</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;x86_64&quot;</span>)]</span> <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">arch</span>::<span class="ident">x86_64</span>::<span class="kw-2">*</span>;
 
-    <span class="macro">wmul_impl</span><span class="macro">!</span> {
+    <span class="macro">wmul_impl!</span> {
         (<span class="ident">u8x2</span>, <span class="ident">u16x2</span>),
         (<span class="ident">u8x4</span>, <span class="ident">u16x4</span>),
         (<span class="ident">u8x8</span>, <span class="ident">u16x8</span>),
@@ -589,17 +589,17 @@
         <span class="number">8</span>
     }
 
-    <span class="macro">wmul_impl</span><span class="macro">!</span> { (<span class="ident">u16x2</span>, <span class="ident">u32x2</span>),, <span class="number">16</span> }
-    <span class="macro">wmul_impl</span><span class="macro">!</span> { (<span class="ident">u16x4</span>, <span class="ident">u32x4</span>),, <span class="number">16</span> }
+    <span class="macro">wmul_impl!</span> { (<span class="ident">u16x2</span>, <span class="ident">u32x2</span>),, <span class="number">16</span> }
+    <span class="macro">wmul_impl!</span> { (<span class="ident">u16x4</span>, <span class="ident">u32x4</span>),, <span class="number">16</span> }
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;sse2&quot;</span>))]</span>
-    <span class="macro">wmul_impl</span><span class="macro">!</span> { (<span class="ident">u16x8</span>, <span class="ident">u32x8</span>),, <span class="number">16</span> }
+    <span class="macro">wmul_impl!</span> { (<span class="ident">u16x8</span>, <span class="ident">u32x8</span>),, <span class="number">16</span> }
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;avx2&quot;</span>))]</span>
-    <span class="macro">wmul_impl</span><span class="macro">!</span> { (<span class="ident">u16x16</span>, <span class="ident">u32x16</span>),, <span class="number">16</span> }
+    <span class="macro">wmul_impl!</span> { (<span class="ident">u16x16</span>, <span class="ident">u32x16</span>),, <span class="number">16</span> }
 
     <span class="comment">// 16-bit lane widths allow use of the x86 `mulhi` instructions, which</span>
     <span class="comment">// means `wmul` can be implemented with only two instructions.</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_macros</span>)]</span>
-    <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">wmul_impl_16</span> {
+    <span class="macro">macro_rules!</span> <span class="ident">wmul_impl_16</span> {
         (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">intrinsic</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">mulhi</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">mullo</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">impl</span> <span class="ident">WideningMultiply</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span> {
                 <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>);
@@ -617,13 +617,13 @@
     }
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;sse2&quot;</span>)]</span>
-    <span class="macro">wmul_impl_16</span><span class="macro">!</span> { <span class="ident">u16x8</span>, <span class="ident">__m128i</span>, <span class="ident">_mm_mulhi_epu16</span>, <span class="ident">_mm_mullo_epi16</span> }
+    <span class="macro">wmul_impl_16!</span> { <span class="ident">u16x8</span>, <span class="ident">__m128i</span>, <span class="ident">_mm_mulhi_epu16</span>, <span class="ident">_mm_mullo_epi16</span> }
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;avx2&quot;</span>)]</span>
-    <span class="macro">wmul_impl_16</span><span class="macro">!</span> { <span class="ident">u16x16</span>, <span class="ident">__m256i</span>, <span class="ident">_mm256_mulhi_epu16</span>, <span class="ident">_mm256_mullo_epi16</span> }
+    <span class="macro">wmul_impl_16!</span> { <span class="ident">u16x16</span>, <span class="ident">__m256i</span>, <span class="ident">_mm256_mulhi_epu16</span>, <span class="ident">_mm256_mullo_epi16</span> }
     <span class="comment">// FIXME: there are no `__m512i` types in stdsimd yet, so `wmul::&lt;u16x32&gt;`</span>
     <span class="comment">// cannot use the same implementation.</span>
 
-    <span class="macro">wmul_impl</span><span class="macro">!</span> {
+    <span class="macro">wmul_impl!</span> {
         (<span class="ident">u32x2</span>, <span class="ident">u64x2</span>),
         (<span class="ident">u32x4</span>, <span class="ident">u64x4</span>),
         (<span class="ident">u32x8</span>, <span class="ident">u64x8</span>),,
@@ -631,10 +631,10 @@
     }
 
     <span class="comment">// TODO: optimize, this seems to seriously slow things down</span>
-    <span class="macro">wmul_impl_large</span><span class="macro">!</span> { (<span class="ident">u8x64</span>,) <span class="ident">u8</span>, <span class="number">4</span> }
-    <span class="macro">wmul_impl_large</span><span class="macro">!</span> { (<span class="ident">u16x32</span>,) <span class="ident">u16</span>, <span class="number">8</span> }
-    <span class="macro">wmul_impl_large</span><span class="macro">!</span> { (<span class="ident">u32x16</span>,) <span class="ident">u32</span>, <span class="number">16</span> }
-    <span class="macro">wmul_impl_large</span><span class="macro">!</span> { (<span class="ident">u64x2</span>, <span class="ident">u64x4</span>, <span class="ident">u64x8</span>,) <span class="ident">u64</span>, <span class="number">32</span> }
+    <span class="macro">wmul_impl_large!</span> { (<span class="ident">u8x64</span>,) <span class="ident">u8</span>, <span class="number">4</span> }
+    <span class="macro">wmul_impl_large!</span> { (<span class="ident">u16x32</span>,) <span class="ident">u16</span>, <span class="number">8</span> }
+    <span class="macro">wmul_impl_large!</span> { (<span class="ident">u32x16</span>,) <span class="ident">u32</span>, <span class="number">16</span> }
+    <span class="macro">wmul_impl_large!</span> { (<span class="ident">u64x2</span>, <span class="ident">u64x4</span>, <span class="ident">u64x8</span>,) <span class="ident">u64</span>, <span class="number">32</span> }
 }
 
 <span class="doccomment">/// Helper trait when dealing with scalar and SIMD floating point types.</span>
@@ -684,12 +684,12 @@
     }
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">extract</span>(<span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="macro">debug_assert_eq</span><span class="macro">!</span>(<span class="ident">index</span>, <span class="number">0</span>);
+        <span class="macro">debug_assert_eq!</span>(<span class="ident">index</span>, <span class="number">0</span>);
         <span class="self">self</span>
     }
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">replace</span>(<span class="self">self</span>, <span class="ident">index</span>: <span class="ident">usize</span>, <span class="ident">new_value</span>: <span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="macro">debug_assert_eq</span><span class="macro">!</span>(<span class="ident">index</span>, <span class="number">0</span>);
+        <span class="macro">debug_assert_eq!</span>(<span class="ident">index</span>, <span class="number">0</span>);
         <span class="ident">new_value</span>
     }
 }
@@ -717,7 +717,7 @@
     }
 }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">scalar_float_impl</span> {
+<span class="macro">macro_rules!</span> <span class="ident">scalar_float_impl</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">uty</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">std</span>))]</span>
         <span class="kw">impl</span> <span class="ident">Float</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span> {
@@ -773,7 +773,7 @@
 
             <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
             <span class="kw">fn</span> <span class="ident">decrease_masked</span>(<span class="self">self</span>, <span class="ident">mask</span>: <span class="self">Self</span>::<span class="ident">Mask</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-                <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">mask</span>, <span class="string">&quot;At least one lane must be set&quot;</span>);
+                <span class="macro">debug_assert!</span>(<span class="ident">mask</span>, <span class="string">&quot;At least one lane must be set&quot;</span>);
                 <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span><span class="op">&gt;</span>::<span class="ident">from_bits</span>(<span class="self">self</span>.<span class="ident">to_bits</span>() <span class="op">-</span> <span class="number">1</span>)
             }
 
@@ -787,12 +787,12 @@
     };
 }
 
-<span class="macro">scalar_float_impl</span><span class="macro">!</span>(<span class="ident">f32</span>, <span class="ident">u32</span>);
-<span class="macro">scalar_float_impl</span><span class="macro">!</span>(<span class="ident">f64</span>, <span class="ident">u64</span>);
+<span class="macro">scalar_float_impl!</span>(<span class="ident">f32</span>, <span class="ident">u32</span>);
+<span class="macro">scalar_float_impl!</span>(<span class="ident">f64</span>, <span class="ident">u64</span>);
 
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;simd_support&quot;</span>)]</span>
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">simd_impl</span> {
+<span class="macro">macro_rules!</span> <span class="ident">simd_impl</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">f_scalar</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">mty</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">uty</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="kw">impl</span> <span class="ident">FloatSIMDUtils</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span> {
             <span class="kw">type</span> <span class="ident">Mask</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">mty</span>;
@@ -839,7 +839,7 @@
                 <span class="comment">// the binary representation, resulting in the next lower</span>
                 <span class="comment">// value representable by $ty. This works even when the</span>
                 <span class="comment">// current value is infinity.</span>
-                <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">mask</span>.<span class="ident">any</span>(), <span class="string">&quot;At least one lane must be set&quot;</span>);
+                <span class="macro">debug_assert!</span>(<span class="ident">mask</span>.<span class="ident">any</span>(), <span class="string">&quot;At least one lane must be set&quot;</span>);
                 <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ty</span><span class="op">&gt;</span>::<span class="ident">from_bits</span>(<span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">uty</span><span class="op">&gt;</span>::<span class="ident">from_bits</span>(<span class="self">self</span>) <span class="op">+</span> <span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">uty</span><span class="op">&gt;</span>::<span class="ident">from_bits</span>(<span class="ident">mask</span>))
             }
 
@@ -851,13 +851,13 @@
     };
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;simd_support&quot;</span>)]</span> <span class="macro">simd_impl</span><span class="macro">!</span> { <span class="ident">f32x2</span>, <span class="ident">f32</span>, <span class="ident">m32x2</span>, <span class="ident">u32x2</span> }
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;simd_support&quot;</span>)]</span> <span class="macro">simd_impl</span><span class="macro">!</span> { <span class="ident">f32x4</span>, <span class="ident">f32</span>, <span class="ident">m32x4</span>, <span class="ident">u32x4</span> }
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;simd_support&quot;</span>)]</span> <span class="macro">simd_impl</span><span class="macro">!</span> { <span class="ident">f32x8</span>, <span class="ident">f32</span>, <span class="ident">m32x8</span>, <span class="ident">u32x8</span> }
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;simd_support&quot;</span>)]</span> <span class="macro">simd_impl</span><span class="macro">!</span> { <span class="ident">f32x16</span>, <span class="ident">f32</span>, <span class="ident">m32x16</span>, <span class="ident">u32x16</span> }
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;simd_support&quot;</span>)]</span> <span class="macro">simd_impl</span><span class="macro">!</span> { <span class="ident">f64x2</span>, <span class="ident">f64</span>, <span class="ident">m64x2</span>, <span class="ident">u64x2</span> }
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;simd_support&quot;</span>)]</span> <span class="macro">simd_impl</span><span class="macro">!</span> { <span class="ident">f64x4</span>, <span class="ident">f64</span>, <span class="ident">m64x4</span>, <span class="ident">u64x4</span> }
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;simd_support&quot;</span>)]</span> <span class="macro">simd_impl</span><span class="macro">!</span> { <span class="ident">f64x8</span>, <span class="ident">f64</span>, <span class="ident">m64x8</span>, <span class="ident">u64x8</span> }
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;simd_support&quot;</span>)]</span> <span class="macro">simd_impl!</span> { <span class="ident">f32x2</span>, <span class="ident">f32</span>, <span class="ident">m32x2</span>, <span class="ident">u32x2</span> }
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;simd_support&quot;</span>)]</span> <span class="macro">simd_impl!</span> { <span class="ident">f32x4</span>, <span class="ident">f32</span>, <span class="ident">m32x4</span>, <span class="ident">u32x4</span> }
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;simd_support&quot;</span>)]</span> <span class="macro">simd_impl!</span> { <span class="ident">f32x8</span>, <span class="ident">f32</span>, <span class="ident">m32x8</span>, <span class="ident">u32x8</span> }
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;simd_support&quot;</span>)]</span> <span class="macro">simd_impl!</span> { <span class="ident">f32x16</span>, <span class="ident">f32</span>, <span class="ident">m32x16</span>, <span class="ident">u32x16</span> }
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;simd_support&quot;</span>)]</span> <span class="macro">simd_impl!</span> { <span class="ident">f64x2</span>, <span class="ident">f64</span>, <span class="ident">m64x2</span>, <span class="ident">u64x2</span> }
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;simd_support&quot;</span>)]</span> <span class="macro">simd_impl!</span> { <span class="ident">f64x4</span>, <span class="ident">f64</span>, <span class="ident">m64x4</span>, <span class="ident">u64x4</span> }
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;simd_support&quot;</span>)]</span> <span class="macro">simd_impl!</span> { <span class="ident">f64x8</span>, <span class="ident">f64</span>, <span class="ident">m64x8</span>, <span class="ident">u64x8</span> }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="rand" data-search-js="../../../search-index.js"></div>
     <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>

@@ -60,7 +60,7 @@
         <span class="kw">return</span> <span class="ident">x</span>;
     }
     <span class="kw">if</span> <span class="ident">e</span> <span class="op">&lt;</span> <span class="number">0x7f</span> <span class="op">-</span> <span class="number">1</span> {
-        <span class="macro">force_eval</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">TOINT</span>);
+        <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">TOINT</span>);
         <span class="kw">return</span> <span class="number">0.0</span> <span class="op">*</span> <span class="ident">x</span>;
     }
     <span class="kw">if</span> <span class="ident">i</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">31</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
@@ -87,7 +87,7 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">negative_zero</span>() {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">roundf</span>(<span class="op">-</span><span class="number">0.0_f32</span>).<span class="ident">to_bits</span>(), (<span class="op">-</span><span class="number">0.0_f32</span>).<span class="ident">to_bits</span>());
+        <span class="macro">assert_eq!</span>(<span class="ident">roundf</span>(<span class="op">-</span><span class="number">0.0_f32</span>).<span class="ident">to_bits</span>(), (<span class="op">-</span><span class="number">0.0_f32</span>).<span class="ident">to_bits</span>());
     }
 }
 </pre></div>

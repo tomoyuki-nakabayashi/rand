@@ -1631,7 +1631,7 @@
     <span class="ident">Add</span>, <span class="ident">AddAssign</span>, <span class="ident">BitAnd</span>, <span class="ident">BitAndAssign</span>, <span class="ident">BitOr</span>, <span class="ident">BitOrAssign</span>, <span class="ident">BitXor</span>, <span class="ident">BitXorAssign</span>, <span class="ident">Not</span>,
 };
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">impl_binop</span> {
+<span class="macro">macro_rules!</span> <span class="ident">impl_binop</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="kw">trait</span>:<span class="macro-nonterminal">ident</span>, <span class="macro-nonterminal">$</span><span class="kw">fn</span>:<span class="macro-nonterminal">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">impl_fn</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="kw">trait</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {
             <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="self">Self</span>;
@@ -1643,7 +1643,7 @@
     };
 }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">impl_binop_assign</span> {
+<span class="macro">macro_rules!</span> <span class="ident">impl_binop_assign</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="kw">trait</span>:<span class="macro-nonterminal">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">fn_assign</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="kw">fn</span>:<span class="macro-nonterminal">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="kw">trait</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span>
         <span class="kw">where</span>
@@ -1657,7 +1657,7 @@
     };
 }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">def_vec</span> {
+<span class="macro">macro_rules!</span> <span class="ident">def_vec</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">word</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_camel_case_types</span>)]</span>
         <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
@@ -1698,22 +1698,22 @@
         {
             <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
             <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">unsafe_read_le</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-                <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">input</span>.<span class="ident">len</span>(), <span class="number">16</span>);
+                <span class="macro">assert_eq!</span>(<span class="ident">input</span>.<span class="ident">len</span>(), <span class="number">16</span>);
                 <span class="self">Self</span>::<span class="ident">new</span>(<span class="ident">_mm_loadu_si128</span>(<span class="ident">input</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>))
             }
             <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
             <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">unsafe_read_be</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-                <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">input</span>.<span class="ident">len</span>(), <span class="number">16</span>);
+                <span class="macro">assert_eq!</span>(<span class="ident">input</span>.<span class="ident">len</span>(), <span class="number">16</span>);
                 <span class="self">Self</span>::<span class="ident">new</span>(<span class="ident">_mm_loadu_si128</span>(<span class="ident">input</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>)).<span class="ident">bswap</span>()
             }
             <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
             <span class="kw">fn</span> <span class="ident">write_le</span>(<span class="self">self</span>, <span class="ident">out</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) {
-                <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">out</span>.<span class="ident">len</span>(), <span class="number">16</span>);
+                <span class="macro">assert_eq!</span>(<span class="ident">out</span>.<span class="ident">len</span>(), <span class="number">16</span>);
                 <span class="kw">unsafe</span> { <span class="ident">_mm_storeu_si128</span>(<span class="ident">out</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>, <span class="self">self</span>.<span class="ident">x</span>) }
             }
             <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
             <span class="kw">fn</span> <span class="ident">write_be</span>(<span class="self">self</span>, <span class="ident">out</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) {
-                <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">out</span>.<span class="ident">len</span>(), <span class="number">16</span>);
+                <span class="macro">assert_eq!</span>(<span class="ident">out</span>.<span class="ident">len</span>(), <span class="number">16</span>);
                 <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">bswap</span>().<span class="ident">x</span>;
                 <span class="kw">unsafe</span> {
                     <span class="ident">_mm_storeu_si128</span>(<span class="ident">out</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>, <span class="ident">x</span>);
@@ -1740,12 +1740,12 @@
         }
 
         <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>: <span class="ident">Copy</span>, <span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">BitOps0</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {}
-        <span class="macro">impl_binop</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>, <span class="ident">BitAnd</span>, <span class="ident">bitand</span>, <span class="ident">_mm_and_si128</span>);
-        <span class="macro">impl_binop</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>, <span class="ident">BitOr</span>, <span class="ident">bitor</span>, <span class="ident">_mm_or_si128</span>);
-        <span class="macro">impl_binop</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>, <span class="ident">BitXor</span>, <span class="ident">bitxor</span>, <span class="ident">_mm_xor_si128</span>);
-        <span class="macro">impl_binop_assign</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>, <span class="ident">BitAndAssign</span>, <span class="ident">bitand_assign</span>, <span class="ident">bitand</span>);
-        <span class="macro">impl_binop_assign</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>, <span class="ident">BitOrAssign</span>, <span class="ident">bitor_assign</span>, <span class="ident">bitor</span>);
-        <span class="macro">impl_binop_assign</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>, <span class="ident">BitXorAssign</span>, <span class="ident">bitxor_assign</span>, <span class="ident">bitxor</span>);
+        <span class="macro">impl_binop!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>, <span class="ident">BitAnd</span>, <span class="ident">bitand</span>, <span class="ident">_mm_and_si128</span>);
+        <span class="macro">impl_binop!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>, <span class="ident">BitOr</span>, <span class="ident">bitor</span>, <span class="ident">_mm_or_si128</span>);
+        <span class="macro">impl_binop!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>, <span class="ident">BitXor</span>, <span class="ident">bitxor</span>, <span class="ident">_mm_xor_si128</span>);
+        <span class="macro">impl_binop_assign!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>, <span class="ident">BitAndAssign</span>, <span class="ident">bitand_assign</span>, <span class="ident">bitand</span>);
+        <span class="macro">impl_binop_assign!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>, <span class="ident">BitOrAssign</span>, <span class="ident">bitor_assign</span>, <span class="ident">bitor</span>);
+        <span class="macro">impl_binop_assign!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>, <span class="ident">BitXorAssign</span>, <span class="ident">bitxor_assign</span>, <span class="ident">bitxor</span>);
         <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>: <span class="ident">Copy</span>, <span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">AndNot</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {
             <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="self">Self</span>;
             <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
@@ -1756,7 +1756,7 @@
     };
 }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">impl_bitops32</span> {
+<span class="macro">macro_rules!</span> <span class="ident">impl_bitops32</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>: <span class="ident">Copy</span>, <span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">BitOps32</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> <span class="kw">where</span>
             <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span>: <span class="ident">RotateEachWord32</span>
@@ -1765,9 +1765,9 @@
     };
 }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">impl_bitops64</span> {
+<span class="macro">macro_rules!</span> <span class="ident">impl_bitops64</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
-        <span class="macro">impl_bitops32</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>);
+        <span class="macro">impl_bitops32!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>);
         <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>: <span class="ident">Copy</span>, <span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">BitOps64</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> <span class="kw">where</span>
             <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span>: <span class="ident">RotateEachWord64</span> <span class="op">+</span> <span class="ident">RotateEachWord32</span>
         {
@@ -1775,9 +1775,9 @@
     };
 }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">impl_bitops128</span> {
+<span class="macro">macro_rules!</span> <span class="ident">impl_bitops128</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
-        <span class="macro">impl_bitops64</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>);
+        <span class="macro">impl_bitops64!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>);
         <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>: <span class="ident">Copy</span>, <span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">BitOps128</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> <span class="kw">where</span>
             <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span>: <span class="ident">RotateEachWord128</span>
         {
@@ -1785,7 +1785,7 @@
     };
 }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">rotr_32_s3</span> {
+<span class="macro">macro_rules!</span> <span class="ident">rotr_32_s3</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">k0</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">k1</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
         <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -1793,7 +1793,7 @@
         }
     };
 }
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">rotr_32</span> {
+<span class="macro">macro_rules!</span> <span class="ident">rotr_32</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
         <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -1807,42 +1807,42 @@
     };
 }
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">RotateEachWord32</span> <span class="kw">for</span> <span class="ident">u32x4_sse2</span><span class="op">&lt;</span><span class="ident">YesS3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {
-    <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right7</span>, <span class="number">7</span>);
-    <span class="macro">rotr_32_s3</span><span class="macro">!</span>(
+    <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right7</span>, <span class="number">7</span>);
+    <span class="macro">rotr_32_s3!</span>(
         <span class="ident">rotate_each_word_right8</span>,
         <span class="number">0x0c0f0e0d_080b0a09</span>,
         <span class="number">0x04070605_00030201</span>
     );
-    <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right11</span>, <span class="number">11</span>);
-    <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right12</span>, <span class="number">12</span>);
-    <span class="macro">rotr_32_s3</span><span class="macro">!</span>(
+    <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right11</span>, <span class="number">11</span>);
+    <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right12</span>, <span class="number">12</span>);
+    <span class="macro">rotr_32_s3!</span>(
         <span class="ident">rotate_each_word_right16</span>,
         <span class="number">0x0d0c0f0e_09080b0a</span>,
         <span class="number">0x05040706_01000302</span>
     );
-    <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right20</span>, <span class="number">20</span>);
-    <span class="macro">rotr_32_s3</span><span class="macro">!</span>(
+    <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right20</span>, <span class="number">20</span>);
+    <span class="macro">rotr_32_s3!</span>(
         <span class="ident">rotate_each_word_right24</span>,
         <span class="number">0x0e0d0c0f_0a09080b</span>,
         <span class="number">0x06050407_02010003</span>
     );
-    <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right25</span>, <span class="number">25</span>);
+    <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right25</span>, <span class="number">25</span>);
 }
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">RotateEachWord32</span> <span class="kw">for</span> <span class="ident">u32x4_sse2</span><span class="op">&lt;</span><span class="ident">NoS3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {
-    <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right7</span>, <span class="number">7</span>);
-    <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right8</span>, <span class="number">8</span>);
-    <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right11</span>, <span class="number">11</span>);
-    <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right12</span>, <span class="number">12</span>);
+    <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right7</span>, <span class="number">7</span>);
+    <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right8</span>, <span class="number">8</span>);
+    <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right11</span>, <span class="number">11</span>);
+    <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right12</span>, <span class="number">12</span>);
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">rotate_each_word_right16</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span>::<span class="ident">new</span>(<span class="ident">swap16_s2</span>(<span class="self">self</span>.<span class="ident">x</span>))
     }
-    <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right20</span>, <span class="number">20</span>);
-    <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right24</span>, <span class="number">24</span>);
-    <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right25</span>, <span class="number">25</span>);
+    <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right20</span>, <span class="number">20</span>);
+    <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right24</span>, <span class="number">24</span>);
+    <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right25</span>, <span class="number">25</span>);
 }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">rotr_64_s3</span> {
+<span class="macro">macro_rules!</span> <span class="ident">rotr_64_s3</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">k0</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">k1</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
         <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -1850,7 +1850,7 @@
         }
     };
 }
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">rotr_64</span> {
+<span class="macro">macro_rules!</span> <span class="ident">rotr_64</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
         <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -1864,39 +1864,39 @@
     };
 }
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">RotateEachWord32</span> <span class="kw">for</span> <span class="ident">u64x2_sse2</span><span class="op">&lt;</span><span class="ident">YesS3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {
-    <span class="macro">rotr_64</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right7</span>, <span class="number">7</span>);
-    <span class="macro">rotr_64_s3</span><span class="macro">!</span>(
+    <span class="macro">rotr_64!</span>(<span class="ident">rotate_each_word_right7</span>, <span class="number">7</span>);
+    <span class="macro">rotr_64_s3!</span>(
         <span class="ident">rotate_each_word_right8</span>,
         <span class="number">0x080f_0e0d_0c0b_0a09</span>,
         <span class="number">0x0007_0605_0403_0201</span>
     );
-    <span class="macro">rotr_64</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right11</span>, <span class="number">11</span>);
-    <span class="macro">rotr_64</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right12</span>, <span class="number">12</span>);
-    <span class="macro">rotr_64_s3</span><span class="macro">!</span>(
+    <span class="macro">rotr_64!</span>(<span class="ident">rotate_each_word_right11</span>, <span class="number">11</span>);
+    <span class="macro">rotr_64!</span>(<span class="ident">rotate_each_word_right12</span>, <span class="number">12</span>);
+    <span class="macro">rotr_64_s3!</span>(
         <span class="ident">rotate_each_word_right16</span>,
         <span class="number">0x0908_0f0e_0d0c_0b0a</span>,
         <span class="number">0x0100_0706_0504_0302</span>
     );
-    <span class="macro">rotr_64</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right20</span>, <span class="number">20</span>);
-    <span class="macro">rotr_64_s3</span><span class="macro">!</span>(
+    <span class="macro">rotr_64!</span>(<span class="ident">rotate_each_word_right20</span>, <span class="number">20</span>);
+    <span class="macro">rotr_64_s3!</span>(
         <span class="ident">rotate_each_word_right24</span>,
         <span class="number">0x0a09_080f_0e0d_0c0b</span>,
         <span class="number">0x0201_0007_0605_0403</span>
     );
-    <span class="macro">rotr_64</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right25</span>, <span class="number">25</span>);
+    <span class="macro">rotr_64!</span>(<span class="ident">rotate_each_word_right25</span>, <span class="number">25</span>);
 }
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">RotateEachWord32</span> <span class="kw">for</span> <span class="ident">u64x2_sse2</span><span class="op">&lt;</span><span class="ident">NoS3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {
-    <span class="macro">rotr_64</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right7</span>, <span class="number">7</span>);
-    <span class="macro">rotr_64</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right8</span>, <span class="number">8</span>);
-    <span class="macro">rotr_64</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right11</span>, <span class="number">11</span>);
-    <span class="macro">rotr_64</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right12</span>, <span class="number">12</span>);
+    <span class="macro">rotr_64!</span>(<span class="ident">rotate_each_word_right7</span>, <span class="number">7</span>);
+    <span class="macro">rotr_64!</span>(<span class="ident">rotate_each_word_right8</span>, <span class="number">8</span>);
+    <span class="macro">rotr_64!</span>(<span class="ident">rotate_each_word_right11</span>, <span class="number">11</span>);
+    <span class="macro">rotr_64!</span>(<span class="ident">rotate_each_word_right12</span>, <span class="number">12</span>);
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">rotate_each_word_right16</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span>::<span class="ident">new</span>(<span class="ident">swap16_s2</span>(<span class="self">self</span>.<span class="ident">x</span>))
     }
-    <span class="macro">rotr_64</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right20</span>, <span class="number">20</span>);
-    <span class="macro">rotr_64</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right24</span>, <span class="number">24</span>);
-    <span class="macro">rotr_64</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right25</span>, <span class="number">25</span>);
+    <span class="macro">rotr_64!</span>(<span class="ident">rotate_each_word_right20</span>, <span class="number">20</span>);
+    <span class="macro">rotr_64!</span>(<span class="ident">rotate_each_word_right24</span>, <span class="number">24</span>);
+    <span class="macro">rotr_64!</span>(<span class="ident">rotate_each_word_right25</span>, <span class="number">25</span>);
 }
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>: <span class="ident">Copy</span>, <span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">RotateEachWord64</span> <span class="kw">for</span> <span class="ident">u64x2_sse2</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
@@ -1905,7 +1905,7 @@
     }
 }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">rotr_128</span> {
+<span class="macro">macro_rules!</span> <span class="ident">rotr_128</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
         <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -1920,24 +1920,24 @@
 }
 <span class="comment">// TODO: completely unoptimized</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>: <span class="ident">Copy</span>, <span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">RotateEachWord32</span> <span class="kw">for</span> <span class="ident">u128x1_sse2</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {
-    <span class="macro">rotr_128</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right7</span>, <span class="number">7</span>);
-    <span class="macro">rotr_128</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right8</span>, <span class="number">8</span>);
-    <span class="macro">rotr_128</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right11</span>, <span class="number">11</span>);
-    <span class="macro">rotr_128</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right12</span>, <span class="number">12</span>);
-    <span class="macro">rotr_128</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right16</span>, <span class="number">16</span>);
-    <span class="macro">rotr_128</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right20</span>, <span class="number">20</span>);
-    <span class="macro">rotr_128</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right24</span>, <span class="number">24</span>);
-    <span class="macro">rotr_128</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right25</span>, <span class="number">25</span>);
+    <span class="macro">rotr_128!</span>(<span class="ident">rotate_each_word_right7</span>, <span class="number">7</span>);
+    <span class="macro">rotr_128!</span>(<span class="ident">rotate_each_word_right8</span>, <span class="number">8</span>);
+    <span class="macro">rotr_128!</span>(<span class="ident">rotate_each_word_right11</span>, <span class="number">11</span>);
+    <span class="macro">rotr_128!</span>(<span class="ident">rotate_each_word_right12</span>, <span class="number">12</span>);
+    <span class="macro">rotr_128!</span>(<span class="ident">rotate_each_word_right16</span>, <span class="number">16</span>);
+    <span class="macro">rotr_128!</span>(<span class="ident">rotate_each_word_right20</span>, <span class="number">20</span>);
+    <span class="macro">rotr_128!</span>(<span class="ident">rotate_each_word_right24</span>, <span class="number">24</span>);
+    <span class="macro">rotr_128!</span>(<span class="ident">rotate_each_word_right25</span>, <span class="number">25</span>);
 }
 <span class="comment">// TODO: completely unoptimized</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>: <span class="ident">Copy</span>, <span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">RotateEachWord64</span> <span class="kw">for</span> <span class="ident">u128x1_sse2</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {
-    <span class="macro">rotr_128</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right32</span>, <span class="number">32</span>);
+    <span class="macro">rotr_128!</span>(<span class="ident">rotate_each_word_right32</span>, <span class="number">32</span>);
 }
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>: <span class="ident">Copy</span>, <span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">RotateEachWord128</span> <span class="kw">for</span> <span class="ident">u128x1_sse2</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {}
 
-<span class="macro">def_vec</span><span class="macro">!</span>(<span class="ident">u32x4_sse2</span>, <span class="ident">u32</span>);
-<span class="macro">def_vec</span><span class="macro">!</span>(<span class="ident">u64x2_sse2</span>, <span class="ident">u64</span>);
-<span class="macro">def_vec</span><span class="macro">!</span>(<span class="ident">u128x1_sse2</span>, <span class="ident">u128</span>);
+<span class="macro">def_vec!</span>(<span class="ident">u32x4_sse2</span>, <span class="ident">u32</span>);
+<span class="macro">def_vec!</span>(<span class="ident">u64x2_sse2</span>, <span class="ident">u64</span>);
+<span class="macro">def_vec!</span>(<span class="ident">u128x1_sse2</span>, <span class="ident">u128</span>);
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">NI</span><span class="op">&gt;</span> <span class="ident">MultiLane</span><span class="op">&lt;</span>[<span class="ident">u32</span>; <span class="number">4</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">u32x4_sse2</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">YesS4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
@@ -2018,11 +2018,11 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> <span class="ident">MultiLane</span><span class="op">&lt;</span>[<span class="ident">u128</span>; <span class="number">1</span>]<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">u128x1_sse2</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">to_lanes</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">u128</span>; <span class="number">1</span>] {
-        <span class="macro">unimplemented</span><span class="macro">!</span>()
+        <span class="macro">unimplemented!</span>()
     }
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">from_lanes</span>(<span class="ident">xs</span>: [<span class="ident">u128</span>; <span class="number">1</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="macro">unimplemented</span><span class="macro">!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">xs</span>)
+        <span class="macro">unimplemented!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">xs</span>)
     }
 }
 
@@ -2045,7 +2045,7 @@
     }
 }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">impl_into</span> {
+<span class="macro">macro_rules!</span> <span class="ident">impl_into</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">from</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">from</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {
             <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
@@ -2056,12 +2056,12 @@
     };
 }
 
-<span class="macro">impl_into</span><span class="macro">!</span>(<span class="ident">u128x1_sse2</span>, <span class="ident">u32x4_sse2</span>);
-<span class="macro">impl_into</span><span class="macro">!</span>(<span class="ident">u128x1_sse2</span>, <span class="ident">u64x2_sse2</span>);
+<span class="macro">impl_into!</span>(<span class="ident">u128x1_sse2</span>, <span class="ident">u32x4_sse2</span>);
+<span class="macro">impl_into!</span>(<span class="ident">u128x1_sse2</span>, <span class="ident">u64x2_sse2</span>);
 
-<span class="macro">impl_bitops32</span><span class="macro">!</span>(<span class="ident">u32x4_sse2</span>);
-<span class="macro">impl_bitops64</span><span class="macro">!</span>(<span class="ident">u64x2_sse2</span>);
-<span class="macro">impl_bitops128</span><span class="macro">!</span>(<span class="ident">u128x1_sse2</span>);
+<span class="macro">impl_bitops32!</span>(<span class="ident">u32x4_sse2</span>);
+<span class="macro">impl_bitops64!</span>(<span class="ident">u64x2_sse2</span>);
+<span class="macro">impl_bitops128!</span>(<span class="ident">u128x1_sse2</span>);
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>: <span class="ident">Copy</span>, <span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">ArithOps</span> <span class="kw">for</span> <span class="ident">u32x4_sse2</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> <span class="kw">where</span>
     <span class="ident">u32x4_sse2</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span>: <span class="ident">BSwap</span>
@@ -2071,10 +2071,10 @@
     <span class="ident">u64x2_sse2</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span>: <span class="ident">BSwap</span>
 {
 }
-<span class="macro">impl_binop</span><span class="macro">!</span>(<span class="ident">u32x4_sse2</span>, <span class="ident">Add</span>, <span class="ident">add</span>, <span class="ident">_mm_add_epi32</span>);
-<span class="macro">impl_binop</span><span class="macro">!</span>(<span class="ident">u64x2_sse2</span>, <span class="ident">Add</span>, <span class="ident">add</span>, <span class="ident">_mm_add_epi64</span>);
-<span class="macro">impl_binop_assign</span><span class="macro">!</span>(<span class="ident">u32x4_sse2</span>, <span class="ident">AddAssign</span>, <span class="ident">add_assign</span>, <span class="ident">add</span>);
-<span class="macro">impl_binop_assign</span><span class="macro">!</span>(<span class="ident">u64x2_sse2</span>, <span class="ident">AddAssign</span>, <span class="ident">add_assign</span>, <span class="ident">add</span>);
+<span class="macro">impl_binop!</span>(<span class="ident">u32x4_sse2</span>, <span class="ident">Add</span>, <span class="ident">add</span>, <span class="ident">_mm_add_epi32</span>);
+<span class="macro">impl_binop!</span>(<span class="ident">u64x2_sse2</span>, <span class="ident">Add</span>, <span class="ident">add</span>, <span class="ident">_mm_add_epi64</span>);
+<span class="macro">impl_binop_assign!</span>(<span class="ident">u32x4_sse2</span>, <span class="ident">AddAssign</span>, <span class="ident">add_assign</span>, <span class="ident">add</span>);
+<span class="macro">impl_binop_assign!</span>(<span class="ident">u64x2_sse2</span>, <span class="ident">AddAssign</span>, <span class="ident">add_assign</span>, <span class="ident">add</span>);
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>: <span class="ident">Copy</span>, <span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">u32x4</span><span class="op">&lt;</span><span class="ident">Machine86</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">u32x4_sse2</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span>
 <span class="kw">where</span>
@@ -2148,7 +2148,7 @@
                 <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">_mm_insert_epi32</span>(<span class="self">self</span>.<span class="ident">x</span>, <span class="ident">v</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="number">1</span>),
                 <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">_mm_insert_epi32</span>(<span class="self">self</span>.<span class="ident">x</span>, <span class="ident">v</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="number">2</span>),
                 <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">_mm_insert_epi32</span>(<span class="self">self</span>.<span class="ident">x</span>, <span class="ident">v</span> <span class="kw">as</span> <span class="ident">i32</span>, <span class="number">3</span>),
-                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
             }
         })
     }
@@ -2186,7 +2186,7 @@
                     <span class="ident">x</span> <span class="op">=</span> <span class="ident">_mm_or_si128</span>(<span class="ident">x</span>, <span class="ident">_mm_cvtsi32_si128</span>(<span class="ident">v</span> <span class="kw">as</span> <span class="ident">i32</span>));
                     <span class="ident">_mm_shuffle_epi32</span>(<span class="ident">x</span>, <span class="number">0b0011_1001</span>)
                 }
-                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
             }
         })
     }
@@ -2291,7 +2291,7 @@
             <span class="kw">match</span> <span class="ident">i</span> {
                 <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">_mm_cvtsi128_si64</span>(<span class="self">self</span>.<span class="ident">x</span>) <span class="kw">as</span> <span class="ident">u64</span>,
                 <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">_mm_extract_epi64</span>(<span class="self">self</span>.<span class="ident">x</span>, <span class="number">1</span>) <span class="kw">as</span> <span class="ident">u64</span>,
-                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
             }
         }
     }
@@ -2301,7 +2301,7 @@
             <span class="kw">match</span> <span class="ident">i</span> {
                 <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">_mm_insert_epi64</span>(<span class="self">self</span>.<span class="ident">x</span>, <span class="ident">x</span> <span class="kw">as</span> <span class="ident">i64</span>, <span class="number">0</span>),
                 <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">_mm_insert_epi64</span>(<span class="self">self</span>.<span class="ident">x</span>, <span class="ident">x</span> <span class="kw">as</span> <span class="ident">i64</span>, <span class="number">1</span>),
-                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
             }
         })
     }
@@ -2313,7 +2313,7 @@
             <span class="kw">match</span> <span class="ident">i</span> {
                 <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">_mm_cvtsi128_si64</span>(<span class="self">self</span>.<span class="ident">x</span>) <span class="kw">as</span> <span class="ident">u64</span>,
                 <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">_mm_cvtsi128_si64</span>(<span class="ident">_mm_shuffle_epi32</span>(<span class="self">self</span>.<span class="ident">x</span>, <span class="number">0b11101110</span>)) <span class="kw">as</span> <span class="ident">u64</span>,
-                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
             }
         }
     }
@@ -2329,7 +2329,7 @@
                     <span class="ident">_mm_move_epi64</span>(<span class="self">self</span>.<span class="ident">x</span>),
                     <span class="ident">_mm_slli_si128</span>(<span class="ident">_mm_cvtsi64_si128</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">i64</span>), <span class="number">8</span>),
                 ),
-                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+                <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
             }
         })
     }
@@ -2391,11 +2391,11 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> <span class="ident">BSwap</span> <span class="kw">for</span> <span class="ident">u128x1_sse2</span><span class="op">&lt;</span><span class="ident">NoS3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">bswap</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="macro">unimplemented</span><span class="macro">!</span>()
+        <span class="macro">unimplemented!</span>()
     }
 }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">swapi</span> {
+<span class="macro">macro_rules!</span> <span class="ident">swapi</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">x</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">k</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">const</span> <span class="ident">K</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">k</span>;
@@ -2414,15 +2414,15 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> <span class="ident">Swap64</span> <span class="kw">for</span> <span class="ident">u128x1_sse2</span><span class="op">&lt;</span><span class="ident">YesS3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">swap1</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="macro">swapi</span><span class="macro">!</span>(<span class="self">self</span>, <span class="number">1</span>, <span class="number">0xaa</span>)
+        <span class="macro">swapi!</span>(<span class="self">self</span>, <span class="number">1</span>, <span class="number">0xaa</span>)
     }
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">swap2</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="macro">swapi</span><span class="macro">!</span>(<span class="self">self</span>, <span class="number">2</span>, <span class="number">0xcc</span>)
+        <span class="macro">swapi!</span>(<span class="self">self</span>, <span class="number">2</span>, <span class="number">0xcc</span>)
     }
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">swap4</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="macro">swapi</span><span class="macro">!</span>(<span class="self">self</span>, <span class="number">4</span>, <span class="number">0xf0</span>)
+        <span class="macro">swapi!</span>(<span class="self">self</span>, <span class="number">4</span>, <span class="number">0xf0</span>)
     }
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">swap8</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -2450,15 +2450,15 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> <span class="ident">Swap64</span> <span class="kw">for</span> <span class="ident">u128x1_sse2</span><span class="op">&lt;</span><span class="ident">NoS3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span> {
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">swap1</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="macro">swapi</span><span class="macro">!</span>(<span class="self">self</span>, <span class="number">1</span>, <span class="number">0xaa</span>)
+        <span class="macro">swapi!</span>(<span class="self">self</span>, <span class="number">1</span>, <span class="number">0xaa</span>)
     }
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">swap2</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="macro">swapi</span><span class="macro">!</span>(<span class="self">self</span>, <span class="number">2</span>, <span class="number">0xcc</span>)
+        <span class="macro">swapi!</span>(<span class="self">self</span>, <span class="number">2</span>, <span class="number">0xcc</span>)
     }
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">swap4</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="macro">swapi</span><span class="macro">!</span>(<span class="self">self</span>, <span class="number">4</span>, <span class="number">0xf0</span>)
+        <span class="macro">swapi!</span>(<span class="self">self</span>, <span class="number">4</span>, <span class="number">0xf0</span>)
     }
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">swap8</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -2582,7 +2582,7 @@
             <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="number">0</span>[<span class="number">0</span>].<span class="ident">extract</span>(<span class="number">1</span>),
             <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="number">0</span>[<span class="number">1</span>].<span class="ident">extract</span>(<span class="number">0</span>),
             <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="number">0</span>[<span class="number">1</span>].<span class="ident">extract</span>(<span class="number">1</span>),
-            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(),
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(),
         }
     }
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
@@ -2592,7 +2592,7 @@
             <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="number">0</span>[<span class="number">0</span>] <span class="op">=</span> <span class="self">self</span>.<span class="number">0</span>[<span class="number">0</span>].<span class="ident">insert</span>(<span class="ident">w</span>, <span class="number">1</span>),
             <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="number">0</span>[<span class="number">1</span>] <span class="op">=</span> <span class="self">self</span>.<span class="number">0</span>[<span class="number">1</span>].<span class="ident">insert</span>(<span class="ident">w</span>, <span class="number">0</span>),
             <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">self</span>.<span class="number">0</span>[<span class="number">1</span>] <span class="op">=</span> <span class="self">self</span>.<span class="number">0</span>[<span class="number">1</span>].<span class="ident">insert</span>(<span class="ident">w</span>, <span class="number">1</span>),
-            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(),
+            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(),
         };
         <span class="self">self</span>
     }
@@ -2652,7 +2652,7 @@
 {
 }
 
-<span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">impl_into_x</span> {
+<span class="macro">macro_rules!</span> <span class="ident">impl_into_x</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">from</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">S3</span>: <span class="ident">Copy</span>, <span class="ident">S4</span>: <span class="ident">Copy</span>, <span class="ident">NI</span>: <span class="ident">Copy</span>, <span class="ident">Gf</span>, <span class="ident">Gt</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">x2</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">from</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span>, <span class="ident">Gf</span><span class="op">&gt;</span><span class="op">&gt;</span>
             <span class="kw">for</span> <span class="ident">x2</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">to</span><span class="op">&lt;</span><span class="ident">S3</span>, <span class="ident">S4</span>, <span class="ident">NI</span><span class="op">&gt;</span>, <span class="ident">Gt</span><span class="op">&gt;</span>
@@ -2675,8 +2675,8 @@
         }
     };
 }
-<span class="macro">impl_into_x</span><span class="macro">!</span>(<span class="ident">u128x1_sse2</span>, <span class="ident">u64x2_sse2</span>);
-<span class="macro">impl_into_x</span><span class="macro">!</span>(<span class="ident">u128x1_sse2</span>, <span class="ident">u32x4_sse2</span>);
+<span class="macro">impl_into_x!</span>(<span class="ident">u128x1_sse2</span>, <span class="ident">u64x2_sse2</span>);
+<span class="macro">impl_into_x!</span>(<span class="ident">u128x1_sse2</span>, <span class="ident">u32x4_sse2</span>);
 
 <span class="comment">///// Debugging</span>
 
@@ -2716,7 +2716,7 @@
 {
     <span class="attribute">#[<span class="ident">cold</span>]</span>
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span> {
-        <span class="ident">fmt</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args</span><span class="macro">!</span>(<span class="string">&quot;{:08x?}&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">to_lanes</span>()))
+        <span class="ident">fmt</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args!</span>(<span class="string">&quot;{:08x?}&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">to_lanes</span>()))
     }
 }
 
@@ -2732,7 +2732,7 @@
 {
     <span class="attribute">#[<span class="ident">cold</span>]</span>
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span> {
-        <span class="ident">fmt</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args</span><span class="macro">!</span>(<span class="string">&quot;{:016x?}&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">to_lanes</span>()))
+        <span class="ident">fmt</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args!</span>(<span class="string">&quot;{:016x?}&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">to_lanes</span>()))
     }
 }
 
@@ -2743,7 +2743,7 @@
     <span class="attribute">#[<span class="ident">cold</span>]</span>
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fmt</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span> {
         <span class="kw">let</span> (<span class="ident">a</span>, <span class="ident">b</span>) <span class="op">=</span> (<span class="self">self</span>.<span class="number">0</span>[<span class="number">0</span>].<span class="ident">to_lanes</span>(), <span class="self">self</span>.<span class="number">0</span>[<span class="number">1</span>].<span class="ident">to_lanes</span>());
-        <span class="ident">fmt</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args</span><span class="macro">!</span>(<span class="string">&quot;{:016x?}&quot;</span>, <span class="kw-2">&amp;</span>[<span class="ident">a</span>[<span class="number">0</span>], <span class="ident">a</span>[<span class="number">1</span>], <span class="ident">b</span>[<span class="number">0</span>], <span class="ident">b</span>[<span class="number">1</span>]]))
+        <span class="ident">fmt</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args!</span>(<span class="string">&quot;{:016x?}&quot;</span>, <span class="kw-2">&amp;</span>[<span class="ident">a</span>[<span class="number">0</span>], <span class="ident">a</span>[<span class="number">1</span>], <span class="ident">b</span>[<span class="number">0</span>], <span class="ident">b</span>[<span class="number">1</span>]]))
     }
 }
 
@@ -2773,8 +2773,8 @@
             <span class="ident">x_s3</span>.<span class="ident">bswap</span>()
         };
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">ys</span>));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">ys</span>));
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -2796,8 +2796,8 @@
             <span class="ident">x_s3</span>.<span class="ident">bswap</span>()
         };
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">ys</span>));
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s3</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">ys</span>));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s3</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -2818,8 +2818,8 @@
             <span class="kw">let</span> <span class="ident">x_s3</span>: <span class="op">&lt;</span><span class="ident">SSSE3</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u32x4</span> <span class="op">=</span> <span class="ident">s3</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
             <span class="ident">x_s3</span>.<span class="ident">shuffle2301</span>()
         };
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">ys</span>));
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s3</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">ys</span>));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s3</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
 
         <span class="kw">let</span> <span class="ident">x_s2</span> <span class="op">=</span> {
             <span class="kw">let</span> <span class="ident">x_s2</span>: <span class="op">&lt;</span><span class="ident">SSE2</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u32x4</span> <span class="op">=</span> <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
@@ -2829,13 +2829,13 @@
             <span class="kw">let</span> <span class="ident">x_s3</span>: <span class="op">&lt;</span><span class="ident">SSSE3</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u32x4</span> <span class="op">=</span> <span class="ident">s3</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
             <span class="ident">x_s3</span>.<span class="ident">shuffle3012</span>()
         };
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">zs</span>));
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s3</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">zs</span>));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s3</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
 
         <span class="kw">let</span> <span class="ident">x_s2</span> <span class="op">=</span> <span class="ident">x_s2</span>.<span class="ident">shuffle1230</span>();
         <span class="kw">let</span> <span class="ident">x_s3</span> <span class="op">=</span> <span class="ident">x_s3</span>.<span class="ident">shuffle1230</span>();
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">xs</span>));
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s3</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">xs</span>));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s3</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -2856,8 +2856,8 @@
             <span class="kw">let</span> <span class="ident">x_s3</span>: <span class="op">&lt;</span><span class="ident">SSSE3</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u64x4</span> <span class="op">=</span> <span class="ident">s3</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
             <span class="ident">x_s3</span>.<span class="ident">shuffle2301</span>()
         };
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">ys</span>));
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s3</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">ys</span>));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s3</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
 
         <span class="kw">let</span> <span class="ident">x_s2</span> <span class="op">=</span> {
             <span class="kw">let</span> <span class="ident">x_s2</span>: <span class="op">&lt;</span><span class="ident">SSE2</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u64x4</span> <span class="op">=</span> <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
@@ -2867,13 +2867,13 @@
             <span class="kw">let</span> <span class="ident">x_s3</span>: <span class="op">&lt;</span><span class="ident">SSSE3</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u64x4</span> <span class="op">=</span> <span class="ident">s3</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
             <span class="ident">x_s3</span>.<span class="ident">shuffle3012</span>()
         };
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">zs</span>));
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s3</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">zs</span>));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s3</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
 
         <span class="kw">let</span> <span class="ident">x_s2</span> <span class="op">=</span> <span class="ident">x_s2</span>.<span class="ident">shuffle1230</span>();
         <span class="kw">let</span> <span class="ident">x_s3</span> <span class="op">=</span> <span class="ident">x_s3</span>.<span class="ident">shuffle1230</span>();
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">xs</span>));
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s3</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>, <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">xs</span>));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s3</span>, <span class="kw">unsafe</span> { <span class="ident">core</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="ident">x_s3</span>) });
     }
 
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">not</span>(<span class="ident">all</span>(<span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;ssse3&quot;</span>, <span class="ident">target_feature</span> <span class="op">=</span> <span class="string">&quot;sse4.1&quot;</span>)), <span class="ident">ignore</span>)]</span>
@@ -2888,22 +2888,22 @@
         {
             <span class="kw">let</span> <span class="ident">x_s2</span>: <span class="op">&lt;</span><span class="ident">SSE2</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u32x4</span> <span class="op">=</span> <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
             <span class="kw">let</span> <span class="ident">y_s2</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">SSE2</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u32x4</span>::<span class="ident">from_lanes</span>(<span class="ident">xs</span>);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>, <span class="ident">y_s2</span>);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">xs</span>, <span class="ident">y_s2</span>.<span class="ident">to_lanes</span>());
+            <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>, <span class="ident">y_s2</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">xs</span>, <span class="ident">y_s2</span>.<span class="ident">to_lanes</span>());
         }
 
         {
             <span class="kw">let</span> <span class="ident">x_s3</span>: <span class="op">&lt;</span><span class="ident">SSSE3</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u32x4</span> <span class="op">=</span> <span class="ident">s3</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
             <span class="kw">let</span> <span class="ident">y_s3</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">SSSE3</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u32x4</span>::<span class="ident">from_lanes</span>(<span class="ident">xs</span>);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s3</span>, <span class="ident">y_s3</span>);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">xs</span>, <span class="ident">y_s3</span>.<span class="ident">to_lanes</span>());
+            <span class="macro">assert_eq!</span>(<span class="ident">x_s3</span>, <span class="ident">y_s3</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">xs</span>, <span class="ident">y_s3</span>.<span class="ident">to_lanes</span>());
         }
 
         {
             <span class="kw">let</span> <span class="ident">x_s4</span>: <span class="op">&lt;</span><span class="ident">SSE41</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u32x4</span> <span class="op">=</span> <span class="ident">s4</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
             <span class="kw">let</span> <span class="ident">y_s4</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">SSE41</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u32x4</span>::<span class="ident">from_lanes</span>(<span class="ident">xs</span>);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s4</span>, <span class="ident">y_s4</span>);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">xs</span>, <span class="ident">y_s4</span>.<span class="ident">to_lanes</span>());
+            <span class="macro">assert_eq!</span>(<span class="ident">x_s4</span>, <span class="ident">y_s4</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">xs</span>, <span class="ident">y_s4</span>.<span class="ident">to_lanes</span>());
         }
     }
 
@@ -2919,22 +2919,22 @@
         {
             <span class="kw">let</span> <span class="ident">x_s2</span>: <span class="op">&lt;</span><span class="ident">SSE2</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u64x2</span> <span class="op">=</span> <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
             <span class="kw">let</span> <span class="ident">y_s2</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">SSE2</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u64x2</span>::<span class="ident">from_lanes</span>(<span class="ident">xs</span>);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>, <span class="ident">y_s2</span>);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">xs</span>, <span class="ident">y_s2</span>.<span class="ident">to_lanes</span>());
+            <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>, <span class="ident">y_s2</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">xs</span>, <span class="ident">y_s2</span>.<span class="ident">to_lanes</span>());
         }
 
         {
             <span class="kw">let</span> <span class="ident">x_s3</span>: <span class="op">&lt;</span><span class="ident">SSSE3</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u64x2</span> <span class="op">=</span> <span class="ident">s3</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
             <span class="kw">let</span> <span class="ident">y_s3</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">SSSE3</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u64x2</span>::<span class="ident">from_lanes</span>(<span class="ident">xs</span>);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s3</span>, <span class="ident">y_s3</span>);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">xs</span>, <span class="ident">y_s3</span>.<span class="ident">to_lanes</span>());
+            <span class="macro">assert_eq!</span>(<span class="ident">x_s3</span>, <span class="ident">y_s3</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">xs</span>, <span class="ident">y_s3</span>.<span class="ident">to_lanes</span>());
         }
 
         {
             <span class="kw">let</span> <span class="ident">x_s4</span>: <span class="op">&lt;</span><span class="ident">SSE41</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u64x2</span> <span class="op">=</span> <span class="ident">s4</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
             <span class="kw">let</span> <span class="ident">y_s4</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">SSE41</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u64x2</span>::<span class="ident">from_lanes</span>(<span class="ident">xs</span>);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s4</span>, <span class="ident">y_s4</span>);
-            <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">xs</span>, <span class="ident">y_s4</span>.<span class="ident">to_lanes</span>());
+            <span class="macro">assert_eq!</span>(<span class="ident">x_s4</span>, <span class="ident">y_s4</span>);
+            <span class="macro">assert_eq!</span>(<span class="ident">xs</span>, <span class="ident">y_s4</span>.<span class="ident">to_lanes</span>());
         }
     }
 
@@ -2943,14 +2943,14 @@
         <span class="kw">let</span> <span class="ident">xs</span> <span class="op">=</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];
         <span class="kw">let</span> <span class="ident">s2</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">SSE2</span>::<span class="ident">instance</span>() };
         <span class="kw">let</span> <span class="ident">x_s2</span>: <span class="op">&lt;</span><span class="ident">SSE2</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u32x4</span> <span class="op">=</span> <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>.<span class="ident">extract</span>(<span class="number">0</span>), <span class="number">1</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>.<span class="ident">extract</span>(<span class="number">1</span>), <span class="number">2</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>.<span class="ident">extract</span>(<span class="number">2</span>), <span class="number">3</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>.<span class="ident">extract</span>(<span class="number">3</span>), <span class="number">4</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">0</span>), <span class="ident">s2</span>.<span class="ident">vec</span>([<span class="number">0xf</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]));
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">1</span>), <span class="ident">s2</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">0xf</span>, <span class="number">3</span>, <span class="number">4</span>]));
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">2</span>), <span class="ident">s2</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">0xf</span>, <span class="number">4</span>]));
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">3</span>), <span class="ident">s2</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0xf</span>]));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>.<span class="ident">extract</span>(<span class="number">0</span>), <span class="number">1</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>.<span class="ident">extract</span>(<span class="number">1</span>), <span class="number">2</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>.<span class="ident">extract</span>(<span class="number">2</span>), <span class="number">3</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>.<span class="ident">extract</span>(<span class="number">3</span>), <span class="number">4</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">0</span>), <span class="ident">s2</span>.<span class="ident">vec</span>([<span class="number">0xf</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">1</span>), <span class="ident">s2</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">0xf</span>, <span class="number">3</span>, <span class="number">4</span>]));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">2</span>), <span class="ident">s2</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">0xf</span>, <span class="number">4</span>]));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">3</span>), <span class="ident">s2</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0xf</span>]));
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -2959,14 +2959,14 @@
         <span class="kw">let</span> <span class="ident">xs</span> <span class="op">=</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];
         <span class="kw">let</span> <span class="ident">s4</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">SSE41</span>::<span class="ident">instance</span>() };
         <span class="kw">let</span> <span class="ident">x_s4</span>: <span class="op">&lt;</span><span class="ident">SSE41</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u32x4</span> <span class="op">=</span> <span class="ident">s4</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s4</span>.<span class="ident">extract</span>(<span class="number">0</span>), <span class="number">1</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s4</span>.<span class="ident">extract</span>(<span class="number">1</span>), <span class="number">2</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s4</span>.<span class="ident">extract</span>(<span class="number">2</span>), <span class="number">3</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s4</span>.<span class="ident">extract</span>(<span class="number">3</span>), <span class="number">4</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s4</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">0</span>), <span class="ident">s4</span>.<span class="ident">vec</span>([<span class="number">0xf</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]));
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s4</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">1</span>), <span class="ident">s4</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">0xf</span>, <span class="number">3</span>, <span class="number">4</span>]));
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s4</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">2</span>), <span class="ident">s4</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">0xf</span>, <span class="number">4</span>]));
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s4</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">3</span>), <span class="ident">s4</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0xf</span>]));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s4</span>.<span class="ident">extract</span>(<span class="number">0</span>), <span class="number">1</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s4</span>.<span class="ident">extract</span>(<span class="number">1</span>), <span class="number">2</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s4</span>.<span class="ident">extract</span>(<span class="number">2</span>), <span class="number">3</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s4</span>.<span class="ident">extract</span>(<span class="number">3</span>), <span class="number">4</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s4</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">0</span>), <span class="ident">s4</span>.<span class="ident">vec</span>([<span class="number">0xf</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s4</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">1</span>), <span class="ident">s4</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">0xf</span>, <span class="number">3</span>, <span class="number">4</span>]));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s4</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">2</span>), <span class="ident">s4</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">0xf</span>, <span class="number">4</span>]));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s4</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">3</span>), <span class="ident">s4</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0xf</span>]));
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -2974,10 +2974,10 @@
         <span class="kw">let</span> <span class="ident">xs</span> <span class="op">=</span> [<span class="number">0x1</span>, <span class="number">0x2</span>];
         <span class="kw">let</span> <span class="ident">s2</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">SSE2</span>::<span class="ident">instance</span>() };
         <span class="kw">let</span> <span class="ident">x_s2</span>: <span class="op">&lt;</span><span class="ident">SSE2</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u64x2</span> <span class="op">=</span> <span class="ident">s2</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>.<span class="ident">extract</span>(<span class="number">0</span>), <span class="number">1</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>.<span class="ident">extract</span>(<span class="number">1</span>), <span class="number">2</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">0</span>), <span class="ident">s2</span>.<span class="ident">vec</span>([<span class="number">0xf</span>, <span class="number">2</span>]));
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s2</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">1</span>), <span class="ident">s2</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">0xf</span>]));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>.<span class="ident">extract</span>(<span class="number">0</span>), <span class="number">1</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>.<span class="ident">extract</span>(<span class="number">1</span>), <span class="number">2</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">0</span>), <span class="ident">s2</span>.<span class="ident">vec</span>([<span class="number">0xf</span>, <span class="number">2</span>]));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s2</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">1</span>), <span class="ident">s2</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">0xf</span>]));
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -2986,10 +2986,10 @@
         <span class="kw">let</span> <span class="ident">xs</span> <span class="op">=</span> [<span class="number">0x1</span>, <span class="number">0x2</span>];
         <span class="kw">let</span> <span class="ident">s4</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">SSE41</span>::<span class="ident">instance</span>() };
         <span class="kw">let</span> <span class="ident">x_s4</span>: <span class="op">&lt;</span><span class="ident">SSE41</span> <span class="kw">as</span> <span class="ident">Machine</span><span class="op">&gt;</span>::<span class="ident">u64x2</span> <span class="op">=</span> <span class="ident">s4</span>.<span class="ident">vec</span>(<span class="ident">xs</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s4</span>.<span class="ident">extract</span>(<span class="number">0</span>), <span class="number">1</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s4</span>.<span class="ident">extract</span>(<span class="number">1</span>), <span class="number">2</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s4</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">0</span>), <span class="ident">s4</span>.<span class="ident">vec</span>([<span class="number">0xf</span>, <span class="number">2</span>]));
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">x_s4</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">1</span>), <span class="ident">s4</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">0xf</span>]));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s4</span>.<span class="ident">extract</span>(<span class="number">0</span>), <span class="number">1</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s4</span>.<span class="ident">extract</span>(<span class="number">1</span>), <span class="number">2</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s4</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">0</span>), <span class="ident">s4</span>.<span class="ident">vec</span>([<span class="number">0xf</span>, <span class="number">2</span>]));
+        <span class="macro">assert_eq!</span>(<span class="ident">x_s4</span>.<span class="ident">insert</span>(<span class="number">0xf</span>, <span class="number">1</span>), <span class="ident">s4</span>.<span class="ident">vec</span>([<span class="number">1</span>, <span class="number">0xf</span>]));
     }
 }
 
@@ -3054,7 +3054,7 @@
                     <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u32x4_sse2</span>::<span class="ident">new</span>(<span class="ident">_mm256_extracti128_si256</span>(<span class="self">self</span>.<span class="ident">x</span>[<span class="number">0</span>], <span class="number">1</span>)),
                     <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u32x4_sse2</span>::<span class="ident">new</span>(<span class="ident">_mm256_extracti128_si256</span>(<span class="self">self</span>.<span class="ident">x</span>[<span class="number">1</span>], <span class="number">0</span>)),
                     <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">u32x4_sse2</span>::<span class="ident">new</span>(<span class="ident">_mm256_extracti128_si256</span>(<span class="self">self</span>.<span class="ident">x</span>[<span class="number">1</span>], <span class="number">1</span>)),
-                    <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(),
+                    <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(),
                 }
             }
         }
@@ -3066,7 +3066,7 @@
                     <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> [<span class="ident">_mm256_inserti128_si256</span>(<span class="self">self</span>.<span class="ident">x</span>[<span class="number">0</span>], <span class="ident">w</span>.<span class="ident">x</span>, <span class="number">1</span>), <span class="self">self</span>.<span class="ident">x</span>[<span class="number">1</span>]],
                     <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> [<span class="self">self</span>.<span class="ident">x</span>[<span class="number">0</span>], <span class="ident">_mm256_inserti128_si256</span>(<span class="self">self</span>.<span class="ident">x</span>[<span class="number">1</span>], <span class="ident">w</span>.<span class="ident">x</span>, <span class="number">0</span>)],
                     <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> [<span class="self">self</span>.<span class="ident">x</span>[<span class="number">0</span>], <span class="ident">_mm256_inserti128_si256</span>(<span class="self">self</span>.<span class="ident">x</span>[<span class="number">1</span>], <span class="ident">w</span>.<span class="ident">x</span>, <span class="number">1</span>)],
-                    <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic</span><span class="macro">!</span>(),
+                    <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(),
                 }
             })
         }
@@ -3102,7 +3102,7 @@
     }
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> <span class="ident">BitOps32</span> <span class="kw">for</span> <span class="ident">u32x4x4_avx2</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> <span class="kw">where</span> <span class="ident">NI</span>: <span class="ident">Copy</span> {}
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> <span class="ident">ArithOps</span> <span class="kw">for</span> <span class="ident">u32x4x4_avx2</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> <span class="kw">where</span> <span class="ident">NI</span>: <span class="ident">Copy</span> {}
-    <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">shuf_lane_bytes</span> {
+    <span class="macro">macro_rules!</span> <span class="ident">shuf_lane_bytes</span> {
         (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">k0</span>:<span class="ident">expr</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">k1</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
             <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
             <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -3115,7 +3115,7 @@
             }
         };
     }
-    <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">rotr_32</span> {
+    <span class="macro">macro_rules!</span> <span class="ident">rotr_32</span> {
         (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">i</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
             <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
             <span class="kw">fn</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">name</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -3135,26 +3135,26 @@
         };
     }
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">NI</span>: <span class="ident">Copy</span><span class="op">&gt;</span> <span class="ident">RotateEachWord32</span> <span class="kw">for</span> <span class="ident">u32x4x4_avx2</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> {
-        <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right7</span>, <span class="number">7</span>);
-        <span class="macro">shuf_lane_bytes</span><span class="macro">!</span>(
+        <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right7</span>, <span class="number">7</span>);
+        <span class="macro">shuf_lane_bytes!</span>(
             <span class="ident">rotate_each_word_right8</span>,
             <span class="number">0x0c0f0e0d_080b0a09</span>,
             <span class="number">0x04070605_00030201</span>
         );
-        <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right11</span>, <span class="number">11</span>);
-        <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right12</span>, <span class="number">12</span>);
-        <span class="macro">shuf_lane_bytes</span><span class="macro">!</span>(
+        <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right11</span>, <span class="number">11</span>);
+        <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right12</span>, <span class="number">12</span>);
+        <span class="macro">shuf_lane_bytes!</span>(
             <span class="ident">rotate_each_word_right16</span>,
             <span class="number">0x0d0c0f0e_09080b0a</span>,
             <span class="number">0x05040706_01000302</span>
         );
-        <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right20</span>, <span class="number">20</span>);
-        <span class="macro">shuf_lane_bytes</span><span class="macro">!</span>(
+        <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right20</span>, <span class="number">20</span>);
+        <span class="macro">shuf_lane_bytes!</span>(
             <span class="ident">rotate_each_word_right24</span>,
             <span class="number">0x0e0d0c0f_0a09080b</span>,
             <span class="number">0x06050407_02010003</span>
         );
-        <span class="macro">rotr_32</span><span class="macro">!</span>(<span class="ident">rotate_each_word_right25</span>, <span class="number">25</span>);
+        <span class="macro">rotr_32!</span>(<span class="ident">rotate_each_word_right25</span>, <span class="number">25</span>);
     }
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> <span class="ident">BitOps0</span> <span class="kw">for</span> <span class="ident">u32x4x4_avx2</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> <span class="kw">where</span> <span class="ident">NI</span>: <span class="ident">Copy</span> {}
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">u32x4x4_avx2</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">vec512_storage</span> {
@@ -3169,7 +3169,7 @@
         }
     }
 
-    <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">impl_assign</span> {
+    <span class="macro">macro_rules!</span> <span class="ident">impl_assign</span> {
         (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Assign</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">assign_fn</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">bin_fn</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Assign</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span>
             <span class="kw">where</span>
@@ -3182,12 +3182,12 @@
             }
         };
     }
-    <span class="macro">impl_assign</span><span class="macro">!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">BitXorAssign</span>, <span class="ident">bitxor_assign</span>, <span class="ident">bitxor</span>);
-    <span class="macro">impl_assign</span><span class="macro">!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">BitOrAssign</span>, <span class="ident">bitor_assign</span>, <span class="ident">bitor</span>);
-    <span class="macro">impl_assign</span><span class="macro">!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">BitAndAssign</span>, <span class="ident">bitand_assign</span>, <span class="ident">bitand</span>);
-    <span class="macro">impl_assign</span><span class="macro">!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">AddAssign</span>, <span class="ident">add_assign</span>, <span class="ident">add</span>);
+    <span class="macro">impl_assign!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">BitXorAssign</span>, <span class="ident">bitxor_assign</span>, <span class="ident">bitxor</span>);
+    <span class="macro">impl_assign!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">BitOrAssign</span>, <span class="ident">bitor_assign</span>, <span class="ident">bitor</span>);
+    <span class="macro">impl_assign!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">BitAndAssign</span>, <span class="ident">bitand_assign</span>, <span class="ident">bitand</span>);
+    <span class="macro">impl_assign!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">AddAssign</span>, <span class="ident">add_assign</span>, <span class="ident">add</span>);
 
-    <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">impl_bitop_x2</span> {
+    <span class="macro">macro_rules!</span> <span class="ident">impl_bitop_x2</span> {
         (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Op</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">op_fn</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">impl_fn</span>:<span class="ident">ident</span>) <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">Op</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">vec</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> {
                 <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="self">Self</span>;
@@ -3200,11 +3200,11 @@
             }
         };
     }
-    <span class="macro">impl_bitop_x2</span><span class="macro">!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">BitXor</span>, <span class="ident">bitxor</span>, <span class="ident">_mm256_xor_si256</span>);
-    <span class="macro">impl_bitop_x2</span><span class="macro">!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">BitOr</span>, <span class="ident">bitor</span>, <span class="ident">_mm256_or_si256</span>);
-    <span class="macro">impl_bitop_x2</span><span class="macro">!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">BitAnd</span>, <span class="ident">bitand</span>, <span class="ident">_mm256_and_si256</span>);
-    <span class="macro">impl_bitop_x2</span><span class="macro">!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">AndNot</span>, <span class="ident">andnot</span>, <span class="ident">_mm256_andnot_si256</span>);
-    <span class="macro">impl_bitop_x2</span><span class="macro">!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">Add</span>, <span class="ident">add</span>, <span class="ident">_mm256_add_epi32</span>);
+    <span class="macro">impl_bitop_x2!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">BitXor</span>, <span class="ident">bitxor</span>, <span class="ident">_mm256_xor_si256</span>);
+    <span class="macro">impl_bitop_x2!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">BitOr</span>, <span class="ident">bitor</span>, <span class="ident">_mm256_or_si256</span>);
+    <span class="macro">impl_bitop_x2!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">BitAnd</span>, <span class="ident">bitand</span>, <span class="ident">_mm256_and_si256</span>);
+    <span class="macro">impl_bitop_x2!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">AndNot</span>, <span class="ident">andnot</span>, <span class="ident">_mm256_andnot_si256</span>);
+    <span class="macro">impl_bitop_x2!</span>(<span class="ident">u32x4x4_avx2</span>, <span class="ident">Add</span>, <span class="ident">add</span>, <span class="ident">_mm256_add_epi32</span>);
 
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> <span class="ident">Not</span> <span class="kw">for</span> <span class="ident">u32x4x4_avx2</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> {
         <span class="kw">type</span> <span class="ident">Output</span> <span class="op">=</span> <span class="self">Self</span>;
@@ -3218,7 +3218,7 @@
     }
 
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> <span class="ident">BSwap</span> <span class="kw">for</span> <span class="ident">u32x4x4_avx2</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> {
-        <span class="macro">shuf_lane_bytes</span><span class="macro">!</span>(<span class="ident">bswap</span>, <span class="number">0x0c0d_0e0f_0809_0a0b</span>, <span class="number">0x0405_0607_0001_0203</span>);
+        <span class="macro">shuf_lane_bytes!</span>(<span class="ident">bswap</span>, <span class="number">0x0c0d_0e0f_0809_0a0b</span>, <span class="number">0x0405_0607_0001_0203</span>);
     }
 
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">x4</span><span class="op">&lt;</span><span class="ident">u128x1_sse2</span><span class="op">&lt;</span><span class="ident">YesS3</span>, <span class="ident">YesS4</span>, <span class="ident">NI</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">u32x4x4_avx2</span><span class="op">&lt;</span><span class="ident">NI</span><span class="op">&gt;</span>

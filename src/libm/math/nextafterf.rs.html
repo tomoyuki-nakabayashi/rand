@@ -67,12 +67,12 @@
     <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">ux_i</span>.<span class="ident">wrapping_shr</span>(<span class="number">0x7f80_0000_u32</span>);
     <span class="comment">// raise overflow if ux_f is infinite and x is finite</span>
     <span class="kw">if</span> <span class="ident">e</span> <span class="op">=</span><span class="op">=</span> <span class="number">0x7f80_0000_u32</span> {
-        <span class="macro">force_eval</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">x</span>);
+        <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">x</span>);
     }
     <span class="kw">let</span> <span class="ident">ux_f</span> <span class="op">=</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="ident">ux_i</span>);
     <span class="comment">// raise underflow if ux_f is subnormal or zero</span>
     <span class="kw">if</span> <span class="ident">e</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
-        <span class="macro">force_eval</span><span class="macro">!</span>(<span class="ident">x</span> <span class="op">*</span> <span class="ident">x</span> <span class="op">+</span> <span class="ident">ux_f</span> <span class="op">*</span> <span class="ident">ux_f</span>);
+        <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">*</span> <span class="ident">x</span> <span class="op">+</span> <span class="ident">ux_f</span> <span class="op">*</span> <span class="ident">ux_f</span>);
     }
     <span class="ident">ux_f</span>
 }
