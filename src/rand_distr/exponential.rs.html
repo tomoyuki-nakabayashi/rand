@@ -177,6 +177,7 @@
 <span id="176">176</span>
 <span id="177">177</span>
 <span id="178">178</span>
+<span id="179">179</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2018 Developers of the Rand project.</span>
 <span class="comment">// Copyright 2013 The Rust Project Developers.</span>
@@ -294,6 +295,7 @@
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)))]</span>
 <span class="kw">impl</span> <span class="ident">std</span>::<span class="ident">error</span>::<span class="ident">Error</span> <span class="kw">for</span> <span class="ident">Error</span> {}
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Float</span><span class="op">&gt;</span> <span class="ident">Exp</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>

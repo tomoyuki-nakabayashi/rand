@@ -522,6 +522,8 @@
 <span id="521">521</span>
 <span id="522">522</span>
 <span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2019 Developers of the Rand project.</span>
 <span class="comment">//</span>
@@ -879,6 +881,7 @@
 <span class="macro">impl_weight_for_float!</span>(<span class="ident">f32</span>);
 <span class="macro">impl_weight_for_int!</span>(<span class="ident">usize</span>);
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;emscripten&quot;</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;emscripten&quot;</span>))))]</span>
 <span class="macro">impl_weight_for_int!</span>(<span class="ident">u128</span>);
 <span class="macro">impl_weight_for_int!</span>(<span class="ident">u64</span>);
 <span class="macro">impl_weight_for_int!</span>(<span class="ident">u32</span>);
@@ -886,6 +889,7 @@
 <span class="macro">impl_weight_for_int!</span>(<span class="ident">u8</span>);
 <span class="macro">impl_weight_for_int!</span>(<span class="ident">isize</span>);
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;emscripten&quot;</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;emscripten&quot;</span>))))]</span>
 <span class="macro">impl_weight_for_int!</span>(<span class="ident">i128</span>);
 <span class="macro">impl_weight_for_int!</span>(<span class="ident">i64</span>);
 <span class="macro">impl_weight_for_int!</span>(<span class="ident">i32</span>);
