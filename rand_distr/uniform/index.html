@@ -15,10 +15,10 @@ need to be used directly (unless implementing a derived back-end).</p>
 <h1 id="example-usage" class="section-header"><a href="#example-usage">Example usage</a></h1>
 <div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="kw">use</span> <span class="ident">rand</span>::{<span class="ident">Rng</span>, <span class="ident">thread_rng</span>};
-<span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">distributions</span>::<span class="ident">Uniform</span>;
+<span class="kw">use</span> <span class="ident">rand::distributions::Uniform</span>;
 
 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident">thread_rng</span>();
-<span class="kw">let</span> <span class="ident">side</span> <span class="op">=</span> <span class="ident">Uniform</span>::<span class="ident">new</span>(<span class="op">-</span><span class="number">10.0</span>, <span class="number">10.0</span>);
+<span class="kw">let</span> <span class="ident">side</span> <span class="op">=</span> <span class="ident">Uniform::new</span>(<span class="op">-</span><span class="number">10.0</span>, <span class="number">10.0</span>);
 
 <span class="comment">// sample between 1 and 10 points</span>
 <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">rng</span>.<span class="ident">gen_range</span>(<span class="number">1</span>..<span class="op">=</span><span class="number">10</span>) {
@@ -41,8 +41,8 @@ simply use the reference returned by <a href="../../rand_distr/uniform/trait.Sam
 to copy or clone the value, whatever is appropriate for your type.</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered">
-<span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">distributions</span>::<span class="ident">uniform</span>::{<span class="ident">Uniform</span>, <span class="ident">SampleUniform</span>,
+<span class="kw">use</span> <span class="ident">rand::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">rand::distributions::uniform</span>::{<span class="ident">Uniform</span>, <span class="ident">SampleUniform</span>,
         <span class="ident">UniformSampler</span>, <span class="ident">UniformFloat</span>, <span class="ident">SampleBorrow</span>};
 
 <span class="kw">struct</span> <span class="ident">MyF32</span>(<span class="ident">f32</span>);
@@ -53,18 +53,18 @@ to copy or clone the value, whatever is appropriate for your type.</p>
 <span class="kw">impl</span> <span class="ident">UniformSampler</span> <span class="kw">for</span> <span class="ident">UniformMyF32</span> {
     <span class="kw">type</span> <span class="ident">X</span> <span class="op">=</span> <span class="ident">MyF32</span>;
     <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">B1</span>, <span class="ident">B2</span><span class="op">&gt;</span>(<span class="ident">low</span>: <span class="ident">B1</span>, <span class="ident">high</span>: <span class="ident">B2</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
-        <span class="kw">where</span> <span class="ident">B1</span>: <span class="ident">SampleBorrow</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">X</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Sized</span>,
-              <span class="ident">B2</span>: <span class="ident">SampleBorrow</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">X</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Sized</span>
+        <span class="kw">where</span> <span class="ident">B1</span>: <span class="ident">SampleBorrow</span><span class="op">&lt;</span><span class="self">Self</span><span class="ident">::X</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Sized</span>,
+              <span class="ident">B2</span>: <span class="ident">SampleBorrow</span><span class="op">&lt;</span><span class="self">Self</span><span class="ident">::X</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Sized</span>
     {
-        <span class="ident">UniformMyF32</span>(<span class="ident">UniformFloat</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>::<span class="ident">new</span>(<span class="ident">low</span>.<span class="ident">borrow</span>().<span class="number">0</span>, <span class="ident">high</span>.<span class="ident">borrow</span>().<span class="number">0</span>))
+        <span class="ident">UniformMyF32</span>(<span class="ident">UniformFloat</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span><span class="ident">::new</span>(<span class="ident">low</span>.<span class="ident">borrow</span>().<span class="number">0</span>, <span class="ident">high</span>.<span class="ident">borrow</span>().<span class="number">0</span>))
     }
     <span class="kw">fn</span> <span class="ident">new_inclusive</span><span class="op">&lt;</span><span class="ident">B1</span>, <span class="ident">B2</span><span class="op">&gt;</span>(<span class="ident">low</span>: <span class="ident">B1</span>, <span class="ident">high</span>: <span class="ident">B2</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
-        <span class="kw">where</span> <span class="ident">B1</span>: <span class="ident">SampleBorrow</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">X</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Sized</span>,
-              <span class="ident">B2</span>: <span class="ident">SampleBorrow</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">X</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Sized</span>
+        <span class="kw">where</span> <span class="ident">B1</span>: <span class="ident">SampleBorrow</span><span class="op">&lt;</span><span class="self">Self</span><span class="ident">::X</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Sized</span>,
+              <span class="ident">B2</span>: <span class="ident">SampleBorrow</span><span class="op">&lt;</span><span class="self">Self</span><span class="ident">::X</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Sized</span>
     {
-        <span class="ident">UniformSampler</span>::<span class="ident">new</span>(<span class="ident">low</span>, <span class="ident">high</span>)
+        <span class="ident">UniformSampler::new</span>(<span class="ident">low</span>, <span class="ident">high</span>)
     }
-    <span class="kw">fn</span> <span class="ident">sample</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Rng</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rng</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>::<span class="ident">X</span> {
+    <span class="kw">fn</span> <span class="ident">sample</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Rng</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rng</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::X</span> {
         <span class="ident">MyF32</span>(<span class="self">self</span>.<span class="number">0</span>.<span class="ident">sample</span>(<span class="ident">rng</span>))
     }
 }
@@ -74,7 +74,7 @@ to copy or clone the value, whatever is appropriate for your type.</p>
 }
 
 <span class="kw">let</span> (<span class="ident">low</span>, <span class="ident">high</span>) <span class="op">=</span> (<span class="ident">MyF32</span>(<span class="number">17.0f32</span>), <span class="ident">MyF32</span>(<span class="number">22.0f32</span>));
-<span class="kw">let</span> <span class="ident">uniform</span> <span class="op">=</span> <span class="ident">Uniform</span>::<span class="ident">new</span>(<span class="ident">low</span>, <span class="ident">high</span>);
+<span class="kw">let</span> <span class="ident">uniform</span> <span class="op">=</span> <span class="ident">Uniform::new</span>(<span class="ident">low</span>, <span class="ident">high</span>);
 <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">uniform</span>.<span class="ident">sample</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">thread_rng</span>());</pre></div>
 </div><h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
 <table><tr class="module-item"><td><a class="struct" href="struct.Uniform.html" title="rand_distr::uniform::Uniform struct">Uniform</a></td><td class="docblock-short"><p>Sample values uniformly between two bounds.</p>

@@ -67,21 +67,21 @@
     <span class="ident">all</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;unstable&quot;</span>),
     <span class="ident">feature</span>(<span class="ident">core_intrinsics</span>)
 )]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">unreadable_literal</span>)]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">many_single_char_names</span>)]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">needless_return</span>)]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">int_plus_one</span>)]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">deprecated_cfg_attr</span>)]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">mixed_case_hex_literals</span>)]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">float_cmp</span>)]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">eq_op</span>)]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">assign_op_pattern</span>)]</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unreadable_literal</span>)]</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::many_single_char_names</span>)]</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::needless_return</span>)]</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::int_plus_one</span>)]</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::deprecated_cfg_attr</span>)]</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::mixed_case_hex_literals</span>)]</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::float_cmp</span>)]</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::eq_op</span>)]</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::assign_op_pattern</span>)]</span>
 
 <span class="kw">mod</span> <span class="ident">math</span>;
 
 <span class="kw">use</span> <span class="ident">core</span>::{<span class="ident">f32</span>, <span class="ident">f64</span>};
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">math</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::math</span>::<span class="kw-2">*</span>;
 
 <span class="doccomment">/// Approximate equality with 1 ULP of tolerance</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>

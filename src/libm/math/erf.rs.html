@@ -572,7 +572,7 @@
         <span class="comment">/* 0.84375 &lt;= |x| &lt; 6 */</span>
         <span class="ident">y</span> <span class="op">=</span> <span class="number">1.0</span> <span class="op">-</span> <span class="ident">erfc2</span>(<span class="ident">ix</span>, <span class="ident">x</span>);
     } <span class="kw">else</span> {
-        <span class="kw">let</span> <span class="ident">x1p_1022</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x0010000000000000</span>);
+        <span class="kw">let</span> <span class="ident">x1p_1022</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x0010000000000000</span>);
         <span class="ident">y</span> <span class="op">=</span> <span class="number">1.0</span> <span class="op">-</span> <span class="ident">x1p_1022</span>;
     }
 
@@ -629,7 +629,7 @@
         }
     }
 
-    <span class="kw">let</span> <span class="ident">x1p_1022</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x0010000000000000</span>);
+    <span class="kw">let</span> <span class="ident">x1p_1022</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x0010000000000000</span>);
     <span class="kw">if</span> <span class="ident">sign</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
         <span class="number">2.0</span> <span class="op">-</span> <span class="ident">x1p_1022</span>
     } <span class="kw">else</span> {

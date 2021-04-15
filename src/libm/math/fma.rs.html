@@ -227,7 +227,7 @@
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">core</span>::{<span class="ident">f32</span>, <span class="ident">f64</span>};
 
-<span class="kw">use</span> <span class="kw">super</span>::<span class="ident">scalbn</span>;
+<span class="kw">use</span> <span class="kw">super</span><span class="ident">::scalbn</span>;
 
 <span class="kw">const</span> <span class="ident">ZEROINFNAN</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0x7ff</span> <span class="op">-</span> <span class="number">0x3ff</span> <span class="op">-</span> <span class="number">52</span> <span class="op">-</span> <span class="number">1</span>;
 
@@ -238,7 +238,7 @@
 }
 
 <span class="kw">fn</span> <span class="ident">normalize</span>(<span class="ident">x</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Num</span> {
-    <span class="kw">let</span> <span class="ident">x1p63</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x43e0000000000000</span>); <span class="comment">// 0x1p63 === 2 ^ 63</span>
+    <span class="kw">let</span> <span class="ident">x1p63</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x43e0000000000000</span>); <span class="comment">// 0x1p63 === 2 ^ 63</span>
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ix</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">to_bits</span>();
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span>: <span class="ident">i32</span> <span class="op">=</span> (<span class="ident">ix</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">52</span>) <span class="kw">as</span> <span class="ident">i32</span>;
@@ -278,10 +278,10 @@
 <span class="doccomment">/// Computes `(x*y)+z`, rounded as one ternary operation:</span>
 <span class="doccomment">/// Computes the value (as if) to infinite precision and rounds once to the result format,</span>
 <span class="doccomment">/// according to the rounding mode characterized by the value of FLT_ROUNDS.</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fma</span>(<span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>, <span class="ident">z</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
-    <span class="kw">let</span> <span class="ident">x1p63</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x43e0000000000000</span>); <span class="comment">// 0x1p63 === 2 ^ 63</span>
-    <span class="kw">let</span> <span class="ident">x0_ffffff8p_63</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x3bfffffff0000000</span>); <span class="comment">// 0x0.ffffff8p-63</span>
+    <span class="kw">let</span> <span class="ident">x1p63</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x43e0000000000000</span>); <span class="comment">// 0x1p63 === 2 ^ 63</span>
+    <span class="kw">let</span> <span class="ident">x0_ffffff8p_63</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x3bfffffff0000000</span>); <span class="comment">// 0x0.ffffff8p-63</span>
 
     <span class="comment">/* normalize so top 10bits and last bit are 0 */</span>
     <span class="kw">let</span> <span class="ident">nx</span> <span class="op">=</span> <span class="ident">normalize</span>(<span class="ident">x</span>);
@@ -397,8 +397,8 @@
                 <span class="comment">/* min normal after rounding, underflow depends
                 on arch behaviour which can be imitated by
                 a double to float conversion */</span>
-                <span class="kw">let</span> <span class="ident">fltmin</span>: <span class="ident">f32</span> <span class="op">=</span> (<span class="ident">x0_ffffff8p_63</span> <span class="op">*</span> <span class="ident">f32</span>::<span class="ident">MIN_POSITIVE</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">*</span> <span class="ident">r</span>) <span class="kw">as</span> <span class="ident">f32</span>;
-                <span class="kw">return</span> <span class="ident">f64</span>::<span class="ident">MIN_POSITIVE</span> <span class="op">/</span> <span class="ident">f32</span>::<span class="ident">MIN_POSITIVE</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">*</span> <span class="ident">fltmin</span> <span class="kw">as</span> <span class="ident">f64</span>;
+                <span class="kw">let</span> <span class="ident">fltmin</span>: <span class="ident">f32</span> <span class="op">=</span> (<span class="ident">x0_ffffff8p_63</span> <span class="op">*</span> <span class="ident">f32::MIN_POSITIVE</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">*</span> <span class="ident">r</span>) <span class="kw">as</span> <span class="ident">f32</span>;
+                <span class="kw">return</span> <span class="ident">f64::MIN_POSITIVE</span> <span class="op">/</span> <span class="ident">f32::MIN_POSITIVE</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">*</span> <span class="ident">fltmin</span> <span class="kw">as</span> <span class="ident">f64</span>;
             }
             <span class="comment">/* one bit is lost when scaled, add another top bit to
             only round once at conversion if it is inexact */</span>
@@ -413,7 +413,7 @@
                 <span class="comment">/* raise underflow portably, such that it
                 cannot be optimized away */</span>
                 {
-                    <span class="kw">let</span> <span class="ident">tiny</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">MIN_POSITIVE</span> <span class="op">/</span> <span class="ident">f32</span>::<span class="ident">MIN_POSITIVE</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">*</span> <span class="ident">r</span>;
+                    <span class="kw">let</span> <span class="ident">tiny</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="ident">f64::MIN_POSITIVE</span> <span class="op">/</span> <span class="ident">f32::MIN_POSITIVE</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">*</span> <span class="ident">r</span>;
                     <span class="ident">r</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">tiny</span> <span class="op">*</span> <span class="ident">tiny</span>) <span class="op">*</span> (<span class="ident">r</span> <span class="op">-</span> <span class="ident">r</span>);
                 }
             }

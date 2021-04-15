@@ -158,7 +158,7 @@
  * ====================================================
  */</span>
 
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">f64</span>;
+<span class="kw">use</span> <span class="ident">core::f64</span>;
 
 <span class="kw">const</span> <span class="ident">O_THRESHOLD</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">7.09782712893383973096e+02</span>; <span class="comment">/* 0x40862E42, 0xFEFA39EF */</span>
 <span class="kw">const</span> <span class="ident">LN2_HI</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">6.93147180369123816490e-01</span>; <span class="comment">/* 0x3fe62e42, 0xfee00000 */</span>
@@ -178,7 +178,7 @@
 <span class="doccomment">/// system of logarithms, approximately 2.71828).</span>
 <span class="doccomment">/// The result is accurate even for small values of `x`,</span>
 <span class="doccomment">/// where using `exp(x)-1` would lose many significant digits.</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">expm1</span>(<span class="kw-2">mut</span> <span class="ident">x</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
     <span class="kw">let</span> <span class="ident">hi</span>: <span class="ident">f64</span>;
     <span class="kw">let</span> <span class="ident">lo</span>: <span class="ident">f64</span>;
@@ -201,7 +201,7 @@
             <span class="kw">return</span> <span class="op">-</span><span class="number">1.0</span>;
         }
         <span class="kw">if</span> <span class="ident">x</span> <span class="op">&gt;</span> <span class="ident">O_THRESHOLD</span> {
-            <span class="ident">x</span> <span class="kw-2">*</span><span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x7fe0000000000000</span>);
+            <span class="ident">x</span> <span class="kw-2">*</span><span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x7fe0000000000000</span>);
             <span class="kw">return</span> <span class="ident">x</span>;
         }
     }
@@ -262,19 +262,19 @@
         <span class="kw">return</span> <span class="number">1.0</span> <span class="op">+</span> <span class="number">2.0</span> <span class="op">*</span> (<span class="ident">x</span> <span class="op">-</span> <span class="ident">e</span>);
     }
     <span class="ident">ui</span> <span class="op">=</span> ((<span class="number">0x3ff</span> <span class="op">+</span> <span class="ident">k</span>) <span class="kw">as</span> <span class="ident">u64</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">52</span>; <span class="comment">/* 2^k */</span>
-    <span class="kw">let</span> <span class="ident">twopk</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>);
+    <span class="kw">let</span> <span class="ident">twopk</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="ident">ui</span>);
     <span class="kw">if</span> <span class="ident">k</span> <span class="op">&lt;</span> <span class="number">0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">k</span> <span class="op">&gt;</span> <span class="number">56</span> {
         <span class="comment">/* suffice to return exp(x)-1 */</span>
         <span class="ident">y</span> <span class="op">=</span> <span class="ident">x</span> <span class="op">-</span> <span class="ident">e</span> <span class="op">+</span> <span class="number">1.0</span>;
         <span class="kw">if</span> <span class="ident">k</span> <span class="op">=</span><span class="op">=</span> <span class="number">1024</span> {
-            <span class="ident">y</span> <span class="op">=</span> <span class="ident">y</span> <span class="op">*</span> <span class="number">2.0</span> <span class="op">*</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x7fe0000000000000</span>);
+            <span class="ident">y</span> <span class="op">=</span> <span class="ident">y</span> <span class="op">*</span> <span class="number">2.0</span> <span class="op">*</span> <span class="ident">f64::from_bits</span>(<span class="number">0x7fe0000000000000</span>);
         } <span class="kw">else</span> {
             <span class="ident">y</span> <span class="op">=</span> <span class="ident">y</span> <span class="op">*</span> <span class="ident">twopk</span>;
         }
         <span class="kw">return</span> <span class="ident">y</span> <span class="op">-</span> <span class="number">1.0</span>;
     }
     <span class="ident">ui</span> <span class="op">=</span> ((<span class="number">0x3ff</span> <span class="op">-</span> <span class="ident">k</span>) <span class="kw">as</span> <span class="ident">u64</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">52</span>; <span class="comment">/* 2^-k */</span>
-    <span class="kw">let</span> <span class="ident">uf</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>);
+    <span class="kw">let</span> <span class="ident">uf</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="ident">ui</span>);
     <span class="kw">if</span> <span class="ident">k</span> <span class="op">&lt;</span> <span class="number">20</span> {
         <span class="ident">y</span> <span class="op">=</span> (<span class="ident">x</span> <span class="op">-</span> <span class="ident">e</span> <span class="op">+</span> (<span class="number">1.0</span> <span class="op">-</span> <span class="ident">uf</span>)) <span class="op">*</span> <span class="ident">twopk</span>;
     } <span class="kw">else</span> {
@@ -287,7 +287,7 @@
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">sanity_check</span>() {
-        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::<span class="ident">expm1</span>(<span class="number">1.1</span>), <span class="number">2.0041660239464334</span>);
+        <span class="macro">assert_eq!</span>(<span class="kw">super</span><span class="ident">::expm1</span>(<span class="number">1.1</span>), <span class="number">2.0041660239464334</span>);
     }
 }
 </pre></div>

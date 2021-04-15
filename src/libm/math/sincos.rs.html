@@ -88,7 +88,7 @@
         <span class="comment">/* if |x| &lt; 2**-27 * sqrt(2) */</span>
         <span class="kw">if</span> <span class="ident">ix</span> <span class="op">&lt;</span> <span class="number">0x3e46a09e</span> {
             <span class="comment">/* raise inexact if x!=0 and underflow if subnormal */</span>
-            <span class="kw">let</span> <span class="ident">x1p120</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x4770000000000000</span>); <span class="comment">// 0x1p120 == 2^120</span>
+            <span class="kw">let</span> <span class="ident">x1p120</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x4770000000000000</span>); <span class="comment">// 0x1p120 == 2^120</span>
             <span class="kw">if</span> <span class="ident">ix</span> <span class="op">&lt;</span> <span class="number">0x00100000</span> {
                 <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">/</span> <span class="ident">x1p120</span>);
             } <span class="kw">else</span> {

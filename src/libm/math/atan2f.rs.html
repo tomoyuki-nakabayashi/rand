@@ -108,8 +108,8 @@
  * ====================================================
  */</span>
 
-<span class="kw">use</span> <span class="kw">super</span>::<span class="ident">atanf</span>;
-<span class="kw">use</span> <span class="kw">super</span>::<span class="ident">fabsf</span>;
+<span class="kw">use</span> <span class="kw">super</span><span class="ident">::atanf</span>;
+<span class="kw">use</span> <span class="kw">super</span><span class="ident">::fabsf</span>;
 
 <span class="kw">const</span> <span class="ident">PI</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">3.1415927410e+00</span>; <span class="comment">/* 0x40490fdb */</span>
 <span class="kw">const</span> <span class="ident">PI_LO</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="op">-</span><span class="number">8.7422776573e-08</span>; <span class="comment">/* 0xb3bbbd2e */</span>
@@ -119,7 +119,7 @@
 <span class="doccomment">/// Computes the inverse tangent (arc tangent) of `y/x`.</span>
 <span class="doccomment">/// Produces the correct result even for angles near pi/2 or -pi/2 (that is, when `x` is near 0).</span>
 <span class="doccomment">/// Returns a value in radians, in the range of -pi to pi.</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">atan2f</span>(<span class="ident">y</span>: <span class="ident">f32</span>, <span class="ident">x</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
     <span class="kw">if</span> <span class="ident">x</span>.<span class="ident">is_nan</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">y</span>.<span class="ident">is_nan</span>() {
         <span class="kw">return</span> <span class="ident">x</span> <span class="op">+</span> <span class="ident">y</span>;

@@ -129,12 +129,12 @@
 <span class="comment">//</span>
 <span class="comment">// Accuracy:</span>
 <span class="comment">//      TRIG(x) returns trig(x) nearly rounded</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sin</span>(<span class="ident">x</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
-    <span class="kw">let</span> <span class="ident">x1p120</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x4770000000000000</span>); <span class="comment">// 0x1p120f === 2 ^ 120</span>
+    <span class="kw">let</span> <span class="ident">x1p120</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x4770000000000000</span>); <span class="comment">// 0x1p120f === 2 ^ 120</span>
 
     <span class="comment">/* High word of x. */</span>
-    <span class="kw">let</span> <span class="ident">ix</span> <span class="op">=</span> (<span class="ident">f64</span>::<span class="ident">to_bits</span>(<span class="ident">x</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">32</span>) <span class="kw">as</span> <span class="ident">u32</span> <span class="op">&amp;</span> <span class="number">0x7fffffff</span>;
+    <span class="kw">let</span> <span class="ident">ix</span> <span class="op">=</span> (<span class="ident">f64::to_bits</span>(<span class="ident">x</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">32</span>) <span class="kw">as</span> <span class="ident">u32</span> <span class="op">&amp;</span> <span class="number">0x7fffffff</span>;
 
     <span class="comment">/* |x| ~&lt; pi/4 */</span>
     <span class="kw">if</span> <span class="ident">ix</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0x3fe921fb</span> {
@@ -168,8 +168,8 @@
 
 <span class="attribute">#[<span class="ident">test</span>]</span>
 <span class="kw">fn</span> <span class="ident">test_near_pi</span>() {
-    <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x400921fb000FD5DD</span>); <span class="comment">// 3.141592026217707</span>
-    <span class="kw">let</span> <span class="ident">sx</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x3ea50d15ced1a4a2</span>); <span class="comment">// 6.273720864039205e-7</span>
+    <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x400921fb000FD5DD</span>); <span class="comment">// 3.141592026217707</span>
+    <span class="kw">let</span> <span class="ident">sx</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x3ea50d15ced1a4a2</span>); <span class="comment">// 6.273720864039205e-7</span>
     <span class="macro">assert_eq!</span>(<span class="ident">sin</span>(<span class="ident">x</span>), <span class="ident">sx</span>);
 }
 </pre></div>

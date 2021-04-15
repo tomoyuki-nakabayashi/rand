@@ -28,7 +28,7 @@
 
     <span class="kw">if</span> <span class="ident">ee</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
         <span class="kw">if</span> <span class="ident">x</span> <span class="op">!</span><span class="op">=</span> <span class="number">0.0</span> {
-            <span class="kw">let</span> <span class="ident">x1p64</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x43f0000000000000</span>);
+            <span class="kw">let</span> <span class="ident">x1p64</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x43f0000000000000</span>);
             <span class="kw">let</span> (<span class="ident">x</span>, <span class="ident">e</span>) <span class="op">=</span> <span class="ident">frexp</span>(<span class="ident">x</span> <span class="op">*</span> <span class="ident">x1p64</span>);
             <span class="kw">return</span> (<span class="ident">x</span>, <span class="ident">e</span> <span class="op">-</span> <span class="number">64</span>);
         }
@@ -40,7 +40,7 @@
     <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">ee</span> <span class="op">-</span> <span class="number">0x3fe</span>;
     <span class="ident">y</span> <span class="op">&amp;=</span> <span class="number">0x800fffffffffffff</span>;
     <span class="ident">y</span> <span class="op">|</span><span class="op">=</span> <span class="number">0x3fe0000000000000</span>;
-    <span class="kw">return</span> (<span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="ident">y</span>), <span class="ident">e</span>);
+    <span class="kw">return</span> (<span class="ident">f64::from_bits</span>(<span class="ident">y</span>), <span class="ident">e</span>);
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="libm" data-search-js="../../../search-index.js"></div>

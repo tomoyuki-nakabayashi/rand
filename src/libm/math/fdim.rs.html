@@ -24,7 +24,7 @@
 <span id="21">21</span>
 <span id="22">22</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">f64</span>;
+<span class="kw">use</span> <span class="ident">core::f64</span>;
 
 <span class="doccomment">/// Positive difference (f64)</span>
 <span class="doccomment">///</span>
@@ -34,7 +34,7 @@
 <span class="doccomment">/// * NAN	if either argument is NAN.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// A range error may occur.</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fdim</span>(<span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
     <span class="kw">if</span> <span class="ident">x</span>.<span class="ident">is_nan</span>() {
         <span class="ident">x</span>

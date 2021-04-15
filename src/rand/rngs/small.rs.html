@@ -130,9 +130,9 @@
 <span class="kw">use</span> <span class="ident">rand_core</span>::{<span class="ident">Error</span>, <span class="ident">RngCore</span>, <span class="ident">SeedableRng</span>};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_pointer_width</span> <span class="op">=</span> <span class="string">&quot;64&quot;</span>)]</span>
-<span class="kw">type</span> <span class="ident">Rng</span> <span class="op">=</span> <span class="kw">super</span>::<span class="ident">xoshiro256plusplus</span>::<span class="ident">Xoshiro256PlusPlus</span>;
+<span class="kw">type</span> <span class="ident">Rng</span> <span class="op">=</span> <span class="kw">super</span><span class="ident">::xoshiro256plusplus::Xoshiro256PlusPlus</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_pointer_width</span> <span class="op">=</span> <span class="string">&quot;64&quot;</span>))]</span>
-<span class="kw">type</span> <span class="ident">Rng</span> <span class="op">=</span> <span class="kw">super</span>::<span class="ident">xoshiro128plusplus</span>::<span class="ident">Xoshiro128PlusPlus</span>;
+<span class="kw">type</span> <span class="ident">Rng</span> <span class="op">=</span> <span class="kw">super</span><span class="ident">::xoshiro128plusplus::Xoshiro128PlusPlus</span>;
 
 <span class="doccomment">/// A small-state, fast non-crypto PRNG</span>
 <span class="doccomment">///</span>
@@ -222,16 +222,16 @@
 }
 
 <span class="kw">impl</span> <span class="ident">SeedableRng</span> <span class="kw">for</span> <span class="ident">SmallRng</span> {
-    <span class="kw">type</span> <span class="ident">Seed</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">Rng</span> <span class="kw">as</span> <span class="ident">SeedableRng</span><span class="op">&gt;</span>::<span class="ident">Seed</span>;
+    <span class="kw">type</span> <span class="ident">Seed</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">Rng</span> <span class="kw">as</span> <span class="ident">SeedableRng</span><span class="op">&gt;</span><span class="ident">::Seed</span>;
 
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">from_seed</span>(<span class="ident">seed</span>: <span class="self">Self</span>::<span class="ident">Seed</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="ident">SmallRng</span>(<span class="ident">Rng</span>::<span class="ident">from_seed</span>(<span class="ident">seed</span>))
+    <span class="kw">fn</span> <span class="ident">from_seed</span>(<span class="ident">seed</span>: <span class="self">Self</span><span class="ident">::Seed</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="ident">SmallRng</span>(<span class="ident">Rng::from_seed</span>(<span class="ident">seed</span>))
     }
 
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
     <span class="kw">fn</span> <span class="ident">from_rng</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">RngCore</span><span class="op">&gt;</span>(<span class="ident">rng</span>: <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="ident">Rng</span>::<span class="ident">from_rng</span>(<span class="ident">rng</span>).<span class="ident">map</span>(<span class="ident">SmallRng</span>)
+        <span class="ident">Rng::from_rng</span>(<span class="ident">rng</span>).<span class="ident">map</span>(<span class="ident">SmallRng</span>)
     }
 }
 </pre></div>

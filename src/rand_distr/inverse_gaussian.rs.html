@@ -98,8 +98,8 @@
 <span id="97">97</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Distribution</span>, <span class="ident">Standard</span>, <span class="ident">StandardNormal</span>};
-<span class="kw">use</span> <span class="ident">num_traits</span>::<span class="ident">Float</span>;
-<span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">Rng</span>;
+<span class="kw">use</span> <span class="ident">num_traits::Float</span>;
+<span class="kw">use</span> <span class="ident">rand::Rng</span>;
 
 <span class="doccomment">/// Error type returned from `InverseGaussian::new`</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
@@ -131,13 +131,13 @@
     <span class="doccomment">/// Construct a new `InverseGaussian` distribution with the given mean and</span>
     <span class="doccomment">/// shape.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">mean</span>: <span class="ident">F</span>, <span class="ident">shape</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">InverseGaussian</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">zero</span> <span class="op">=</span> <span class="ident">F</span>::<span class="ident">zero</span>();
+        <span class="kw">let</span> <span class="ident">zero</span> <span class="op">=</span> <span class="ident">F::zero</span>();
         <span class="kw">if</span> <span class="op">!</span>(<span class="ident">mean</span> <span class="op">&gt;</span> <span class="ident">zero</span>) {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">MeanNegativeOrNull</span>);
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::MeanNegativeOrNull</span>);
         }
 
         <span class="kw">if</span> <span class="op">!</span>(<span class="ident">shape</span> <span class="op">&gt;</span> <span class="ident">zero</span>) {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">ShapeNegativeOrNull</span>);
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::ShapeNegativeOrNull</span>);
         }
 
         <span class="prelude-val">Ok</span>(<span class="self">Self</span> { <span class="ident">mean</span>, <span class="ident">shape</span> })
@@ -150,7 +150,7 @@
     <span class="ident">StandardNormal</span>: <span class="ident">Distribution</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>,
     <span class="ident">Standard</span>: <span class="ident">Distribution</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>,
 {
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">many_single_char_names</span>)]</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::many_single_char_names</span>)]</span>
     <span class="kw">fn</span> <span class="ident">sample</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rng</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">F</span>
     <span class="kw">where</span> <span class="ident">R</span>: <span class="ident">Rng</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span> {
         <span class="kw">let</span> <span class="ident">mu</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">mean</span>;
@@ -159,9 +159,9 @@
         <span class="kw">let</span> <span class="ident">v</span>: <span class="ident">F</span> <span class="op">=</span> <span class="ident">rng</span>.<span class="ident">sample</span>(<span class="ident">StandardNormal</span>);
         <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">mu</span> <span class="op">*</span> <span class="ident">v</span> <span class="op">*</span> <span class="ident">v</span>;
 
-        <span class="kw">let</span> <span class="ident">mu_2l</span> <span class="op">=</span> <span class="ident">mu</span> <span class="op">/</span> (<span class="ident">F</span>::<span class="ident">from</span>(<span class="number">2.</span>).<span class="ident">unwrap</span>() <span class="op">*</span> <span class="ident">l</span>);
+        <span class="kw">let</span> <span class="ident">mu_2l</span> <span class="op">=</span> <span class="ident">mu</span> <span class="op">/</span> (<span class="ident">F::from</span>(<span class="number">2.</span>).<span class="ident">unwrap</span>() <span class="op">*</span> <span class="ident">l</span>);
 
-        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">mu</span> <span class="op">+</span> <span class="ident">mu_2l</span> <span class="op">*</span> (<span class="ident">y</span> <span class="op">-</span> (<span class="ident">F</span>::<span class="ident">from</span>(<span class="number">4.</span>).<span class="ident">unwrap</span>() <span class="op">*</span> <span class="ident">l</span> <span class="op">*</span> <span class="ident">y</span> <span class="op">+</span> <span class="ident">y</span> <span class="op">*</span> <span class="ident">y</span>).<span class="ident">sqrt</span>());
+        <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">mu</span> <span class="op">+</span> <span class="ident">mu_2l</span> <span class="op">*</span> (<span class="ident">y</span> <span class="op">-</span> (<span class="ident">F::from</span>(<span class="number">4.</span>).<span class="ident">unwrap</span>() <span class="op">*</span> <span class="ident">l</span> <span class="op">*</span> <span class="ident">y</span> <span class="op">+</span> <span class="ident">y</span> <span class="op">*</span> <span class="ident">y</span>).<span class="ident">sqrt</span>());
 
         <span class="kw">let</span> <span class="ident">u</span>: <span class="ident">F</span> <span class="op">=</span> <span class="ident">rng</span>.<span class="ident">gen</span>();
 
@@ -179,8 +179,8 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_inverse_gaussian</span>() {
-        <span class="kw">let</span> <span class="ident">inv_gauss</span> <span class="op">=</span> <span class="ident">InverseGaussian</span>::<span class="ident">new</span>(<span class="number">1.0</span>, <span class="number">1.0</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">test</span>::<span class="ident">rng</span>(<span class="number">210</span>);
+        <span class="kw">let</span> <span class="ident">inv_gauss</span> <span class="op">=</span> <span class="ident">InverseGaussian::new</span>(<span class="number">1.0</span>, <span class="number">1.0</span>).<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">210</span>);
         <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">1000</span> {
             <span class="ident">inv_gauss</span>.<span class="ident">sample</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>);
         }
@@ -188,10 +188,10 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_inverse_gaussian_invalid_param</span>() {
-        <span class="macro">assert!</span>(<span class="ident">InverseGaussian</span>::<span class="ident">new</span>(<span class="op">-</span><span class="number">1.0</span>, <span class="number">1.0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">InverseGaussian</span>::<span class="ident">new</span>(<span class="op">-</span><span class="number">1.0</span>, <span class="op">-</span><span class="number">1.0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">InverseGaussian</span>::<span class="ident">new</span>(<span class="number">1.0</span>, <span class="op">-</span><span class="number">1.0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">InverseGaussian</span>::<span class="ident">new</span>(<span class="number">1.0</span>, <span class="number">1.0</span>).<span class="ident">is_ok</span>());
+        <span class="macro">assert!</span>(<span class="ident">InverseGaussian::new</span>(<span class="op">-</span><span class="number">1.0</span>, <span class="number">1.0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">InverseGaussian::new</span>(<span class="op">-</span><span class="number">1.0</span>, <span class="op">-</span><span class="number">1.0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">InverseGaussian::new</span>(<span class="number">1.0</span>, <span class="op">-</span><span class="number">1.0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">InverseGaussian::new</span>(<span class="number">1.0</span>, <span class="number">1.0</span>).<span class="ident">is_ok</span>());
     }
 }
 </pre></div>

@@ -138,7 +138,7 @@
  *    log10(x) = (f - f*f/2 + r)/log(10) + k*log10(2)
  */</span>
 
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">f64</span>;
+<span class="kw">use</span> <span class="ident">core::f64</span>;
 
 <span class="kw">const</span> <span class="ident">IVLN10HI</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">4.34294481878168880939e-01</span>; <span class="comment">/* 0x3fdbcb7b, 0x15200000 */</span>
 <span class="kw">const</span> <span class="ident">IVLN10LO</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">2.50829467116452752298e-11</span>; <span class="comment">/* 0x3dbb9438, 0xca9aadd5 */</span>
@@ -152,9 +152,9 @@
 <span class="kw">const</span> <span class="ident">LG6</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">1.531383769920937332e-01</span>; <span class="comment">/* 3FC39A09 D078C69F */</span>
 <span class="kw">const</span> <span class="ident">LG7</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">1.479819860511658591e-01</span>; <span class="comment">/* 3FC2F112 DF3E5244 */</span>
 
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">log10</span>(<span class="kw-2">mut</span> <span class="ident">x</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
-    <span class="kw">let</span> <span class="ident">x1p54</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x4350000000000000</span>); <span class="comment">// 0x1p54 === 2 ^ 54</span>
+    <span class="kw">let</span> <span class="ident">x1p54</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x4350000000000000</span>); <span class="comment">// 0x1p54 === 2 ^ 54</span>
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ui</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">to_bits</span>();
     <span class="kw">let</span> <span class="ident">hfsq</span>: <span class="ident">f64</span>;
@@ -199,7 +199,7 @@
     <span class="ident">k</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">hx</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">20</span>) <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="number">0x3ff</span>;
     <span class="ident">hx</span> <span class="op">=</span> (<span class="ident">hx</span> <span class="op">&amp;</span> <span class="number">0x000fffff</span>) <span class="op">+</span> <span class="number">0x3fe6a09e</span>;
     <span class="ident">ui</span> <span class="op">=</span> (<span class="ident">hx</span> <span class="kw">as</span> <span class="ident">u64</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">32</span> <span class="op">|</span> (<span class="ident">ui</span> <span class="op">&amp;</span> <span class="number">0xffffffff</span>);
-    <span class="ident">x</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>);
+    <span class="ident">x</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="ident">ui</span>);
 
     <span class="ident">f</span> <span class="op">=</span> <span class="ident">x</span> <span class="op">-</span> <span class="number">1.0</span>;
     <span class="ident">hfsq</span> <span class="op">=</span> <span class="number">0.5</span> <span class="op">*</span> <span class="ident">f</span> <span class="op">*</span> <span class="ident">f</span>;
@@ -215,7 +215,7 @@
     <span class="ident">hi</span> <span class="op">=</span> <span class="ident">f</span> <span class="op">-</span> <span class="ident">hfsq</span>;
     <span class="ident">ui</span> <span class="op">=</span> <span class="ident">hi</span>.<span class="ident">to_bits</span>();
     <span class="ident">ui</span> <span class="op">&amp;=</span> (<span class="op">-</span><span class="number">1i64</span> <span class="kw">as</span> <span class="ident">u64</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">32</span>;
-    <span class="ident">hi</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>);
+    <span class="ident">hi</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="ident">ui</span>);
     <span class="ident">lo</span> <span class="op">=</span> <span class="ident">f</span> <span class="op">-</span> <span class="ident">hi</span> <span class="op">-</span> <span class="ident">hfsq</span> <span class="op">+</span> <span class="ident">s</span> <span class="op">*</span> (<span class="ident">hfsq</span> <span class="op">+</span> <span class="ident">r</span>);
 
     <span class="comment">/* val_hi+val_lo ~ log10(1+f) + k*log10(2) */</span>

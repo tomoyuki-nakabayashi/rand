@@ -89,8 +89,8 @@
  * ====================================================
  */</span>
 
-<span class="kw">use</span> <span class="kw">super</span>::<span class="ident">fabsf</span>::<span class="ident">fabsf</span>;
-<span class="kw">use</span> <span class="kw">super</span>::<span class="ident">sqrt</span>::<span class="ident">sqrt</span>;
+<span class="kw">use</span> <span class="kw">super</span><span class="ident">::fabsf::fabsf</span>;
+<span class="kw">use</span> <span class="kw">super</span><span class="ident">::sqrt::sqrt</span>;
 
 <span class="kw">const</span> <span class="ident">PIO2</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">1.570796326794896558e+00</span>;
 
@@ -111,9 +111,9 @@
 <span class="doccomment">/// Computes the inverse sine (arc sine) of the argument `x`.</span>
 <span class="doccomment">/// Arguments to asin must be in the range -1 to 1.</span>
 <span class="doccomment">/// Returns values in radians, in the range of -pi/2 to pi/2.</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">asinf</span>(<span class="kw-2">mut</span> <span class="ident">x</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
-    <span class="kw">let</span> <span class="ident">x1p_120</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x3870000000000000</span>); <span class="comment">// 0x1p-120 === 2 ^ (-120)</span>
+    <span class="kw">let</span> <span class="ident">x1p_120</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x3870000000000000</span>); <span class="comment">// 0x1p-120 === 2 ^ (-120)</span>
 
     <span class="kw">let</span> <span class="ident">hx</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">to_bits</span>();
     <span class="kw">let</span> <span class="ident">ix</span> <span class="op">=</span> <span class="ident">hx</span> <span class="op">&amp;</span> <span class="number">0x7fffffff</span>;

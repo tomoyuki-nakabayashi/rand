@@ -112,7 +112,7 @@
  * ====================================================
  */</span>
 
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">f32</span>;
+<span class="kw">use</span> <span class="ident">core::f32</span>;
 
 <span class="kw">const</span> <span class="ident">LN2_HI</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">6.9313812256e-01</span>; <span class="comment">/* 0x3f317180 */</span>
 <span class="kw">const</span> <span class="ident">LN2_LO</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">9.0580006145e-06</span>; <span class="comment">/* 0x3717f7d1 */</span>
@@ -122,7 +122,7 @@
 <span class="kw">const</span> <span class="ident">LG3</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">0.28498786688</span>; <span class="comment">/* 0x91e9ee.0p-25 */</span>
 <span class="kw">const</span> <span class="ident">LG4</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">0.24279078841</span>; <span class="comment">/* 0xf89e26.0p-26 */</span>
 
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">log1pf</span>(<span class="ident">x</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ui</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">to_bits</span>();
     <span class="kw">let</span> <span class="ident">hfsq</span>: <span class="ident">f32</span>;
@@ -175,18 +175,18 @@
         <span class="comment">/* correction term ~ log(1+x)-log(u), avoid underflow in c/u */</span>
         <span class="kw">if</span> <span class="ident">k</span> <span class="op">&lt;</span> <span class="number">25</span> {
             <span class="ident">c</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">k</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">2</span> {
-                <span class="number">1.</span> <span class="op">-</span> (<span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>) <span class="op">-</span> <span class="ident">x</span>)
+                <span class="number">1.</span> <span class="op">-</span> (<span class="ident">f32::from_bits</span>(<span class="ident">ui</span>) <span class="op">-</span> <span class="ident">x</span>)
             } <span class="kw">else</span> {
-                <span class="ident">x</span> <span class="op">-</span> (<span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>) <span class="op">-</span> <span class="number">1.</span>)
+                <span class="ident">x</span> <span class="op">-</span> (<span class="ident">f32::from_bits</span>(<span class="ident">ui</span>) <span class="op">-</span> <span class="number">1.</span>)
             };
-            <span class="ident">c</span> <span class="op">/</span><span class="op">=</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>);
+            <span class="ident">c</span> <span class="op">/</span><span class="op">=</span> <span class="ident">f32::from_bits</span>(<span class="ident">ui</span>);
         } <span class="kw">else</span> {
             <span class="ident">c</span> <span class="op">=</span> <span class="number">0.</span>;
         }
         <span class="comment">/* reduce u into [sqrt(2)/2, sqrt(2)] */</span>
         <span class="ident">iu</span> <span class="op">=</span> (<span class="ident">iu</span> <span class="op">&amp;</span> <span class="number">0x007fffff</span>) <span class="op">+</span> <span class="number">0x3f3504f3</span>;
         <span class="ident">ui</span> <span class="op">=</span> <span class="ident">iu</span>;
-        <span class="ident">f</span> <span class="op">=</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>) <span class="op">-</span> <span class="number">1.</span>;
+        <span class="ident">f</span> <span class="op">=</span> <span class="ident">f32::from_bits</span>(<span class="ident">ui</span>) <span class="op">-</span> <span class="number">1.</span>;
     }
     <span class="ident">s</span> <span class="op">=</span> <span class="ident">f</span> <span class="op">/</span> (<span class="number">2.0</span> <span class="op">+</span> <span class="ident">f</span>);
     <span class="ident">z</span> <span class="op">=</span> <span class="ident">s</span> <span class="op">*</span> <span class="ident">s</span>;

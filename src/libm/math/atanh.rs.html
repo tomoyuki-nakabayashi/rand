@@ -38,7 +38,7 @@
 <span id="35">35</span>
 <span id="36">36</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="kw">super</span>::<span class="ident">log1p</span>;
+<span class="kw">use</span> <span class="kw">super</span><span class="ident">::log1p</span>;
 
 <span class="comment">/* atanh(x) = log((1+x)/(1-x))/2 = log1p(2x/(1-x))/2 ~= x + x^3/3 + o(x^5) */</span>
 <span class="doccomment">/// Inverse hyperbolic tangent (f64)</span>
@@ -51,7 +51,7 @@
     <span class="kw">let</span> <span class="ident">sign</span> <span class="op">=</span> (<span class="ident">u</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">63</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>;
 
     <span class="comment">/* |x| */</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="ident">u</span> <span class="op">&amp;</span> <span class="number">0x7fff_ffff_ffff_ffff</span>);
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="ident">u</span> <span class="op">&amp;</span> <span class="number">0x7fff_ffff_ffff_ffff</span>);
 
     <span class="kw">if</span> <span class="ident">e</span> <span class="op">&lt;</span> <span class="number">0x3ff</span> <span class="op">-</span> <span class="number">1</span> {
         <span class="kw">if</span> <span class="ident">e</span> <span class="op">&lt;</span> <span class="number">0x3ff</span> <span class="op">-</span> <span class="number">32</span> {

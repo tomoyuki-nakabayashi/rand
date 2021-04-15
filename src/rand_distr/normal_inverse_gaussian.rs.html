@@ -93,8 +93,8 @@
 <span id="92">92</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Distribution</span>, <span class="ident">InverseGaussian</span>, <span class="ident">Standard</span>, <span class="ident">StandardNormal</span>};
-<span class="kw">use</span> <span class="ident">num_traits</span>::<span class="ident">Float</span>;
-<span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">Rng</span>;
+<span class="kw">use</span> <span class="ident">num_traits::Float</span>;
+<span class="kw">use</span> <span class="ident">rand::Rng</span>;
 
 <span class="doccomment">/// Error type returned from `NormalInverseGaussian::new`</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
@@ -127,19 +127,19 @@
     <span class="doccomment">/// Construct a new `NormalInverseGaussian` distribution with the given alpha (tail heaviness) and</span>
     <span class="doccomment">/// beta (asymmetry) parameters.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">alpha</span>: <span class="ident">F</span>, <span class="ident">beta</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">NormalInverseGaussian</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="op">!</span>(<span class="ident">alpha</span> <span class="op">&gt;</span> <span class="ident">F</span>::<span class="ident">zero</span>()) {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">AlphaNegativeOrNull</span>);
+        <span class="kw">if</span> <span class="op">!</span>(<span class="ident">alpha</span> <span class="op">&gt;</span> <span class="ident">F::zero</span>()) {
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::AlphaNegativeOrNull</span>);
         }
 
         <span class="kw">if</span> <span class="op">!</span>(<span class="ident">beta</span>.<span class="ident">abs</span>() <span class="op">&lt;</span> <span class="ident">alpha</span>) {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">AbsoluteBetaNotLessThanAlpha</span>);
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::AbsoluteBetaNotLessThanAlpha</span>);
         }
 
         <span class="kw">let</span> <span class="ident">gamma</span> <span class="op">=</span> (<span class="ident">alpha</span> <span class="op">*</span> <span class="ident">alpha</span> <span class="op">-</span> <span class="ident">beta</span> <span class="op">*</span> <span class="ident">beta</span>).<span class="ident">sqrt</span>();
 
-        <span class="kw">let</span> <span class="ident">mu</span> <span class="op">=</span> <span class="ident">F</span>::<span class="ident">one</span>() <span class="op">/</span> <span class="ident">gamma</span>;
+        <span class="kw">let</span> <span class="ident">mu</span> <span class="op">=</span> <span class="ident">F::one</span>() <span class="op">/</span> <span class="ident">gamma</span>;
 
-        <span class="kw">let</span> <span class="ident">inverse_gaussian</span> <span class="op">=</span> <span class="ident">InverseGaussian</span>::<span class="ident">new</span>(<span class="ident">mu</span>, <span class="ident">F</span>::<span class="ident">one</span>()).<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">inverse_gaussian</span> <span class="op">=</span> <span class="ident">InverseGaussian::new</span>(<span class="ident">mu</span>, <span class="ident">F::one</span>()).<span class="ident">unwrap</span>();
 
         <span class="prelude-val">Ok</span>(<span class="self">Self</span> {
             <span class="ident">alpha</span>,
@@ -169,8 +169,8 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_normal_inverse_gaussian</span>() {
-        <span class="kw">let</span> <span class="ident">norm_inv_gauss</span> <span class="op">=</span> <span class="ident">NormalInverseGaussian</span>::<span class="ident">new</span>(<span class="number">2.0</span>, <span class="number">1.0</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">test</span>::<span class="ident">rng</span>(<span class="number">210</span>);
+        <span class="kw">let</span> <span class="ident">norm_inv_gauss</span> <span class="op">=</span> <span class="ident">NormalInverseGaussian::new</span>(<span class="number">2.0</span>, <span class="number">1.0</span>).<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">210</span>);
         <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">1000</span> {
             <span class="ident">norm_inv_gauss</span>.<span class="ident">sample</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>);
         }
@@ -178,10 +178,10 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_normal_inverse_gaussian_invalid_param</span>() {
-        <span class="macro">assert!</span>(<span class="ident">NormalInverseGaussian</span>::<span class="ident">new</span>(<span class="op">-</span><span class="number">1.0</span>, <span class="number">1.0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">NormalInverseGaussian</span>::<span class="ident">new</span>(<span class="op">-</span><span class="number">1.0</span>, <span class="op">-</span><span class="number">1.0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">NormalInverseGaussian</span>::<span class="ident">new</span>(<span class="number">1.0</span>, <span class="number">2.0</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">NormalInverseGaussian</span>::<span class="ident">new</span>(<span class="number">2.0</span>, <span class="number">1.0</span>).<span class="ident">is_ok</span>());
+        <span class="macro">assert!</span>(<span class="ident">NormalInverseGaussian::new</span>(<span class="op">-</span><span class="number">1.0</span>, <span class="number">1.0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">NormalInverseGaussian::new</span>(<span class="op">-</span><span class="number">1.0</span>, <span class="op">-</span><span class="number">1.0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">NormalInverseGaussian::new</span>(<span class="number">1.0</span>, <span class="number">2.0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">NormalInverseGaussian::new</span>(<span class="number">2.0</span>, <span class="number">1.0</span>).<span class="ident">is_ok</span>());
     }
 }
 </pre></div>

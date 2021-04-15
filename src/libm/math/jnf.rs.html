@@ -432,7 +432,7 @@
                     <span class="ident">b</span> <span class="op">=</span> <span class="number">2.0</span> <span class="op">*</span> (<span class="ident">i</span> <span class="kw">as</span> <span class="ident">f32</span>) <span class="op">*</span> <span class="ident">b</span> <span class="op">/</span> <span class="ident">x</span> <span class="op">-</span> <span class="ident">a</span>;
                     <span class="ident">a</span> <span class="op">=</span> <span class="ident">temp</span>;
                     <span class="comment">/* scale b to avoid spurious overflow */</span>
-                    <span class="kw">let</span> <span class="ident">x1p60</span> <span class="op">=</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="number">0x5d800000</span>); <span class="comment">// 0x1p60 == 2^60</span>
+                    <span class="kw">let</span> <span class="ident">x1p60</span> <span class="op">=</span> <span class="ident">f32::from_bits</span>(<span class="number">0x5d800000</span>); <span class="comment">// 0x1p60 == 2^60</span>
                     <span class="kw">if</span> <span class="ident">b</span> <span class="op">&gt;</span> <span class="ident">x1p60</span> {
                         <span class="ident">a</span> <span class="op">/</span><span class="op">=</span> <span class="ident">b</span>;
                         <span class="ident">t</span> <span class="op">/</span><span class="op">=</span> <span class="ident">b</span>;

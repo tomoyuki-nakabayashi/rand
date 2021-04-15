@@ -108,7 +108,7 @@
  * See comments in log10.c.
  */</span>
 
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">f32</span>;
+<span class="kw">use</span> <span class="ident">core::f32</span>;
 
 <span class="kw">const</span> <span class="ident">IVLN10HI</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">4.3432617188e-01</span>; <span class="comment">/* 0x3ede6000 */</span>
 <span class="kw">const</span> <span class="ident">IVLN10LO</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="op">-</span><span class="number">3.1689971365e-05</span>; <span class="comment">/* 0xb804ead9 */</span>
@@ -120,9 +120,9 @@
 <span class="kw">const</span> <span class="ident">LG3</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">0.28498786688</span>; <span class="comment">/* 0x91e9ee.0p-25 */</span>
 <span class="kw">const</span> <span class="ident">LG4</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">0.24279078841</span>; <span class="comment">/* 0xf89e26.0p-26 */</span>
 
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">log10f</span>(<span class="kw-2">mut</span> <span class="ident">x</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
-    <span class="kw">let</span> <span class="ident">x1p25f</span> <span class="op">=</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="number">0x4c000000</span>); <span class="comment">// 0x1p25f === 2 ^ 25</span>
+    <span class="kw">let</span> <span class="ident">x1p25f</span> <span class="op">=</span> <span class="ident">f32::from_bits</span>(<span class="number">0x4c000000</span>); <span class="comment">// 0x1p25f === 2 ^ 25</span>
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ui</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">to_bits</span>();
     <span class="kw">let</span> <span class="ident">hfsq</span>: <span class="ident">f32</span>;
@@ -165,7 +165,7 @@
     <span class="ident">k</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">ix</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">23</span>) <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="number">0x7f</span>;
     <span class="ident">ix</span> <span class="op">=</span> (<span class="ident">ix</span> <span class="op">&amp;</span> <span class="number">0x007fffff</span>) <span class="op">+</span> <span class="number">0x3f3504f3</span>;
     <span class="ident">ui</span> <span class="op">=</span> <span class="ident">ix</span>;
-    <span class="ident">x</span> <span class="op">=</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>);
+    <span class="ident">x</span> <span class="op">=</span> <span class="ident">f32::from_bits</span>(<span class="ident">ui</span>);
 
     <span class="ident">f</span> <span class="op">=</span> <span class="ident">x</span> <span class="op">-</span> <span class="number">1.0</span>;
     <span class="ident">s</span> <span class="op">=</span> <span class="ident">f</span> <span class="op">/</span> (<span class="number">2.0</span> <span class="op">+</span> <span class="ident">f</span>);
@@ -179,7 +179,7 @@
     <span class="ident">hi</span> <span class="op">=</span> <span class="ident">f</span> <span class="op">-</span> <span class="ident">hfsq</span>;
     <span class="ident">ui</span> <span class="op">=</span> <span class="ident">hi</span>.<span class="ident">to_bits</span>();
     <span class="ident">ui</span> <span class="op">&amp;=</span> <span class="number">0xfffff000</span>;
-    <span class="ident">hi</span> <span class="op">=</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>);
+    <span class="ident">hi</span> <span class="op">=</span> <span class="ident">f32::from_bits</span>(<span class="ident">ui</span>);
     <span class="ident">lo</span> <span class="op">=</span> <span class="ident">f</span> <span class="op">-</span> <span class="ident">hi</span> <span class="op">-</span> <span class="ident">hfsq</span> <span class="op">+</span> <span class="ident">s</span> <span class="op">*</span> (<span class="ident">hfsq</span> <span class="op">+</span> <span class="ident">r</span>);
     <span class="ident">dk</span> <span class="op">=</span> <span class="ident">k</span> <span class="kw">as</span> <span class="ident">f32</span>;
     <span class="ident">dk</span> <span class="op">*</span> <span class="ident">LOG10_2LO</span> <span class="op">+</span> (<span class="ident">lo</span> <span class="op">+</span> <span class="ident">hi</span>) <span class="op">*</span> <span class="ident">IVLN10LO</span> <span class="op">+</span> <span class="ident">lo</span> <span class="op">*</span> <span class="ident">IVLN10HI</span> <span class="op">+</span> <span class="ident">hi</span> <span class="op">*</span> <span class="ident">IVLN10HI</span> <span class="op">+</span> <span class="ident">dk</span> <span class="op">*</span> <span class="ident">LOG10_2HI</span>

@@ -236,9 +236,9 @@
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! The geometric distribution.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">Distribution</span>;
-<span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">Rng</span>;
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">fmt</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Distribution</span>;
+<span class="kw">use</span> <span class="ident">rand::Rng</span>;
+<span class="kw">use</span> <span class="ident">core::fmt</span>;
 
 <span class="doccomment">/// The geometric distribution `Geometric(p)` bounded to `[0, u64::MAX]`.</span>
 <span class="doccomment">/// </span>
@@ -276,24 +276,24 @@
     <span class="ident">InvalidProbability</span>,
 }
 
-<span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">Error</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">Error</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">Error</span>::<span class="ident">InvalidProbability</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;p is NaN or outside the interval [0, 1] in geometric distribution&quot;</span>,
+            <span class="ident">Error::InvalidProbability</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;p is NaN or outside the interval [0, 1] in geometric distribution&quot;</span>,
         })
     }
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)))]</span>
-<span class="kw">impl</span> <span class="ident">std</span>::<span class="ident">error</span>::<span class="ident">Error</span> <span class="kw">for</span> <span class="ident">Error</span> {}
+<span class="kw">impl</span> <span class="ident">std::error::Error</span> <span class="kw">for</span> <span class="ident">Error</span> {}
 
 <span class="kw">impl</span> <span class="ident">Geometric</span> {
     <span class="doccomment">/// Construct a new `Geometric` with the given shape parameter `p`</span>
     <span class="doccomment">/// (probablity of success on each trial).</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">p</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="op">!</span><span class="ident">p</span>.<span class="ident">is_finite</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">p</span> <span class="op">&lt;</span> <span class="number">0.0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">p</span> <span class="op">&gt;</span> <span class="number">1.0</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">InvalidProbability</span>)
+            <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidProbability</span>)
         } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">p</span> <span class="op">=</span><span class="op">=</span> <span class="number">0.0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">p</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">2.0</span> <span class="op">/</span> <span class="number">3.0</span> {
             <span class="prelude-val">Ok</span>(<span class="ident">Geometric</span> { <span class="ident">p</span>, <span class="ident">pi</span>: <span class="ident">p</span>, <span class="ident">k</span>: <span class="number">0</span> })
         } <span class="kw">else</span> {
@@ -327,7 +327,7 @@
             <span class="kw">return</span> <span class="ident">failures</span>;
         }
         
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">p</span> <span class="op">=</span><span class="op">=</span> <span class="number">0.0</span> { <span class="kw">return</span> <span class="ident">core</span>::<span class="ident">u64</span>::<span class="ident">MAX</span>; }
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">p</span> <span class="op">=</span><span class="op">=</span> <span class="number">0.0</span> { <span class="kw">return</span> <span class="ident">core::u64::MAX</span>; }
 
         <span class="kw">let</span> <span class="ident">Geometric</span> { <span class="ident">p</span>, <span class="ident">pi</span>, <span class="ident">k</span> } <span class="op">=</span> <span class="kw-2">*</span><span class="self">self</span>;
 
@@ -354,7 +354,7 @@
         <span class="comment">// fewer iterations on average.                 ~ October 28, 2020</span>
         <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="kw">loop</span> {
             <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="ident">rng</span>.<span class="ident">gen</span>::<span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>() <span class="op">&amp;</span> ((<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">k</span>) <span class="op">-</span> <span class="number">1</span>);
-            <span class="kw">let</span> <span class="ident">p_reject</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">m</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">core</span>::<span class="ident">i32</span>::<span class="ident">MAX</span> <span class="kw">as</span> <span class="ident">u64</span> {
+            <span class="kw">let</span> <span class="ident">p_reject</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">m</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">core::i32::MAX</span> <span class="kw">as</span> <span class="ident">u64</span> {
                 (<span class="number">1.0</span> <span class="op">-</span> <span class="ident">p</span>).<span class="ident">powi</span>(<span class="ident">m</span> <span class="kw">as</span> <span class="ident">i32</span>)
             } <span class="kw">else</span> {
                 (<span class="number">1.0</span> <span class="op">-</span> <span class="ident">p</span>).<span class="ident">powf</span>(<span class="ident">m</span> <span class="kw">as</span> <span class="ident">f64</span>)
@@ -407,18 +407,18 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_geo_invalid_p</span>() {
-        <span class="macro">assert!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="ident">core</span>::<span class="ident">f64</span>::<span class="ident">NAN</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="ident">core</span>::<span class="ident">f64</span>::<span class="ident">INFINITY</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="ident">core</span>::<span class="ident">f64</span>::<span class="ident">NEG_INFINITY</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Geometric::new</span>(<span class="ident">core::f64::NAN</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Geometric::new</span>(<span class="ident">core::f64::INFINITY</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Geometric::new</span>(<span class="ident">core::f64::NEG_INFINITY</span>).<span class="ident">is_err</span>());
 
-        <span class="macro">assert!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="op">-</span><span class="number">0.5</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="number">0.0</span>).<span class="ident">is_ok</span>());
-        <span class="macro">assert!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="number">1.0</span>).<span class="ident">is_ok</span>());
-        <span class="macro">assert!</span>(<span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="number">2.0</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Geometric::new</span>(<span class="op">-</span><span class="number">0.5</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Geometric::new</span>(<span class="number">0.0</span>).<span class="ident">is_ok</span>());
+        <span class="macro">assert!</span>(<span class="ident">Geometric::new</span>(<span class="number">1.0</span>).<span class="ident">is_ok</span>());
+        <span class="macro">assert!</span>(<span class="ident">Geometric::new</span>(<span class="number">2.0</span>).<span class="ident">is_err</span>());
     }
 
     <span class="kw">fn</span> <span class="ident">test_geo_mean_and_variance</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Rng</span><span class="op">&gt;</span>(<span class="ident">p</span>: <span class="ident">f64</span>, <span class="ident">rng</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) {
-        <span class="kw">let</span> <span class="ident">distr</span> <span class="op">=</span> <span class="ident">Geometric</span>::<span class="ident">new</span>(<span class="ident">p</span>).<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">distr</span> <span class="op">=</span> <span class="ident">Geometric::new</span>(<span class="ident">p</span>).<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">expected_mean</span> <span class="op">=</span> (<span class="number">1.0</span> <span class="op">-</span> <span class="ident">p</span>) <span class="op">/</span> <span class="ident">p</span>;
         <span class="kw">let</span> <span class="ident">expected_variance</span> <span class="op">=</span> (<span class="number">1.0</span> <span class="op">-</span> <span class="ident">p</span>) <span class="op">/</span> (<span class="ident">p</span> <span class="op">*</span> <span class="ident">p</span>);
@@ -438,7 +438,7 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_geometric</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">test</span>::<span class="ident">rng</span>(<span class="number">12345</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">12345</span>);
 
         <span class="ident">test_geo_mean_and_variance</span>(<span class="number">0.10</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>);
         <span class="ident">test_geo_mean_and_variance</span>(<span class="number">0.25</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>);
@@ -449,7 +449,7 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_standard_geometric</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">test</span>::<span class="ident">rng</span>(<span class="number">654321</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">654321</span>);
 
         <span class="kw">let</span> <span class="ident">distr</span> <span class="op">=</span> <span class="ident">StandardGeometric</span>;
         <span class="kw">let</span> <span class="ident">expected_mean</span> <span class="op">=</span> <span class="number">1.0</span>;

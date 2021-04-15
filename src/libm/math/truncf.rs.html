@@ -42,19 +42,19 @@
 <span id="39">39</span>
 <span id="40">40</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">f32</span>;
+<span class="kw">use</span> <span class="ident">core::f32</span>;
 
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">truncf</span>(<span class="ident">x</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
     <span class="comment">// On wasm32 we know that LLVM&#39;s intrinsic will compile to an optimized</span>
     <span class="comment">// `f32.trunc` native instruction, so we can leverage this for both code size</span>
     <span class="comment">// and speed.</span>
     <span class="macro">llvm_intrinsically_optimized!</span> {
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>)]</span> {
-            <span class="kw">return</span> <span class="kw">unsafe</span> { ::<span class="ident">core</span>::<span class="ident">intrinsics</span>::<span class="ident">truncf32</span>(<span class="ident">x</span>) }
+            <span class="kw">return</span> <span class="kw">unsafe</span> { <span class="ident">::core::intrinsics::truncf32</span>(<span class="ident">x</span>) }
         }
     }
-    <span class="kw">let</span> <span class="ident">x1p120</span> <span class="op">=</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="number">0x7b800000</span>); <span class="comment">// 0x1p120f === 2 ^ 120</span>
+    <span class="kw">let</span> <span class="ident">x1p120</span> <span class="op">=</span> <span class="ident">f32::from_bits</span>(<span class="number">0x7b800000</span>); <span class="comment">// 0x1p120f === 2 ^ 120</span>
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">i</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">to_bits</span>();
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span>: <span class="ident">i32</span> <span class="op">=</span> (<span class="ident">i</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">23</span> <span class="op">&amp;</span> <span class="number">0xff</span>) <span class="kw">as</span> <span class="ident">i32</span> <span class="op">-</span> <span class="number">0x7f</span> <span class="op">+</span> <span class="number">9</span>;
@@ -72,14 +72,14 @@
     }
     <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">x1p120</span>);
     <span class="ident">i</span> <span class="op">&amp;=</span> <span class="op">!</span><span class="ident">m</span>;
-    <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="ident">i</span>)
+    <span class="ident">f32::from_bits</span>(<span class="ident">i</span>)
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">sanity_check</span>() {
-        <span class="macro">assert_eq!</span>(<span class="kw">super</span>::<span class="ident">truncf</span>(<span class="number">1.1</span>), <span class="number">1.0</span>);
+        <span class="macro">assert_eq!</span>(<span class="kw">super</span><span class="ident">::truncf</span>(<span class="number">1.1</span>), <span class="number">1.0</span>);
     }
 }
 </pre></div>

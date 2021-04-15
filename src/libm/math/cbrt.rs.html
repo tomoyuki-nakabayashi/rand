@@ -132,7 +132,7 @@
  * Return cube root of x
  */</span>
 
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">f64</span>;
+<span class="kw">use</span> <span class="ident">core::f64</span>;
 
 <span class="kw">const</span> <span class="ident">B1</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">715094163</span>; <span class="comment">/* B1 = (1023-1023/3-0.03306235651)*2**20 */</span>
 <span class="kw">const</span> <span class="ident">B2</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">696219795</span>; <span class="comment">/* B2 = (1023-1023/3-54/3-0.03306235651)*2**20 */</span>
@@ -147,9 +147,9 @@
 <span class="comment">// Cube root (f64)</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Computes the cube root of the argument.</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cbrt</span>(<span class="ident">x</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
-    <span class="kw">let</span> <span class="ident">x1p54</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x4350000000000000</span>); <span class="comment">// 0x1p54 === 2 ^ 54</span>
+    <span class="kw">let</span> <span class="ident">x1p54</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x4350000000000000</span>); <span class="comment">// 0x1p54 === 2 ^ 54</span>
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ui</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">to_bits</span>();
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r</span>: <span class="ident">f64</span>;
@@ -191,7 +191,7 @@
     }
     <span class="ident">ui</span> <span class="op">&amp;=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">63</span>;
     <span class="ident">ui</span> <span class="op">|</span><span class="op">=</span> (<span class="ident">hx</span> <span class="kw">as</span> <span class="ident">u64</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">32</span>;
-    <span class="ident">t</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>);
+    <span class="ident">t</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="ident">ui</span>);
 
     <span class="comment">/*
      * New cbrt to 23 bits:
@@ -218,7 +218,7 @@
      */</span>
     <span class="ident">ui</span> <span class="op">=</span> <span class="ident">t</span>.<span class="ident">to_bits</span>();
     <span class="ident">ui</span> <span class="op">=</span> (<span class="ident">ui</span> <span class="op">+</span> <span class="number">0x80000000</span>) <span class="op">&amp;</span> <span class="number">0xffffffffc0000000</span>;
-    <span class="ident">t</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>);
+    <span class="ident">t</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="ident">ui</span>);
 
     <span class="comment">/* one step Newton iteration to 53 bits with error &lt; 0.667 ulps */</span>
     <span class="ident">s</span> <span class="op">=</span> <span class="ident">t</span> <span class="op">*</span> <span class="ident">t</span>; <span class="comment">/* t*t is exact */</span>

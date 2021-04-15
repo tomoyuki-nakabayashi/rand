@@ -726,7 +726,7 @@
 <span class="kw">const</span> <span class="ident">IVLN2_H</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">1.44269502162933349609e+00</span>; <span class="comment">/* 0x3ff71547_60000000 =24b 1/ln2*/</span>
 <span class="kw">const</span> <span class="ident">IVLN2_L</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">1.92596299112661746887e-08</span>; <span class="comment">/* 0x3e54ae0b_f85ddf44 =1/ln2 tail*/</span>
 
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pow</span>(<span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">y</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
     <span class="kw">let</span> <span class="ident">t1</span>: <span class="ident">f64</span>;
     <span class="kw">let</span> <span class="ident">t2</span>: <span class="ident">f64</span>;
@@ -1049,9 +1049,9 @@
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">core</span>;
 
-    <span class="kw">use</span> <span class="self">self</span>::<span class="ident">core</span>::<span class="ident">f64</span>::<span class="ident">consts</span>::{<span class="ident">E</span>, <span class="ident">PI</span>};
-    <span class="kw">use</span> <span class="self">self</span>::<span class="ident">core</span>::<span class="ident">f64</span>::{<span class="ident">EPSILON</span>, <span class="ident">INFINITY</span>, <span class="ident">MAX</span>, <span class="ident">MIN</span>, <span class="ident">MIN_POSITIVE</span>, <span class="ident">NAN</span>, <span class="ident">NEG_INFINITY</span>};
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">pow</span>;
+    <span class="kw">use</span> <span class="self">self</span><span class="ident">::core::f64::consts</span>::{<span class="ident">E</span>, <span class="ident">PI</span>};
+    <span class="kw">use</span> <span class="self">self</span><span class="ident">::core::f64</span>::{<span class="ident">EPSILON</span>, <span class="ident">INFINITY</span>, <span class="ident">MAX</span>, <span class="ident">MIN</span>, <span class="ident">MIN_POSITIVE</span>, <span class="ident">NAN</span>, <span class="ident">NEG_INFINITY</span>};
+    <span class="kw">use</span> <span class="kw">super</span><span class="ident">::pow</span>;
 
     <span class="kw">const</span> <span class="ident">POS_ZERO</span>: <span class="kw-2">&amp;</span>[<span class="ident">f64</span>] <span class="op">=</span> <span class="kw-2">&amp;</span>[<span class="number">0.0</span>];
     <span class="kw">const</span> <span class="ident">NEG_ZERO</span>: <span class="kw-2">&amp;</span>[<span class="ident">f64</span>] <span class="op">=</span> <span class="kw-2">&amp;</span>[<span class="op">-</span><span class="number">0.0</span>];

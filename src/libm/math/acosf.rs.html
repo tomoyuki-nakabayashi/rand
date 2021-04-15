@@ -96,7 +96,7 @@
  * ====================================================
  */</span>
 
-<span class="kw">use</span> <span class="kw">super</span>::<span class="ident">sqrtf</span>::<span class="ident">sqrtf</span>;
+<span class="kw">use</span> <span class="kw">super</span><span class="ident">::sqrtf::sqrtf</span>;
 
 <span class="kw">const</span> <span class="ident">PIO2_HI</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">1.5707962513e+00</span>; <span class="comment">/* 0x3fc90fda */</span>
 <span class="kw">const</span> <span class="ident">PIO2_LO</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">7.5497894159e-08</span>; <span class="comment">/* 0x33a22168 */</span>
@@ -116,9 +116,9 @@
 <span class="doccomment">/// Computes the inverse cosine (arc cosine) of the input value.</span>
 <span class="doccomment">/// Arguments must be in the range -1 to 1.</span>
 <span class="doccomment">/// Returns values in radians, in the range of 0 to pi.</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">acosf</span>(<span class="ident">x</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
-    <span class="kw">let</span> <span class="ident">x1p_120</span> <span class="op">=</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="number">0x03800000</span>); <span class="comment">// 0x1p-120 === 2 ^ (-120)</span>
+    <span class="kw">let</span> <span class="ident">x1p_120</span> <span class="op">=</span> <span class="ident">f32::from_bits</span>(<span class="number">0x03800000</span>); <span class="comment">// 0x1p-120 === 2 ^ (-120)</span>
 
     <span class="kw">let</span> <span class="ident">z</span>: <span class="ident">f32</span>;
     <span class="kw">let</span> <span class="ident">w</span>: <span class="ident">f32</span>;
@@ -155,7 +155,7 @@
     <span class="ident">z</span> <span class="op">=</span> (<span class="number">1.</span> <span class="op">-</span> <span class="ident">x</span>) <span class="op">*</span> <span class="number">0.5</span>;
     <span class="ident">s</span> <span class="op">=</span> <span class="ident">sqrtf</span>(<span class="ident">z</span>);
     <span class="ident">hx</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">to_bits</span>();
-    <span class="kw">let</span> <span class="ident">df</span> <span class="op">=</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="ident">hx</span> <span class="op">&amp;</span> <span class="number">0xfffff000</span>);
+    <span class="kw">let</span> <span class="ident">df</span> <span class="op">=</span> <span class="ident">f32::from_bits</span>(<span class="ident">hx</span> <span class="op">&amp;</span> <span class="number">0xfffff000</span>);
     <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> (<span class="ident">z</span> <span class="op">-</span> <span class="ident">df</span> <span class="op">*</span> <span class="ident">df</span>) <span class="op">/</span> (<span class="ident">s</span> <span class="op">+</span> <span class="ident">df</span>);
     <span class="ident">w</span> <span class="op">=</span> <span class="ident">r</span>(<span class="ident">z</span>) <span class="op">*</span> <span class="ident">s</span> <span class="op">+</span> <span class="ident">c</span>;
     <span class="number">2.</span> <span class="op">*</span> (<span class="ident">df</span> <span class="op">+</span> <span class="ident">w</span>)

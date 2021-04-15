@@ -353,7 +353,7 @@
             <span class="number">1.0</span> <span class="op">+</span> <span class="ident">s</span> <span class="op">*</span> (<span class="ident">SB1</span> <span class="op">+</span> <span class="ident">s</span> <span class="op">*</span> (<span class="ident">SB2</span> <span class="op">+</span> <span class="ident">s</span> <span class="op">*</span> (<span class="ident">SB3</span> <span class="op">+</span> <span class="ident">s</span> <span class="op">*</span> (<span class="ident">SB4</span> <span class="op">+</span> <span class="ident">s</span> <span class="op">*</span> (<span class="ident">SB5</span> <span class="op">+</span> <span class="ident">s</span> <span class="op">*</span> (<span class="ident">SB6</span> <span class="op">+</span> <span class="ident">s</span> <span class="op">*</span> <span class="ident">SB7</span>))))));
     }
     <span class="ident">ix</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">to_bits</span>();
-    <span class="ident">z</span> <span class="op">=</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="ident">ix</span> <span class="op">&amp;</span> <span class="number">0xffffe000</span>);
+    <span class="ident">z</span> <span class="op">=</span> <span class="ident">f32::from_bits</span>(<span class="ident">ix</span> <span class="op">&amp;</span> <span class="number">0xffffe000</span>);
 
     <span class="ident">expf</span>(<span class="op">-</span><span class="ident">z</span> <span class="op">*</span> <span class="ident">z</span> <span class="op">-</span> <span class="number">0.5625</span>) <span class="op">*</span> <span class="ident">expf</span>((<span class="ident">z</span> <span class="op">-</span> <span class="ident">x</span>) <span class="op">*</span> (<span class="ident">z</span> <span class="op">+</span> <span class="ident">x</span>) <span class="op">+</span> <span class="ident">r</span> <span class="op">/</span> <span class="ident">big_s</span>) <span class="op">/</span> <span class="ident">x</span>
 }
@@ -395,7 +395,7 @@
         <span class="comment">/* |x| &lt; 6 */</span>
         <span class="ident">y</span> <span class="op">=</span> <span class="number">1.0</span> <span class="op">-</span> <span class="ident">erfc2</span>(<span class="ident">ix</span>, <span class="ident">x</span>);
     } <span class="kw">else</span> {
-        <span class="kw">let</span> <span class="ident">x1p_120</span> <span class="op">=</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="number">0x03800000</span>);
+        <span class="kw">let</span> <span class="ident">x1p_120</span> <span class="op">=</span> <span class="ident">f32::from_bits</span>(<span class="number">0x03800000</span>);
         <span class="ident">y</span> <span class="op">=</span> <span class="number">1.0</span> <span class="op">-</span> <span class="ident">x1p_120</span>;
     }
 
@@ -453,7 +453,7 @@
         }
     }
 
-    <span class="kw">let</span> <span class="ident">x1p_120</span> <span class="op">=</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="number">0x03800000</span>);
+    <span class="kw">let</span> <span class="ident">x1p_120</span> <span class="op">=</span> <span class="ident">f32::from_bits</span>(<span class="number">0x03800000</span>);
     <span class="kw">if</span> <span class="ident">sign</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
         <span class="number">2.0</span> <span class="op">-</span> <span class="ident">x1p_120</span>
     } <span class="kw">else</span> {

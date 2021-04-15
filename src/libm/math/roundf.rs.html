@@ -46,11 +46,11 @@
 <span id="43">43</span>
 <span id="44">44</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">f32</span>;
+<span class="kw">use</span> <span class="ident">core::f32</span>;
 
-<span class="kw">const</span> <span class="ident">TOINT</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">1.0</span> <span class="op">/</span> <span class="ident">f32</span>::<span class="ident">EPSILON</span>;
+<span class="kw">const</span> <span class="ident">TOINT</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">1.0</span> <span class="op">/</span> <span class="ident">f32::EPSILON</span>;
 
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">roundf</span>(<span class="kw-2">mut</span> <span class="ident">x</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
     <span class="kw">let</span> <span class="ident">i</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">to_bits</span>();
     <span class="kw">let</span> <span class="ident">e</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">i</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">23</span> <span class="op">&amp;</span> <span class="number">0xff</span>;
@@ -83,7 +83,7 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">roundf</span>;
+    <span class="kw">use</span> <span class="kw">super</span><span class="ident">::roundf</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">negative_zero</span>() {

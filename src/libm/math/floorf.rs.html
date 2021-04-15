@@ -66,19 +66,19 @@
 <span id="63">63</span>
 <span id="64">64</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">f32</span>;
+<span class="kw">use</span> <span class="ident">core::f32</span>;
 
 <span class="doccomment">/// Floor (f32)</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Finds the nearest integer less than or equal to `x`.</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">floorf</span>(<span class="ident">x</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
     <span class="comment">// On wasm32 we know that LLVM&#39;s intrinsic will compile to an optimized</span>
     <span class="comment">// `f32.floor` native instruction, so we can leverage this for both code size</span>
     <span class="comment">// and speed.</span>
     <span class="macro">llvm_intrinsically_optimized!</span> {
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>)]</span> {
-            <span class="kw">return</span> <span class="kw">unsafe</span> { ::<span class="ident">core</span>::<span class="ident">intrinsics</span>::<span class="ident">floorf32</span>(<span class="ident">x</span>) }
+            <span class="kw">return</span> <span class="kw">unsafe</span> { <span class="ident">::core::intrinsics::floorf32</span>(<span class="ident">x</span>) }
         }
     }
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">to_bits</span>();
@@ -92,26 +92,26 @@
         <span class="kw">if</span> (<span class="ident">ui</span> <span class="op">&amp;</span> <span class="ident">m</span>) <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
             <span class="kw">return</span> <span class="ident">x</span>;
         }
-        <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="number">0x7b800000</span>));
+        <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">f32::from_bits</span>(<span class="number">0x7b800000</span>));
         <span class="kw">if</span> <span class="ident">ui</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">31</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
             <span class="ident">ui</span> <span class="op">+</span><span class="op">=</span> <span class="ident">m</span>;
         }
         <span class="ident">ui</span> <span class="op">&amp;=</span> <span class="op">!</span><span class="ident">m</span>;
     } <span class="kw">else</span> {
-        <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="number">0x7b800000</span>));
+        <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">f32::from_bits</span>(<span class="number">0x7b800000</span>));
         <span class="kw">if</span> <span class="ident">ui</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">31</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
             <span class="ident">ui</span> <span class="op">=</span> <span class="number">0</span>;
         } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">ui</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
             <span class="kw">return</span> <span class="op">-</span><span class="number">1.0</span>;
         }
     }
-    <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>)
+    <span class="ident">f32::from_bits</span>(<span class="ident">ui</span>)
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">f32</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="ident">core::f32</span>::<span class="kw-2">*</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">sanity_check</span>() {

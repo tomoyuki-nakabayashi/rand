@@ -189,7 +189,7 @@
 <span class="doccomment">/// Computes the inverse sine (arc sine) of the argument `x`.</span>
 <span class="doccomment">/// Arguments to asin must be in the range -1 to 1.</span>
 <span class="doccomment">/// Returns values in radians, in the range of -pi/2 to pi/2.</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">asin</span>(<span class="kw-2">mut</span> <span class="ident">x</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
     <span class="kw">let</span> <span class="ident">z</span>: <span class="ident">f64</span>;
     <span class="kw">let</span> <span class="ident">r</span>: <span class="ident">f64</span>;
@@ -205,7 +205,7 @@
         <span class="ident">lx</span> <span class="op">=</span> <span class="ident">get_low_word</span>(<span class="ident">x</span>);
         <span class="kw">if</span> ((<span class="ident">ix</span> <span class="op">-</span> <span class="number">0x3ff00000</span>) <span class="op">|</span> <span class="ident">lx</span>) <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
             <span class="comment">/* asin(1) = +-pi/2 with inexact */</span>
-            <span class="kw">return</span> <span class="ident">x</span> <span class="op">*</span> <span class="ident">PIO2_HI</span> <span class="op">+</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x3870000000000000</span>);
+            <span class="kw">return</span> <span class="ident">x</span> <span class="op">*</span> <span class="ident">PIO2_HI</span> <span class="op">+</span> <span class="ident">f64::from_bits</span>(<span class="number">0x3870000000000000</span>);
         } <span class="kw">else</span> {
             <span class="kw">return</span> <span class="number">0.0</span> <span class="op">/</span> (<span class="ident">x</span> <span class="op">-</span> <span class="ident">x</span>);
         }

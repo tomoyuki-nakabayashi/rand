@@ -217,11 +217,11 @@
 <span class="attribute">#![<span class="ident">deny</span>(<span class="ident">missing_docs</span>)]</span>
 <span class="attribute">#![<span class="ident">deny</span>(<span class="ident">missing_debug_implementations</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(
-    <span class="ident">clippy</span>::<span class="ident">excessive_precision</span>,
-    <span class="ident">clippy</span>::<span class="ident">float_cmp</span>,
-    <span class="ident">clippy</span>::<span class="ident">unreadable_literal</span>
+    <span class="ident">clippy::excessive_precision</span>,
+    <span class="ident">clippy::float_cmp</span>,
+    <span class="ident">clippy::unreadable_literal</span>
 )]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">neg_cmp_op_on_partial_ord</span>)]</span> <span class="comment">// suggested fix too verbose</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::neg_cmp_op_on_partial_ord</span>)]</span> <span class="comment">// suggested fix too verbose</span>
 <span class="attribute">#![<span class="ident">no_std</span>]</span>
 <span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">feature</span>(<span class="ident">doc_cfg</span>))]</span>
 
@@ -287,43 +287,43 @@
 
 <span class="comment">// This is used for doc links:</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused</span>)]</span>
-<span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">Rng</span>;
+<span class="kw">use</span> <span class="ident">rand::Rng</span>;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">distributions</span>::{
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">rand::distributions</span>::{
     <span class="ident">uniform</span>, <span class="ident">Alphanumeric</span>, <span class="ident">Bernoulli</span>, <span class="ident">BernoulliError</span>, <span class="ident">DistIter</span>, <span class="ident">Distribution</span>, <span class="ident">Open01</span>, <span class="ident">OpenClosed01</span>,
     <span class="ident">Standard</span>, <span class="ident">Uniform</span>,
 };
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">binomial</span>::{<span class="ident">Binomial</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">BinomialError</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">cauchy</span>::{<span class="ident">Cauchy</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">CauchyError</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::binomial</span>::{<span class="ident">Binomial</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">BinomialError</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::cauchy</span>::{<span class="ident">Cauchy</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">CauchyError</span>};
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)))]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">dirichlet</span>::{<span class="ident">Dirichlet</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">DirichletError</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">exponential</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">ExpError</span>, <span class="ident">Exp</span>, <span class="ident">Exp1</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">gamma</span>::{
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::dirichlet</span>::{<span class="ident">Dirichlet</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">DirichletError</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::exponential</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">ExpError</span>, <span class="ident">Exp</span>, <span class="ident">Exp1</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::gamma</span>::{
     <span class="ident">Beta</span>, <span class="ident">BetaError</span>, <span class="ident">ChiSquared</span>, <span class="ident">ChiSquaredError</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">GammaError</span>, <span class="ident">FisherF</span>, <span class="ident">FisherFError</span>,
     <span class="ident">Gamma</span>, <span class="ident">StudentT</span>,
 };
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">geometric</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">GeoError</span>, <span class="ident">Geometric</span>, <span class="ident">StandardGeometric</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">hypergeometric</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">HyperGeoError</span>, <span class="ident">Hypergeometric</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">inverse_gaussian</span>::{<span class="ident">InverseGaussian</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">InverseGaussianError</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">normal</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">NormalError</span>, <span class="ident">LogNormal</span>, <span class="ident">Normal</span>, <span class="ident">StandardNormal</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">normal_inverse_gaussian</span>::{<span class="ident">NormalInverseGaussian</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">NormalInverseGaussianError</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">pareto</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">ParetoError</span>, <span class="ident">Pareto</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">pert</span>::{<span class="ident">Pert</span>, <span class="ident">PertError</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">poisson</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">PoissonError</span>, <span class="ident">Poisson</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">triangular</span>::{<span class="ident">Triangular</span>, <span class="ident">TriangularError</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">unit_ball</span>::<span class="ident">UnitBall</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">unit_circle</span>::<span class="ident">UnitCircle</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">unit_disc</span>::<span class="ident">UnitDisc</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">unit_sphere</span>::<span class="ident">UnitSphere</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">weibull</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">WeibullError</span>, <span class="ident">Weibull</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::geometric</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">GeoError</span>, <span class="ident">Geometric</span>, <span class="ident">StandardGeometric</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::hypergeometric</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">HyperGeoError</span>, <span class="ident">Hypergeometric</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::inverse_gaussian</span>::{<span class="ident">InverseGaussian</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">InverseGaussianError</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::normal</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">NormalError</span>, <span class="ident">LogNormal</span>, <span class="ident">Normal</span>, <span class="ident">StandardNormal</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::normal_inverse_gaussian</span>::{<span class="ident">NormalInverseGaussian</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">NormalInverseGaussianError</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::pareto</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">ParetoError</span>, <span class="ident">Pareto</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::pert</span>::{<span class="ident">Pert</span>, <span class="ident">PertError</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::poisson</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">PoissonError</span>, <span class="ident">Poisson</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::triangular</span>::{<span class="ident">Triangular</span>, <span class="ident">TriangularError</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::unit_ball::UnitBall</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::unit_circle::UnitCircle</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::unit_disc::UnitDisc</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::unit_sphere::UnitSphere</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::weibull</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">WeibullError</span>, <span class="ident">Weibull</span>};
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)))]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">distributions</span>::{<span class="ident">WeightedError</span>, <span class="ident">WeightedIndex</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">rand::distributions</span>::{<span class="ident">WeightedError</span>, <span class="ident">WeightedIndex</span>};
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)))]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">weighted_alias</span>::<span class="ident">WeightedAliasIndex</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">weighted_alias::WeightedAliasIndex</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">num_traits</span>;
 
@@ -351,11 +351,11 @@
     <span class="comment">// generated. This is redundant with vector and correctness tests.</span>
 
     <span class="doccomment">/// Construct a deterministic RNG with the given seed</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rng</span>(<span class="ident">seed</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">impl</span> <span class="ident">rand</span>::<span class="ident">RngCore</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rng</span>(<span class="ident">seed</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">impl</span> <span class="ident">rand::RngCore</span> {
         <span class="comment">// For tests, we want a statistically good, fast, reproducible RNG.</span>
         <span class="comment">// PCG32 will do fine, and will be easy to embed if we ever need to.</span>
         <span class="kw">const</span> <span class="ident">INC</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">11634580027462260723</span>;
-        <span class="ident">rand_pcg</span>::<span class="ident">Pcg32</span>::<span class="ident">new</span>(<span class="ident">seed</span>, <span class="ident">INC</span>)
+        <span class="ident">rand_pcg::Pcg32::new</span>(<span class="ident">seed</span>, <span class="ident">INC</span>)
     }
 
     <span class="doccomment">/// Assert that two numbers are almost equal to each other.</span>

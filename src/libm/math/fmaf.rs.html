@@ -135,10 +135,10 @@
  * SUCH DAMAGE.
  */</span>
 
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">f32</span>;
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">ptr</span>::<span class="ident">read_volatile</span>;
+<span class="kw">use</span> <span class="ident">core::f32</span>;
+<span class="kw">use</span> <span class="ident">core::ptr::read_volatile</span>;
 
-<span class="kw">use</span> <span class="kw">super</span>::<span class="ident">fenv</span>::{
+<span class="kw">use</span> <span class="kw">super</span><span class="ident">::fenv</span>::{
     <span class="ident">feclearexcept</span>, <span class="ident">fegetround</span>, <span class="ident">feraiseexcept</span>, <span class="ident">fesetround</span>, <span class="ident">fetestexcept</span>, <span class="ident">FE_INEXACT</span>, <span class="ident">FE_TONEAREST</span>,
     <span class="ident">FE_TOWARDZERO</span>, <span class="ident">FE_UNDERFLOW</span>,
 };
@@ -156,7 +156,7 @@
 <span class="doccomment">/// Computes `(x*y)+z`, rounded as one ternary operation:</span>
 <span class="doccomment">/// Computes the value (as if) to infinite precision and rounds once to the result format,</span>
 <span class="doccomment">/// according to the rounding mode characterized by the value of FLT_ROUNDS.</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fmaf</span>(<span class="ident">x</span>: <span class="ident">f32</span>, <span class="ident">y</span>: <span class="ident">f32</span>, <span class="kw-2">mut</span> <span class="ident">z</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
     <span class="kw">let</span> <span class="ident">xy</span>: <span class="ident">f64</span>;
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span>: <span class="ident">f64</span>;
@@ -209,7 +209,7 @@
     <span class="kw">if</span> <span class="ident">result</span> <span class="op">=</span><span class="op">=</span> <span class="ident">adjusted_result</span> {
         <span class="ident">ui</span> <span class="op">=</span> <span class="ident">adjusted_result</span>.<span class="ident">to_bits</span>();
         <span class="ident">ui</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-        <span class="ident">adjusted_result</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>);
+        <span class="ident">adjusted_result</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="ident">ui</span>);
     }
     <span class="ident">z</span> <span class="op">=</span> <span class="ident">adjusted_result</span> <span class="kw">as</span> <span class="ident">f32</span>;
     <span class="ident">z</span>

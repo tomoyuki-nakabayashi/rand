@@ -68,9 +68,9 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">alias_method</span> {
     <span class="comment">// This module exists to provide a deprecation warning which minimises</span>
     <span class="comment">// compile errors, but still fails to compile if ever used.</span>
-    <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>;
-    <span class="kw">use</span> <span class="ident">alloc</span>::<span class="ident">vec</span>::<span class="ident">Vec</span>;
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">WeightedError</span>;
+    <span class="kw">use</span> <span class="ident">core::marker::PhantomData</span>;
+    <span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
+    <span class="kw">use</span> <span class="kw">super</span><span class="ident">::WeightedError</span>;
 
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WeightedIndex</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Weight</span><span class="op">&gt;</span> {
@@ -78,7 +78,7 @@
     }
     <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Weight</span><span class="op">&gt;</span> <span class="ident">WeightedIndex</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span> {
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">_weights</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">W</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">WeightedError</span><span class="op">&gt;</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">WeightedError</span>::<span class="ident">NoItem</span>)
+            <span class="prelude-val">Err</span>(<span class="ident">WeightedError::NoItem</span>)
         }
     }
 

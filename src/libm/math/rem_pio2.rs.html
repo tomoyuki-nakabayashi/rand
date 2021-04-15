@@ -234,7 +234,7 @@
 <span class="comment">// ====================================================</span>
 <span class="comment">//</span>
 <span class="comment">// Optimized by Bruce D. Evans. */</span>
-<span class="kw">use</span> <span class="kw">super</span>::<span class="ident">rem_pio2_large</span>;
+<span class="kw">use</span> <span class="kw">super</span><span class="ident">::rem_pio2_large</span>;
 
 <span class="comment">// #if FLT_EVAL_METHOD==0 || FLT_EVAL_METHOD==1</span>
 <span class="comment">// #define EPS DBL_EPSILON</span>
@@ -265,12 +265,12 @@
 <span class="comment">// use rem_pio2_large() for large x</span>
 <span class="comment">//</span>
 <span class="comment">// caller must handle the case when reduction is not needed: |x| ~&lt;= pi/4 */</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">rem_pio2</span>(<span class="ident">x</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) {
-    <span class="kw">let</span> <span class="ident">x1p24</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x4170000000000000</span>);
+    <span class="kw">let</span> <span class="ident">x1p24</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x4170000000000000</span>);
 
-    <span class="kw">let</span> <span class="ident">sign</span> <span class="op">=</span> (<span class="ident">f64</span>::<span class="ident">to_bits</span>(<span class="ident">x</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">63</span>) <span class="kw">as</span> <span class="ident">i32</span>;
-    <span class="kw">let</span> <span class="ident">ix</span> <span class="op">=</span> (<span class="ident">f64</span>::<span class="ident">to_bits</span>(<span class="ident">x</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">32</span>) <span class="kw">as</span> <span class="ident">u32</span> <span class="op">&amp;</span> <span class="number">0x7fffffff</span>;
+    <span class="kw">let</span> <span class="ident">sign</span> <span class="op">=</span> (<span class="ident">f64::to_bits</span>(<span class="ident">x</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">63</span>) <span class="kw">as</span> <span class="ident">i32</span>;
+    <span class="kw">let</span> <span class="ident">ix</span> <span class="op">=</span> (<span class="ident">f64::to_bits</span>(<span class="ident">x</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">32</span>) <span class="kw">as</span> <span class="ident">u32</span> <span class="op">&amp;</span> <span class="number">0x7fffffff</span>;
 
     <span class="kw">fn</span> <span class="ident">medium</span>(<span class="ident">x</span>: <span class="ident">f64</span>, <span class="ident">ix</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) {
         <span class="comment">/* rint(x/(pi/2)), Assume round-to-nearest. */</span>
@@ -279,7 +279,7 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r</span> <span class="op">=</span> <span class="ident">x</span> <span class="op">-</span> <span class="ident">f_n</span> <span class="op">*</span> <span class="ident">PIO2_1</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">w</span> <span class="op">=</span> <span class="ident">f_n</span> <span class="op">*</span> <span class="ident">PIO2_1T</span>; <span class="comment">/* 1st round, good to 85 bits */</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">y0</span> <span class="op">=</span> <span class="ident">r</span> <span class="op">-</span> <span class="ident">w</span>;
-        <span class="kw">let</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">to_bits</span>(<span class="ident">y0</span>);
+        <span class="kw">let</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">f64::to_bits</span>(<span class="ident">y0</span>);
         <span class="kw">let</span> <span class="ident">ey</span> <span class="op">=</span> (<span class="ident">ui</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">52</span>) <span class="kw">as</span> <span class="ident">i32</span> <span class="op">&amp;</span> <span class="number">0x7ff</span>;
         <span class="kw">let</span> <span class="ident">ex</span> <span class="op">=</span> (<span class="ident">ix</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">20</span>) <span class="kw">as</span> <span class="ident">i32</span>;
         <span class="kw">if</span> <span class="ident">ex</span> <span class="op">-</span> <span class="ident">ey</span> <span class="op">&gt;</span> <span class="number">16</span> {
@@ -289,7 +289,7 @@
             <span class="ident">r</span> <span class="op">=</span> <span class="ident">t</span> <span class="op">-</span> <span class="ident">w</span>;
             <span class="ident">w</span> <span class="op">=</span> <span class="ident">f_n</span> <span class="op">*</span> <span class="ident">PIO2_2T</span> <span class="op">-</span> ((<span class="ident">t</span> <span class="op">-</span> <span class="ident">r</span>) <span class="op">-</span> <span class="ident">w</span>);
             <span class="ident">y0</span> <span class="op">=</span> <span class="ident">r</span> <span class="op">-</span> <span class="ident">w</span>;
-            <span class="kw">let</span> <span class="ident">ey</span> <span class="op">=</span> (<span class="ident">f64</span>::<span class="ident">to_bits</span>(<span class="ident">y0</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">52</span>) <span class="kw">as</span> <span class="ident">i32</span> <span class="op">&amp;</span> <span class="number">0x7ff</span>;
+            <span class="kw">let</span> <span class="ident">ey</span> <span class="op">=</span> (<span class="ident">f64::to_bits</span>(<span class="ident">y0</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">52</span>) <span class="kw">as</span> <span class="ident">i32</span> <span class="op">&amp;</span> <span class="number">0x7ff</span>;
             <span class="kw">if</span> <span class="ident">ex</span> <span class="op">-</span> <span class="ident">ey</span> <span class="op">&gt;</span> <span class="number">49</span> {
                 <span class="comment">/* 3rd round, good to 151 bits, covers all cases */</span>
                 <span class="kw">let</span> <span class="ident">t</span> <span class="op">=</span> <span class="ident">r</span>;
@@ -385,10 +385,10 @@
         <span class="kw">return</span> (<span class="number">0</span>, <span class="ident">y0</span>, <span class="ident">y1</span>);
     }
     <span class="comment">/* set z = scalbn(|x|,-ilogb(x)+23) */</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">to_bits</span>(<span class="ident">x</span>);
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">f64::to_bits</span>(<span class="ident">x</span>);
     <span class="ident">ui</span> <span class="op">&amp;=</span> (<span class="op">!</span><span class="number">1</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">12</span>;
     <span class="ident">ui</span> <span class="op">|</span><span class="op">=</span> (<span class="number">0x3ff</span> <span class="op">+</span> <span class="number">23</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">52</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">z</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>);
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">z</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="ident">ui</span>);
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tx</span> <span class="op">=</span> [<span class="number">0.0</span>; <span class="number">3</span>];
     <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">2</span> {
         <span class="ident">tx</span>[<span class="ident">i</span>] <span class="op">=</span> <span class="ident">z</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="kw">as</span> <span class="ident">f64</span>;
@@ -410,7 +410,7 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">rem_pio2</span>;
+    <span class="kw">use</span> <span class="kw">super</span><span class="ident">::rem_pio2</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_near_pi</span>() {

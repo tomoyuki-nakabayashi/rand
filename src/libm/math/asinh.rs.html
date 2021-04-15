@@ -57,7 +57,7 @@
 
     <span class="comment">/* |x| */</span>
     <span class="ident">u</span> <span class="op">&amp;=</span> (<span class="op">!</span><span class="number">0</span>) <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">1</span>;
-    <span class="ident">x</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="ident">u</span>);
+    <span class="ident">x</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="ident">u</span>);
 
     <span class="kw">if</span> <span class="ident">e</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0x3ff</span> <span class="op">+</span> <span class="number">26</span> {
         <span class="comment">/* |x| &gt;= 0x1p26 or inf or nan */</span>
@@ -70,7 +70,7 @@
         <span class="ident">x</span> <span class="op">=</span> <span class="ident">log1p</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">x</span> <span class="op">*</span> <span class="ident">x</span> <span class="op">/</span> (<span class="ident">sqrt</span>(<span class="ident">x</span> <span class="op">*</span> <span class="ident">x</span> <span class="op">+</span> <span class="number">1.0</span>) <span class="op">+</span> <span class="number">1.0</span>));
     } <span class="kw">else</span> {
         <span class="comment">/* |x| &lt; 0x1p-26, raise inexact if x != 0 */</span>
-        <span class="kw">let</span> <span class="ident">x1p120</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x4770000000000000</span>);
+        <span class="kw">let</span> <span class="ident">x1p120</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x4770000000000000</span>);
         <span class="macro">force_eval!</span>(<span class="ident">x</span> <span class="op">+</span> <span class="ident">x1p120</span>);
     }
 

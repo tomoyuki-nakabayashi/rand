@@ -64,21 +64,21 @@
 <span id="61">61</span>
 <span id="62">62</span>
 </pre><div class="example-wrap"><pre class="rust ">
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">f64</span>;
+<span class="kw">use</span> <span class="ident">core::f64</span>;
 
-<span class="kw">const</span> <span class="ident">TOINT</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">1.</span> <span class="op">/</span> <span class="ident">f64</span>::<span class="ident">EPSILON</span>;
+<span class="kw">const</span> <span class="ident">TOINT</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">1.</span> <span class="op">/</span> <span class="ident">f64::EPSILON</span>;
 
 <span class="doccomment">/// Floor (f64)</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Finds the nearest integer less than or equal to `x`.</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">floor</span>(<span class="ident">x</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
     <span class="comment">// On wasm32 we know that LLVM&#39;s intrinsic will compile to an optimized</span>
     <span class="comment">// `f64.floor` native instruction, so we can leverage this for both code size</span>
     <span class="comment">// and speed.</span>
     <span class="macro">llvm_intrinsically_optimized!</span> {
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>)]</span> {
-            <span class="kw">return</span> <span class="kw">unsafe</span> { ::<span class="ident">core</span>::<span class="ident">intrinsics</span>::<span class="ident">floorf64</span>(<span class="ident">x</span>) }
+            <span class="kw">return</span> <span class="kw">unsafe</span> { <span class="ident">::core::intrinsics::floorf64</span>(<span class="ident">x</span>) }
         }
     }
     <span class="kw">let</span> <span class="ident">ui</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">to_bits</span>();
@@ -108,7 +108,7 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="ident">core</span>::<span class="ident">f64</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="ident">core::f64</span>::<span class="kw-2">*</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">sanity_check</span>() {

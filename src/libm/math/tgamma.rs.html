@@ -354,7 +354,7 @@ most ideas and constants are from boost and python
     <span class="comment">/* special cases */</span>
     <span class="kw">if</span> <span class="ident">ix</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0x7ff00000</span> {
         <span class="comment">/* tgamma(nan)=nan, tgamma(inf)=inf, tgamma(-inf)=nan with invalid */</span>
-        <span class="kw">return</span> <span class="ident">x</span> <span class="op">+</span> <span class="ident">core</span>::<span class="ident">f64</span>::<span class="ident">INFINITY</span>;
+        <span class="kw">return</span> <span class="ident">x</span> <span class="op">+</span> <span class="ident">core::f64::INFINITY</span>;
     }
     <span class="kw">if</span> <span class="ident">ix</span> <span class="op">&lt;</span> ((<span class="number">0x3ff</span> <span class="op">-</span> <span class="number">54</span>) <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">20</span>) {
         <span class="comment">/* |x| &lt; 2^-54: tgamma(x) ~ 1/x, +-0 raises div-by-zero */</span>
@@ -377,7 +377,7 @@ most ideas and constants are from boost and python
     <span class="kw">if</span> <span class="ident">ix</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0x40670000</span> {
         <span class="comment">/* |x| &gt;= 184 */</span>
         <span class="kw">if</span> <span class="ident">sign</span> {
-            <span class="kw">let</span> <span class="ident">x1p_126</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x3810000000000000</span>); <span class="comment">// 0x1p-126 == 2^-126</span>
+            <span class="kw">let</span> <span class="ident">x1p_126</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x3810000000000000</span>); <span class="comment">// 0x1p-126 == 2^-126</span>
             <span class="macro">force_eval!</span>((<span class="ident">x1p_126</span> <span class="op">/</span> <span class="ident">x</span>) <span class="kw">as</span> <span class="ident">f32</span>);
             <span class="kw">if</span> <span class="ident">floor</span>(<span class="ident">x</span>) <span class="op">*</span> <span class="number">0.5</span> <span class="op">=</span><span class="op">=</span> <span class="ident">floor</span>(<span class="ident">x</span> <span class="op">*</span> <span class="number">0.5</span>) {
                 <span class="kw">return</span> <span class="number">0.0</span>;
@@ -385,7 +385,7 @@ most ideas and constants are from boost and python
                 <span class="kw">return</span> <span class="op">-</span><span class="number">0.0</span>;
             }
         }
-        <span class="kw">let</span> <span class="ident">x1p1023</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">from_bits</span>(<span class="number">0x7fe0000000000000</span>); <span class="comment">// 0x1p1023 == 2^1023</span>
+        <span class="kw">let</span> <span class="ident">x1p1023</span> <span class="op">=</span> <span class="ident">f64::from_bits</span>(<span class="number">0x7fe0000000000000</span>); <span class="comment">// 0x1p1023 == 2^1023</span>
         <span class="ident">x</span> <span class="kw-2">*</span><span class="op">=</span> <span class="ident">x1p1023</span>;
         <span class="kw">return</span> <span class="ident">x</span>;
     }

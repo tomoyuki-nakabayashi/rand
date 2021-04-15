@@ -96,7 +96,7 @@
  * Return cube root of x
  */</span>
 
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">f32</span>;
+<span class="kw">use</span> <span class="ident">core::f32</span>;
 
 <span class="kw">const</span> <span class="ident">B1</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">709958130</span>; <span class="comment">/* B1 = (127-127.0/3-0.03306235651)*2**23 */</span>
 <span class="kw">const</span> <span class="ident">B2</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">642849266</span>; <span class="comment">/* B2 = (127-127.0/3-24/3-0.03306235651)*2**23 */</span>
@@ -104,9 +104,9 @@
 <span class="doccomment">/// Cube root (f32)</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Computes the cube root of the argument.</span>
-<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic</span>::<span class="ident">no_panic</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">all</span>(<span class="ident">test</span>, <span class="ident">assert_no_panic</span>), <span class="ident">no_panic::no_panic</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cbrtf</span>(<span class="ident">x</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
-    <span class="kw">let</span> <span class="ident">x1p24</span> <span class="op">=</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="number">0x4b800000</span>); <span class="comment">// 0x1p24f === 2 ^ 24</span>
+    <span class="kw">let</span> <span class="ident">x1p24</span> <span class="op">=</span> <span class="ident">f32::from_bits</span>(<span class="number">0x4b800000</span>); <span class="comment">// 0x1p24f === 2 ^ 24</span>
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r</span>: <span class="ident">f64</span>;
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">t</span>: <span class="ident">f64</span>;
@@ -138,7 +138,7 @@
      * double precision so that its terms can be arranged for efficiency
      * without causing overflow or underflow.
      */</span>
-    <span class="ident">t</span> <span class="op">=</span> <span class="ident">f32</span>::<span class="ident">from_bits</span>(<span class="ident">ui</span>) <span class="kw">as</span> <span class="ident">f64</span>;
+    <span class="ident">t</span> <span class="op">=</span> <span class="ident">f32::from_bits</span>(<span class="ident">ui</span>) <span class="kw">as</span> <span class="ident">f64</span>;
     <span class="ident">r</span> <span class="op">=</span> <span class="ident">t</span> <span class="op">*</span> <span class="ident">t</span> <span class="op">*</span> <span class="ident">t</span>;
     <span class="ident">t</span> <span class="op">=</span> <span class="ident">t</span> <span class="op">*</span> (<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">+</span> <span class="ident">x</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">+</span> <span class="ident">r</span>) <span class="op">/</span> (<span class="ident">x</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">+</span> <span class="ident">r</span> <span class="op">+</span> <span class="ident">r</span>);
 

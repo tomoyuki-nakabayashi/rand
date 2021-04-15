@@ -35,7 +35,7 @@ optimiser can remove redundant references later.</p>
 <p>Example:</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered">
-<span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">Rng</span>;
+<span class="kw">use</span> <span class="ident">rand::Rng</span>;
 
 <span class="kw">fn</span> <span class="ident">foo</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Rng</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span>(<span class="ident">rng</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
     <span class="ident">rng</span>.<span class="ident">gen</span>()
@@ -94,13 +94,13 @@ type which may be faster if sampling from the same range repeatedly.</p>
 <h3 id="example-2" class="section-header"><a href="#example-2">Example</a></h3>
 <div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="kw">use</span> <span class="ident">rand</span>::{<span class="ident">thread_rng</span>, <span class="ident">Rng</span>};
-<span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">distributions</span>::<span class="ident">Uniform</span>;
+<span class="kw">use</span> <span class="ident">rand::distributions::Uniform</span>;
 
 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident">thread_rng</span>();
-<span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">rng</span>.<span class="ident">sample</span>(<span class="ident">Uniform</span>::<span class="ident">new</span>(<span class="number">10u32</span>, <span class="number">15</span>));
+<span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">rng</span>.<span class="ident">sample</span>(<span class="ident">Uniform::new</span>(<span class="number">10u32</span>, <span class="number">15</span>));
 <span class="comment">// Type annotation requires two types, the type and distribution; the</span>
 <span class="comment">// distribution can be inferred.</span>
-<span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">rng</span>.<span class="ident">sample</span>::<span class="op">&lt;</span><span class="ident">u16</span>, <span class="kw">_</span><span class="op">&gt;</span>(<span class="ident">Uniform</span>::<span class="ident">new</span>(<span class="number">10</span>, <span class="number">15</span>));</pre></div>
+<span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">rng</span>.<span class="ident">sample</span>::<span class="op">&lt;</span><span class="ident">u16</span>, <span class="kw">_</span><span class="op">&gt;</span>(<span class="ident">Uniform::new</span>(<span class="number">10</span>, <span class="number">15</span>));</pre></div>
 </div><h3 id="method.sample_iter" class="method"><code>fn <a href="#method.sample_iter" class="fnname">sample_iter</a>&lt;T, D&gt;(self, distr: D) -&gt; <a class="struct" href="../rand/distributions/struct.DistIter.html" title="struct rand::distributions::DistIter">DistIter</a>&lt;D, Self, T&gt;<span class="notable-traits"><span class="notable-traits-tooltip">ⓘ<div class="notable-traits-tooltiptext"><span class="docblock"><h3 class="notable">Notable traits for <a class="struct" href="../rand/distributions/struct.DistIter.html" title="struct rand::distributions::DistIter">DistIter</a>&lt;D, R, T&gt;</h3><code class="content"><span class="where fmt-newline">impl&lt;D, R, T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/iter/traits/iterator/trait.Iterator.html" title="trait core::iter::traits::iterator::Iterator">Iterator</a> for <a class="struct" href="../rand/distributions/struct.DistIter.html" title="struct rand::distributions::DistIter">DistIter</a>&lt;D, R, T&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;D: <a class="trait" href="../rand/distributions/trait.Distribution.html" title="trait rand::distributions::Distribution">Distribution</a>&lt;T&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;R: <a class="trait" href="../rand/trait.Rng.html" title="trait rand::Rng">Rng</a>,&nbsp;</span></span><span class="where fmt-newline">    type <a href="https://doc.rust-lang.org/nightly/core/iter/traits/iterator/trait.Iterator.html#associatedtype.Item" class="type">Item</a> = T;</span></code></span></div></span></span> <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;D: <a class="trait" href="../rand/distributions/trait.Distribution.html" title="trait rand::distributions::Distribution">Distribution</a>&lt;T&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;Self: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>,&nbsp;</span></code><a class="srclink" href="../src/rand/rng.rs.html#192-198" title="goto source code">[src]</a></h3><div class="docblock"><p>Create an iterator that generates values using the given distribution.</p>
 <p>Note that this function takes its arguments by value. This works since
 <code>(&amp;mut R): Rng where R: Rng</code> and
@@ -110,7 +110,7 @@ need to be replaced with <code>(&amp;mut rng).sample_iter(...)</code>.</p>
 <h1 id="example-3" class="section-header"><a href="#example-3">Example</a></h1>
 <div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="kw">use</span> <span class="ident">rand</span>::{<span class="ident">thread_rng</span>, <span class="ident">Rng</span>};
-<span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">distributions</span>::{<span class="ident">Alphanumeric</span>, <span class="ident">Uniform</span>, <span class="ident">Standard</span>};
+<span class="kw">use</span> <span class="ident">rand::distributions</span>::{<span class="ident">Alphanumeric</span>, <span class="ident">Uniform</span>, <span class="ident">Standard</span>};
 
 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident">thread_rng</span>();
 
@@ -120,7 +120,7 @@ need to be replaced with <code>(&amp;mut rng).sample_iter(...)</code>.</p>
 <span class="comment">// String:</span>
 <span class="kw">let</span> <span class="ident">s</span>: <span class="ident">String</span> <span class="op">=</span> (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>).<span class="ident">sample_iter</span>(<span class="ident">Alphanumeric</span>)
     .<span class="ident">take</span>(<span class="number">7</span>)
-    .<span class="ident">map</span>(<span class="ident">char</span>::<span class="ident">from</span>)
+    .<span class="ident">map</span>(<span class="ident">char::from</span>)
     .<span class="ident">collect</span>();
 
 <span class="comment">// Combined values</span>
@@ -128,7 +128,7 @@ need to be replaced with <code>(&amp;mut rng).sample_iter(...)</code>.</p>
                              .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">bool</span>)<span class="op">&gt;</span><span class="op">&gt;</span>());
 
 <span class="comment">// Dice-rolling:</span>
-<span class="kw">let</span> <span class="ident">die_range</span> <span class="op">=</span> <span class="ident">Uniform</span>::<span class="ident">new_inclusive</span>(<span class="number">1</span>, <span class="number">6</span>);
+<span class="kw">let</span> <span class="ident">die_range</span> <span class="op">=</span> <span class="ident">Uniform::new_inclusive</span>(<span class="number">1</span>, <span class="number">6</span>);
 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">roll_die</span> <span class="op">=</span> (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>).<span class="ident">sample_iter</span>(<span class="ident">die_range</span>);
 <span class="kw">while</span> <span class="ident">roll_die</span>.<span class="ident">next</span>().<span class="ident">unwrap</span>() <span class="op">!</span><span class="op">=</span> <span class="number">6</span> {
     <span class="macro">println!</span>(<span class="string">&quot;Not a 6; rolling again!&quot;</span>);

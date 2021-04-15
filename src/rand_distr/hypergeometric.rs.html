@@ -416,10 +416,10 @@
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! The hypergeometric distribution.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">Distribution</span>;
-<span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">Rng</span>;
-<span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">distributions</span>::<span class="ident">uniform</span>::<span class="ident">Uniform</span>;
-<span class="kw">use</span> <span class="ident">core</span>::<span class="ident">fmt</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Distribution</span>;
+<span class="kw">use</span> <span class="ident">rand::Rng</span>;
+<span class="kw">use</span> <span class="ident">rand::distributions::uniform::Uniform</span>;
+<span class="kw">use</span> <span class="ident">core::fmt</span>;
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">enum</span> <span class="ident">SamplingMethod</span> {
@@ -479,26 +479,26 @@
     <span class="ident">SampleSizeTooLarge</span>,
 }
 
-<span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">Error</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">Error</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">Error</span>::<span class="ident">PopulationTooLarge</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;total_population_size is too large causing underflow in geometric distribution&quot;</span>,
-            <span class="ident">Error</span>::<span class="ident">ProbabilityTooLarge</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;population_with_feature &gt; total_population_size in geometric distribution&quot;</span>,
-            <span class="ident">Error</span>::<span class="ident">SampleSizeTooLarge</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;sample_size &gt; total_population_size in geometric distribution&quot;</span>,
+            <span class="ident">Error::PopulationTooLarge</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;total_population_size is too large causing underflow in geometric distribution&quot;</span>,
+            <span class="ident">Error::ProbabilityTooLarge</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;population_with_feature &gt; total_population_size in geometric distribution&quot;</span>,
+            <span class="ident">Error::SampleSizeTooLarge</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;sample_size &gt; total_population_size in geometric distribution&quot;</span>,
         })
     }
 }
 
 <span class="comment">// evaluate fact(numerator.0)*fact(numerator.1) / fact(denominator.0)*fact(denominator.1)</span>
 <span class="kw">fn</span> <span class="ident">fraction_of_products_of_factorials</span>(<span class="ident">numerator</span>: (<span class="ident">u64</span>, <span class="ident">u64</span>), <span class="ident">denominator</span>: (<span class="ident">u64</span>, <span class="ident">u64</span>)) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
-    <span class="kw">let</span> <span class="ident">min_top</span> <span class="op">=</span> <span class="ident">u64</span>::<span class="ident">min</span>(<span class="ident">numerator</span>.<span class="number">0</span>, <span class="ident">numerator</span>.<span class="number">1</span>);
-    <span class="kw">let</span> <span class="ident">min_bottom</span> <span class="op">=</span> <span class="ident">u64</span>::<span class="ident">min</span>(<span class="ident">denominator</span>.<span class="number">0</span>, <span class="ident">denominator</span>.<span class="number">1</span>);
+    <span class="kw">let</span> <span class="ident">min_top</span> <span class="op">=</span> <span class="ident">u64::min</span>(<span class="ident">numerator</span>.<span class="number">0</span>, <span class="ident">numerator</span>.<span class="number">1</span>);
+    <span class="kw">let</span> <span class="ident">min_bottom</span> <span class="op">=</span> <span class="ident">u64::min</span>(<span class="ident">denominator</span>.<span class="number">0</span>, <span class="ident">denominator</span>.<span class="number">1</span>);
     <span class="comment">// the factorial of this will cancel out:</span>
-    <span class="kw">let</span> <span class="ident">min_all</span> <span class="op">=</span> <span class="ident">u64</span>::<span class="ident">min</span>(<span class="ident">min_top</span>, <span class="ident">min_bottom</span>);
+    <span class="kw">let</span> <span class="ident">min_all</span> <span class="op">=</span> <span class="ident">u64::min</span>(<span class="ident">min_top</span>, <span class="ident">min_bottom</span>);
 
-    <span class="kw">let</span> <span class="ident">max_top</span> <span class="op">=</span> <span class="ident">u64</span>::<span class="ident">max</span>(<span class="ident">numerator</span>.<span class="number">0</span>, <span class="ident">numerator</span>.<span class="number">1</span>);
-    <span class="kw">let</span> <span class="ident">max_bottom</span> <span class="op">=</span> <span class="ident">u64</span>::<span class="ident">max</span>(<span class="ident">denominator</span>.<span class="number">0</span>, <span class="ident">denominator</span>.<span class="number">1</span>);
-    <span class="kw">let</span> <span class="ident">max_all</span> <span class="op">=</span> <span class="ident">u64</span>::<span class="ident">max</span>(<span class="ident">max_top</span>, <span class="ident">max_bottom</span>);
+    <span class="kw">let</span> <span class="ident">max_top</span> <span class="op">=</span> <span class="ident">u64::max</span>(<span class="ident">numerator</span>.<span class="number">0</span>, <span class="ident">numerator</span>.<span class="number">1</span>);
+    <span class="kw">let</span> <span class="ident">max_bottom</span> <span class="op">=</span> <span class="ident">u64::max</span>(<span class="ident">denominator</span>.<span class="number">0</span>, <span class="ident">denominator</span>.<span class="number">1</span>);
+    <span class="kw">let</span> <span class="ident">max_all</span> <span class="op">=</span> <span class="ident">u64::max</span>(<span class="ident">max_top</span>, <span class="ident">max_bottom</span>);
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">result</span> <span class="op">=</span> <span class="number">1.0</span>;
     <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> (<span class="ident">min_all</span> <span class="op">+</span> <span class="number">1</span>)..<span class="op">=</span><span class="ident">max_all</span> {
@@ -533,14 +533,14 @@
     <span class="doccomment">/// `N = total_population_size`,</span>
     <span class="doccomment">/// `K = population_with_feature`,</span>
     <span class="doccomment">/// `n = sample_size`.</span>
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">many_single_char_names</span>)]</span> <span class="comment">// Same names as in the reference.</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::many_single_char_names</span>)]</span> <span class="comment">// Same names as in the reference.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">total_population_size</span>: <span class="ident">u64</span>, <span class="ident">population_with_feature</span>: <span class="ident">u64</span>, <span class="ident">sample_size</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="ident">population_with_feature</span> <span class="op">&gt;</span> <span class="ident">total_population_size</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">ProbabilityTooLarge</span>);
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::ProbabilityTooLarge</span>);
         }
 
         <span class="kw">if</span> <span class="ident">sample_size</span> <span class="op">&gt;</span> <span class="ident">total_population_size</span> {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">SampleSizeTooLarge</span>);
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::SampleSizeTooLarge</span>);
         }
 
         <span class="comment">// set-up constants as function of original parameters</span>
@@ -582,7 +582,7 @@
         <span class="comment">// https://www.researchgate.net/publication/233212638</span>
         <span class="kw">const</span> <span class="ident">HIN_THRESHOLD</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">10.0</span>;
         <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> ((<span class="ident">k</span> <span class="op">+</span> <span class="number">1</span>) <span class="kw">as</span> <span class="ident">f64</span> <span class="op">*</span> (<span class="ident">n1</span> <span class="op">+</span> <span class="number">1</span>) <span class="kw">as</span> <span class="ident">f64</span> <span class="op">/</span> (<span class="ident">n</span> <span class="op">+</span> <span class="number">2</span>) <span class="kw">as</span> <span class="ident">f64</span>).<span class="ident">floor</span>();
-        <span class="kw">let</span> <span class="ident">sampling_method</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">m</span> <span class="op">-</span> <span class="ident">f64</span>::<span class="ident">max</span>(<span class="number">0.0</span>, <span class="ident">k</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">-</span> <span class="ident">n2</span> <span class="kw">as</span> <span class="ident">f64</span>) <span class="op">&lt;</span> <span class="ident">HIN_THRESHOLD</span> {
+        <span class="kw">let</span> <span class="ident">sampling_method</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">m</span> <span class="op">-</span> <span class="ident">f64::max</span>(<span class="number">0.0</span>, <span class="ident">k</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">-</span> <span class="ident">n2</span> <span class="kw">as</span> <span class="ident">f64</span>) <span class="op">&lt;</span> <span class="ident">HIN_THRESHOLD</span> {
             <span class="kw">let</span> (<span class="ident">initial_p</span>, <span class="ident">initial_x</span>) <span class="op">=</span> <span class="kw">if</span> <span class="ident">k</span> <span class="op">&lt;</span> <span class="ident">n2</span> {
                 (<span class="ident">fraction_of_products_of_factorials</span>((<span class="ident">n2</span>, <span class="ident">n</span> <span class="op">-</span> <span class="ident">k</span>), (<span class="ident">n</span>, <span class="ident">n2</span> <span class="op">-</span> <span class="ident">k</span>)), <span class="number">0</span>)
             } <span class="kw">else</span> {
@@ -590,10 +590,10 @@
             };
 
             <span class="kw">if</span> <span class="ident">initial_p</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">0.0</span> <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="ident">initial_p</span>.<span class="ident">is_finite</span>() {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">PopulationTooLarge</span>);
+                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Error::PopulationTooLarge</span>);
             }
 
-            <span class="ident">SamplingMethod</span>::<span class="ident">InverseTransform</span> { <span class="ident">initial_p</span>, <span class="ident">initial_x</span> }
+            <span class="ident">SamplingMethod::InverseTransform</span> { <span class="ident">initial_p</span>, <span class="ident">initial_x</span> }
         } <span class="kw">else</span> {
             <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident">ln_of_factorial</span>(<span class="ident">m</span>) <span class="op">+</span>
                 <span class="ident">ln_of_factorial</span>(<span class="ident">n1</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">-</span> <span class="ident">m</span>) <span class="op">+</span>
@@ -607,12 +607,12 @@
             <span class="kw">let</span> <span class="ident">x_l</span> <span class="op">=</span> <span class="ident">m</span> <span class="op">-</span> <span class="ident">d</span> <span class="op">+</span> <span class="number">0.5</span>;
             <span class="kw">let</span> <span class="ident">x_r</span> <span class="op">=</span> <span class="ident">m</span> <span class="op">+</span> <span class="ident">d</span> <span class="op">+</span> <span class="number">0.5</span>;
 
-            <span class="kw">let</span> <span class="ident">k_l</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">exp</span>(<span class="ident">a</span> <span class="op">-</span>
+            <span class="kw">let</span> <span class="ident">k_l</span> <span class="op">=</span> <span class="ident">f64::exp</span>(<span class="ident">a</span> <span class="op">-</span>
                 <span class="ident">ln_of_factorial</span>(<span class="ident">x_l</span>) <span class="op">-</span>
                 <span class="ident">ln_of_factorial</span>(<span class="ident">n1</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">-</span> <span class="ident">x_l</span>) <span class="op">-</span>
                 <span class="ident">ln_of_factorial</span>(<span class="ident">k</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">-</span> <span class="ident">x_l</span>) <span class="op">-</span>
                 <span class="ident">ln_of_factorial</span>((<span class="ident">n2</span> <span class="op">-</span> <span class="ident">k</span>) <span class="kw">as</span> <span class="ident">f64</span> <span class="op">+</span> <span class="ident">x_l</span>));
-            <span class="kw">let</span> <span class="ident">k_r</span> <span class="op">=</span> <span class="ident">f64</span>::<span class="ident">exp</span>(<span class="ident">a</span> <span class="op">-</span>
+            <span class="kw">let</span> <span class="ident">k_r</span> <span class="op">=</span> <span class="ident">f64::exp</span>(<span class="ident">a</span> <span class="op">-</span>
                 <span class="ident">ln_of_factorial</span>(<span class="ident">x_r</span> <span class="op">-</span> <span class="number">1.0</span>) <span class="op">-</span>
                 <span class="ident">ln_of_factorial</span>(<span class="ident">n1</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">-</span> <span class="ident">x_r</span> <span class="op">+</span> <span class="number">1.0</span>) <span class="op">-</span>
                 <span class="ident">ln_of_factorial</span>(<span class="ident">k</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">-</span> <span class="ident">x_r</span> <span class="op">+</span> <span class="number">1.0</span>) <span class="op">-</span>
@@ -632,7 +632,7 @@
             <span class="kw">let</span> <span class="ident">p2</span> <span class="op">=</span> <span class="ident">p1</span> <span class="op">+</span> <span class="ident">k_l</span> <span class="op">/</span> <span class="ident">lambda_l</span>;
             <span class="kw">let</span> <span class="ident">p3</span> <span class="op">=</span> <span class="ident">p2</span> <span class="op">+</span> <span class="ident">k_r</span> <span class="op">/</span> <span class="ident">lambda_r</span>;
 
-            <span class="ident">SamplingMethod</span>::<span class="ident">RejectionAcceptance</span> {
+            <span class="ident">SamplingMethod::RejectionAcceptance</span> {
                 <span class="ident">m</span>, <span class="ident">a</span>, <span class="ident">lambda_l</span>, <span class="ident">lambda_r</span>, <span class="ident">x_l</span>, <span class="ident">x_r</span>, <span class="ident">p1</span>, <span class="ident">p2</span>, <span class="ident">p3</span>
             }
         };
@@ -642,7 +642,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Distribution</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Hypergeometric</span> {
-    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">many_single_char_names</span>)]</span> <span class="comment">// Same names as in the reference.</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::many_single_char_names</span>)]</span> <span class="comment">// Same names as in the reference.</span>
     <span class="kw">fn</span> <span class="ident">sample</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Rng</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rng</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
         <span class="kw">use</span> <span class="ident">SamplingMethod</span>::<span class="kw-2">*</span>;
 
@@ -659,7 +659,7 @@
                 <span class="ident">x</span>
             },
             <span class="ident">RejectionAcceptance</span> { <span class="ident">m</span>, <span class="ident">a</span>, <span class="ident">lambda_l</span>, <span class="ident">lambda_r</span>, <span class="ident">x_l</span>, <span class="ident">x_r</span>, <span class="ident">p1</span>, <span class="ident">p2</span>, <span class="ident">p3</span> } <span class="op">=</span><span class="op">&gt;</span> {
-                <span class="kw">let</span> <span class="ident">distr_region_select</span> <span class="op">=</span> <span class="ident">Uniform</span>::<span class="ident">new</span>(<span class="number">0.0</span>, <span class="ident">p3</span>);
+                <span class="kw">let</span> <span class="ident">distr_region_select</span> <span class="op">=</span> <span class="ident">Uniform::new</span>(<span class="number">0.0</span>, <span class="ident">p3</span>);
                 <span class="kw">loop</span> {
                     <span class="kw">let</span> (<span class="ident">y</span>, <span class="ident">v</span>) <span class="op">=</span> <span class="kw">loop</span> {
                         <span class="kw">let</span> <span class="ident">u</span> <span class="op">=</span> <span class="ident">distr_region_select</span>.<span class="ident">sample</span>(<span class="ident">rng</span>);
@@ -672,14 +672,14 @@
                         } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">u</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">p2</span> {
                             <span class="comment">// Region 2, left exponential tail</span>
                             <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> (<span class="ident">x_l</span> <span class="op">+</span> <span class="ident">v</span>.<span class="ident">ln</span>() <span class="op">/</span> <span class="ident">lambda_l</span>).<span class="ident">floor</span>();
-                            <span class="kw">if</span> <span class="ident">y</span> <span class="kw">as</span> <span class="ident">i64</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">i64</span>::<span class="ident">max</span>(<span class="number">0</span>, <span class="ident">k</span> <span class="kw">as</span> <span class="ident">i64</span> <span class="op">-</span> <span class="ident">n2</span> <span class="kw">as</span> <span class="ident">i64</span>) {
+                            <span class="kw">if</span> <span class="ident">y</span> <span class="kw">as</span> <span class="ident">i64</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">i64::max</span>(<span class="number">0</span>, <span class="ident">k</span> <span class="kw">as</span> <span class="ident">i64</span> <span class="op">-</span> <span class="ident">n2</span> <span class="kw">as</span> <span class="ident">i64</span>) {
                                 <span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">v</span> <span class="op">*</span> (<span class="ident">u</span> <span class="op">-</span> <span class="ident">p1</span>) <span class="op">*</span> <span class="ident">lambda_l</span>;
                                 <span class="kw">break</span> (<span class="ident">y</span>, <span class="ident">v</span>);
                             }
                         } <span class="kw">else</span> {
                             <span class="comment">// Region 3, right exponential tail</span>
                             <span class="kw">let</span> <span class="ident">y</span> <span class="op">=</span> (<span class="ident">x_r</span> <span class="op">-</span> <span class="ident">v</span>.<span class="ident">ln</span>() <span class="op">/</span> <span class="ident">lambda_r</span>).<span class="ident">floor</span>();
-                            <span class="kw">if</span> <span class="ident">y</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">u64</span>::<span class="ident">min</span>(<span class="ident">n1</span>, <span class="ident">k</span>) {
+                            <span class="kw">if</span> <span class="ident">y</span> <span class="kw">as</span> <span class="ident">u64</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">u64::min</span>(<span class="ident">n1</span>, <span class="ident">k</span>) {
                                 <span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">v</span> <span class="op">*</span> (<span class="ident">u</span> <span class="op">-</span> <span class="ident">p2</span>) <span class="op">*</span> <span class="ident">lambda_r</span>;
                                 <span class="kw">break</span> (<span class="ident">y</span>, <span class="ident">v</span>);
                             }
@@ -782,15 +782,15 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_hypergeometric_invalid_params</span>() {
-        <span class="macro">assert!</span>(<span class="ident">Hypergeometric</span>::<span class="ident">new</span>(<span class="number">100</span>, <span class="number">101</span>, <span class="number">5</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">Hypergeometric</span>::<span class="ident">new</span>(<span class="number">100</span>, <span class="number">10</span>, <span class="number">101</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">Hypergeometric</span>::<span class="ident">new</span>(<span class="number">100</span>, <span class="number">101</span>, <span class="number">101</span>).<span class="ident">is_err</span>());
-        <span class="macro">assert!</span>(<span class="ident">Hypergeometric</span>::<span class="ident">new</span>(<span class="number">100</span>, <span class="number">10</span>, <span class="number">5</span>).<span class="ident">is_ok</span>());
+        <span class="macro">assert!</span>(<span class="ident">Hypergeometric::new</span>(<span class="number">100</span>, <span class="number">101</span>, <span class="number">5</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Hypergeometric::new</span>(<span class="number">100</span>, <span class="number">10</span>, <span class="number">101</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Hypergeometric::new</span>(<span class="number">100</span>, <span class="number">101</span>, <span class="number">101</span>).<span class="ident">is_err</span>());
+        <span class="macro">assert!</span>(<span class="ident">Hypergeometric::new</span>(<span class="number">100</span>, <span class="number">10</span>, <span class="number">5</span>).<span class="ident">is_ok</span>());
     }
 
     <span class="kw">fn</span> <span class="ident">test_hypergeometric_mean_and_variance</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Rng</span><span class="op">&gt;</span>(<span class="ident">n</span>: <span class="ident">u64</span>, <span class="ident">k</span>: <span class="ident">u64</span>, <span class="ident">s</span>: <span class="ident">u64</span>, <span class="ident">rng</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">R</span>)
     {
-        <span class="kw">let</span> <span class="ident">distr</span> <span class="op">=</span> <span class="ident">Hypergeometric</span>::<span class="ident">new</span>(<span class="ident">n</span>, <span class="ident">k</span>, <span class="ident">s</span>).<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">distr</span> <span class="op">=</span> <span class="ident">Hypergeometric::new</span>(<span class="ident">n</span>, <span class="ident">k</span>, <span class="ident">s</span>).<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">expected_mean</span> <span class="op">=</span> <span class="ident">s</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">*</span> <span class="ident">k</span> <span class="kw">as</span> <span class="ident">f64</span> <span class="op">/</span> <span class="ident">n</span> <span class="kw">as</span> <span class="ident">f64</span>;
         <span class="kw">let</span> <span class="ident">expected_variance</span> <span class="op">=</span> {
@@ -814,7 +814,7 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_hypergeometric</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">test</span>::<span class="ident">rng</span>(<span class="number">737</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">737</span>);
 
         <span class="comment">// exercise algorithm HIN:</span>
         <span class="ident">test_hypergeometric_mean_and_variance</span>(<span class="number">500</span>, <span class="number">400</span>, <span class="number">30</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>);
