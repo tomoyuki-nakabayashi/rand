@@ -496,6 +496,11 @@
 <span id="495">495</span>
 <span id="496">496</span>
 <span id="497">497</span>
+<span id="498">498</span>
+<span id="499">499</span>
+<span id="500">500</span>
+<span id="501">501</span>
+<span id="502">502</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2018 Developers of the Rand project.</span>
 <span class="comment">// Copyright 2017-2018 The Rust Project Developers.</span>
@@ -575,12 +580,17 @@
 <span class="doccomment">/// [`next_u32`] or [`next_u64`] since the latter methods are almost always used</span>
 <span class="doccomment">/// with algorithmic generators (PRNGs), which are normally infallible.</span>
 <span class="doccomment">///</span>
+<span class="doccomment">/// Implementers should produce bits uniformly. Pathological RNGs (e.g. always</span>
+<span class="doccomment">/// returning the same value, or never setting certain bits) can break rejection</span>
+<span class="doccomment">/// sampling used by random distributions, and also break other RNGs when</span>
+<span class="doccomment">/// seeding them via [`SeedableRng::from_rng`].</span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// Algorithmic generators implementing [`SeedableRng`] should normally have</span>
 <span class="doccomment">/// *portable, reproducible* output, i.e. fix Endianness when converting values</span>
 <span class="doccomment">/// to avoid platform differences, and avoid making any changes which affect</span>
 <span class="doccomment">/// output (except by communicating that the release has breaking changes).</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Typically implementators will implement only one of the methods available</span>
+<span class="doccomment">/// Typically an RNG will implement only one of the methods available</span>
 <span class="doccomment">/// in this trait directly, then use the helper functions from the</span>
 <span class="doccomment">/// [`impls`] module to implement the other methods.</span>
 <span class="doccomment">///</span>
