@@ -159,6 +159,12 @@
 <span id="158">158</span>
 <span id="159">159</span>
 <span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Copyright 2018 Developers of the Rand project.</span>
 <span class="comment">// Copyright 2017 Paul Dicker.</span>
@@ -191,6 +197,9 @@
 <span class="doccomment">/// Despite the name, this implementation uses 16 bytes (128 bit) space</span>
 <span class="doccomment">/// comprising 64 bits of state and 64 bits stream selector. These are both set</span>
 <span class="doccomment">/// by `SeedableRng`, using a 128-bit seed.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Note that two generators with different stream parameter may be closely</span>
+<span class="doccomment">/// correlated.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde1&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Lcg64Xsh32</span> {
@@ -236,7 +245,10 @@
 
     <span class="doccomment">/// Construct an instance compatible with PCG seed and stream.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that PCG specifies default values for both parameters:</span>
+    <span class="doccomment">/// Note that two generators with different stream parameters may be closely</span>
+    <span class="doccomment">/// correlated.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// PCG specifies the following default values for both parameters:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - `state = 0xcafef00dd15ea5e5`</span>
     <span class="doccomment">/// - `stream = 0xa02bdbf7bb3c0a7`</span>
