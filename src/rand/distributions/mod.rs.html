@@ -377,6 +377,10 @@
 <span id="376">376</span>
 <span id="377">377</span>
 <span id="378">378</span>
+<span id="379">379</span>
+<span id="380">380</span>
+<span id="381">381</span>
+<span id="382">382</span>
 </pre><pre class="rust">
 <span class="comment">// Copyright 2018 Developers of the Rand project.</span>
 <span class="comment">// Copyright 2013-2017 The Rust Project Developers.</span>
@@ -479,7 +483,9 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::bernoulli</span>::{<span class="ident">Bernoulli</span>, <span class="ident">BernoulliError</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::float</span>::{<span class="ident">Open01</span>, <span class="ident">OpenClosed01</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::other::Alphanumeric</span>;
-<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span> <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::uniform::Uniform</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::slice::Slice</span>;
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::uniform::Uniform</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::weighted_index</span>::{<span class="ident">WeightedError</span>, <span class="ident">WeightedIndex</span>};
@@ -487,14 +493,18 @@
 <span class="kw">mod</span> <span class="ident">bernoulli</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">uniform</span>;
 
-<span class="attribute">#[<span class="ident">deprecated</span>(<span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.8.0&quot;</span>, <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;use rand::distributions::{WeightedIndex, WeightedError} instead&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">deprecated</span>(
+    <span class="ident">since</span> <span class="op">=</span> <span class="string">&quot;0.8.0&quot;</span>,
+    <span class="ident">note</span> <span class="op">=</span> <span class="string">&quot;use rand::distributions::{WeightedIndex, WeightedError} instead&quot;</span>
+)]</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)))]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">weighted</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span> <span class="kw">mod</span> <span class="ident">weighted_index</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
+<span class="kw">mod</span> <span class="ident">weighted_index</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde1&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>};
+<span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 
 <span class="kw">mod</span> <span class="ident">float</span>;
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -503,6 +513,7 @@
 }
 <span class="kw">mod</span> <span class="ident">integer</span>;
 <span class="kw">mod</span> <span class="ident">other</span>;
+<span class="kw">mod</span> <span class="ident">slice</span>;
 <span class="kw">mod</span> <span class="ident">utils</span>;
 
 <span class="doccomment">/// Types (distributions) that can be used to create a random instance of `T`.</span>
@@ -580,7 +591,6 @@
     }
 }
 
-
 <span class="doccomment">/// An iterator that generates random values of `T` with distribution `D`,</span>
 <span class="doccomment">/// using `R` as the source of randomness.</span>
 <span class="doccomment">///</span>
@@ -629,7 +639,6 @@
     <span class="ident">R</span>: <span class="ident">Rng</span>,
 {
 }
-
 
 <span class="doccomment">/// A generic random value distribution, implemented for many primitive types.</span>
 <span class="doccomment">/// Usually generates values with a numerically uniform distribution, and with a</span>
@@ -716,7 +725,6 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde1&quot;</span>, <span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>))]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Standard</span>;
-
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
