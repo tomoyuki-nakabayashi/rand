@@ -16,7 +16,7 @@ reading values from the results buffer, as well as
 calling <a href="trait.BlockRngCore.html#tymethod.generate" title="BlockRngCore::generate"><code>BlockRngCore::generate</code></a> directly on the output array when
 <a href="../trait.RngCore.html#tymethod.fill_bytes"><code>fill_bytes</code></a> / <a href="../trait.RngCore.html#tymethod.try_fill_bytes"><code>try_fill_bytes</code></a> is called on a large array. These methods
 also handle the bookkeeping of when to generate a new batch of values.</p>
-<p>No whole generated <code>u32</code> values are thown away and all values are consumed
+<p>No whole generated <code>u32</code> values are thrown away and all values are consumed
 in-order. <a href="../trait.RngCore.html#tymethod.next_u32"><code>next_u32</code></a> simply takes the next available <code>u32</code> value.
 <a href="../trait.RngCore.html#tymethod.next_u64"><code>next_u64</code></a> is implemented by combining two <code>u32</code> values, least
 significant first. <a href="../trait.RngCore.html#tymethod.fill_bytes"><code>fill_bytes</code></a> and <a href="../trait.RngCore.html#tymethod.try_fill_bytes"><code>try_fill_bytes</code></a> consume a whole

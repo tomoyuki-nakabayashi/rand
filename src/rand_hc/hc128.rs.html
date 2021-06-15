@@ -662,7 +662,7 @@
         <span class="kw">let</span> <span class="ident">dd</span> <span class="op">=</span> (<span class="ident">cc</span> <span class="op">+</span> <span class="number">16</span>) <span class="op">%</span> <span class="number">512</span>;
         <span class="kw">let</span> <span class="ident">ee</span> <span class="op">=</span> <span class="ident">cc</span>.<span class="ident">wrapping_sub</span>(<span class="number">16</span>) <span class="op">%</span> <span class="number">512</span>;
         <span class="comment">// These asserts let the compiler optimize out the bounds checks.</span>
-        <span class="comment">// Some of them may be superflous, and that&#39;s fine:</span>
+        <span class="comment">// Some of them may be superfluous, and that&#39;s fine:</span>
         <span class="comment">// they&#39;ll be optimized out if that&#39;s the case.</span>
         <span class="macro">assert!</span>(<span class="ident">ee</span> <span class="op">+</span> <span class="number">15</span> <span class="op">&lt;</span> <span class="number">512</span>);
         <span class="macro">assert!</span>(<span class="ident">cc</span> <span class="op">+</span> <span class="number">15</span> <span class="op">&lt;</span> <span class="number">512</span>);
@@ -758,7 +758,7 @@
         <span class="kw">let</span> <span class="ident">dd</span> <span class="op">=</span> (<span class="ident">cc</span> <span class="op">+</span> <span class="number">16</span>) <span class="op">%</span> <span class="number">512</span>;
         <span class="kw">let</span> <span class="ident">ee</span> <span class="op">=</span> <span class="ident">cc</span>.<span class="ident">wrapping_sub</span>(<span class="number">16</span>) <span class="op">%</span> <span class="number">512</span>;
         <span class="comment">// These asserts let the compiler optimize out the bounds checks.</span>
-        <span class="comment">// Some of them may be superflous, and that&#39;s fine:</span>
+        <span class="comment">// Some of them may be superfluous, and that&#39;s fine:</span>
         <span class="comment">// they&#39;ll be optimized out if that&#39;s the case.</span>
         <span class="macro">assert!</span>(<span class="ident">ee</span> <span class="op">+</span> <span class="number">15</span> <span class="op">&lt;</span> <span class="number">512</span>);
         <span class="macro">assert!</span>(<span class="ident">cc</span> <span class="op">+</span> <span class="number">15</span> <span class="op">&lt;</span> <span class="number">512</span>);

@@ -290,7 +290,7 @@
                 <span class="kw">loop</span> {
                     <span class="comment">// draw from the Cauchy distribution</span>
                     <span class="ident">comp_dev</span> <span class="op">=</span> <span class="ident">rng</span>.<span class="ident">sample</span>(<span class="ident">cauchy</span>);
-                    <span class="comment">// shift the peak of the comparison ditribution</span>
+                    <span class="comment">// shift the peak of the comparison distribution</span>
                     <span class="ident">result</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">sqrt_2lambda</span> <span class="op">*</span> <span class="ident">comp_dev</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">lambda</span>;
                     <span class="comment">// repeat the drawing until we are in the range of possible values</span>
                     <span class="kw">if</span> <span class="ident">result</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">F::zero</span>() {

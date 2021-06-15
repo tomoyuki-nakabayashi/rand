@@ -454,7 +454,7 @@
         <span class="comment">// random variate generation. Commun. ACM 31, 2 (February 1988),</span>
         <span class="comment">// 216-222. http://dx.doi.org/10.1145/42372.42381</span>
 
-        <span class="comment">// Threshold for prefering the BINV algorithm. The paper suggests 10,</span>
+        <span class="comment">// Threshold for preferring the BINV algorithm. The paper suggests 10,</span>
         <span class="comment">// Ranlib uses 30, and GSL uses 14.</span>
         <span class="kw">const</span> <span class="ident">BINV_THRESHOLD</span>: <span class="ident">f64</span> <span class="op">=</span> <span class="number">10.</span>;
 
@@ -591,7 +591,7 @@
                     }
                 }
 
-                <span class="comment">// Step 5.2: Squeezing. Check the value of ln(v) againts upper and</span>
+                <span class="comment">// Step 5.2: Squeezing. Check the value of ln(v) against upper and</span>
                 <span class="comment">// lower bound of ln(f(y)).</span>
                 <span class="kw">let</span> <span class="ident">k</span> <span class="op">=</span> <span class="ident">k</span> <span class="kw">as</span> <span class="ident">f64</span>;
                 <span class="kw">let</span> <span class="ident">rho</span> <span class="op">=</span> (<span class="ident">k</span> <span class="op">/</span> <span class="ident">npq</span>) <span class="op">*</span> ((<span class="ident">k</span> <span class="op">*</span> (<span class="ident">k</span> <span class="op">/</span> <span class="number">3.</span> <span class="op">+</span> <span class="number">0.625</span>) <span class="op">+</span> <span class="number">1.</span> <span class="op">/</span> <span class="number">6.</span>) <span class="op">/</span> <span class="ident">npq</span> <span class="op">+</span> <span class="number">0.5</span>);

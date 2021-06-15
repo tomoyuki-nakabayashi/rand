@@ -264,7 +264,7 @@
 <span class="comment">// `f64` only has 53 bits of precision, and the next largest value of `p` will</span>
 <span class="comment">// result in `2^64 - 2048`.</span>
 <span class="comment">//</span>
-<span class="comment">// Also there is a 100% theoretical concern: if someone consistenly wants to</span>
+<span class="comment">// Also there is a 100% theoretical concern: if someone consistently wants to</span>
 <span class="comment">// generate `true` using the Bernoulli distribution (i.e. by using a probability</span>
 <span class="comment">// of `1.0`), just using `u64::MAX` is not enough. On average it would return</span>
 <span class="comment">// false once every 2^64 iterations. Some people apparently care about this</span>
