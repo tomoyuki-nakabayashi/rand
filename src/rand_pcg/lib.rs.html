@@ -42,7 +42,6 @@
 <span id="42">42</span>
 <span id="43">43</span>
 <span id="44">44</span>
-<span id="45">45</span>
 </pre><pre class="rust">
 <span class="comment">// Copyright 2018 Developers of the Rand project.</span>
 <span class="comment">//</span>
@@ -83,10 +82,9 @@
 <span class="attribute">#![<span class="ident">deny</span>(<span class="ident">missing_debug_implementations</span>)]</span>
 <span class="attribute">#![<span class="ident">no_std</span>]</span>
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;emscripten&quot;</span>))]</span> <span class="kw">mod</span> <span class="ident">pcg128</span>;
+<span class="kw">mod</span> <span class="ident">pcg128</span>;
 <span class="kw">mod</span> <span class="ident">pcg64</span>;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;emscripten&quot;</span>))]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::pcg128</span>::{<span class="ident">Lcg128Xsl64</span>, <span class="ident">Mcg128Xsl64</span>, <span class="ident">Pcg64</span>, <span class="ident">Pcg64Mcg</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::pcg64</span>::{<span class="ident">Lcg64Xsh32</span>, <span class="ident">Pcg32</span>};
 </pre></div>

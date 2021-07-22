@@ -427,10 +427,6 @@
 <span id="427">427</span>
 <span id="428">428</span>
 <span id="429">429</span>
-<span id="430">430</span>
-<span id="431">431</span>
-<span id="432">432</span>
-<span id="433">433</span>
 </pre><pre class="rust">
 <span class="comment">// Copyright 2018 Developers of the Rand project.</span>
 <span class="comment">//</span>
@@ -490,7 +486,6 @@
 <span class="macro">wmul_impl!</span> { <span class="ident">u8</span>, <span class="ident">u16</span>, <span class="number">8</span> }
 <span class="macro">wmul_impl!</span> { <span class="ident">u16</span>, <span class="ident">u32</span>, <span class="number">16</span> }
 <span class="macro">wmul_impl!</span> { <span class="ident">u32</span>, <span class="ident">u64</span>, <span class="number">32</span> }
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;emscripten&quot;</span>))]</span>
 <span class="macro">wmul_impl!</span> { <span class="ident">u64</span>, <span class="ident">u128</span>, <span class="number">64</span> }
 
 <span class="comment">// This code is a translation of the __mulddi3 function in LLVM&#39;s</span>
@@ -554,9 +549,6 @@
         )<span class="op">+</span>
     };
 }
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;emscripten&quot;</span>)]</span>
-<span class="macro">wmul_impl_large!</span> { <span class="ident">u64</span>, <span class="number">32</span> }
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;emscripten&quot;</span>))]</span>
 <span class="macro">wmul_impl_large!</span> { <span class="ident">u128</span>, <span class="number">64</span> }
 
 <span class="macro">macro_rules!</span> <span class="ident">wmul_impl_usize</span> {
