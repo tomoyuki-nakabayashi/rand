@@ -11,7 +11,6 @@ sourcesIndex["rand"] = {"name":"","dirs":[{"name":"distributions","files":["bern
 sourcesIndex["rand_chacha"] = {"name":"","files":["chacha.rs","guts.rs","lib.rs"]};
 sourcesIndex["rand_core"] = {"name":"","files":["block.rs","error.rs","impls.rs","le.rs","lib.rs","os.rs"]};
 sourcesIndex["rand_distr"] = {"name":"","files":["binomial.rs","cauchy.rs","dirichlet.rs","exponential.rs","gamma.rs","geometric.rs","hypergeometric.rs","inverse_gaussian.rs","lib.rs","normal.rs","normal_inverse_gaussian.rs","pareto.rs","pert.rs","poisson.rs","triangular.rs","unit_ball.rs","unit_circle.rs","unit_disc.rs","unit_sphere.rs","utils.rs","weibull.rs","weighted_alias.rs","ziggurat_tables.rs","zipf.rs"]};
-sourcesIndex["rand_hc"] = {"name":"","files":["hc128.rs","lib.rs"]};
 sourcesIndex["rand_pcg"] = {"name":"","files":["lib.rs","pcg128.rs","pcg64.rs"]};
 sourcesIndex["serde"] = {"name":"","dirs":[{"name":"de","files":["ignored_any.rs","impls.rs","mod.rs","seed.rs","utf8.rs","value.rs"]},{"name":"private","files":["de.rs","doc.rs","mod.rs","ser.rs","size_hint.rs"]},{"name":"ser","files":["fmt.rs","impls.rs","impossible.rs","mod.rs"]}],"files":["integer128.rs","lib.rs","macros.rs"]};
 sourcesIndex["serde_derive"] = {"name":"","dirs":[{"name":"internals","files":["ast.rs","attr.rs","case.rs","check.rs","ctxt.rs","mod.rs","receiver.rs","respan.rs","symbol.rs"]}],"files":["bound.rs","de.rs","dummy.rs","fragment.rs","lib.rs","pretend.rs","ser.rs","try.rs"]};
