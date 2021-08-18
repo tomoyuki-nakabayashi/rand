@@ -332,7 +332,7 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_dirichlet</span>() {
         <span class="kw">let</span> <span class="ident">d</span> <span class="op">=</span> <span class="ident">Dirichlet::new</span>(<span class="kw-2">&amp;</span>[<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>]).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">221</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>(<span class="number">221</span>);
         <span class="kw">let</span> <span class="ident">samples</span> <span class="op">=</span> <span class="ident">d</span>.<span class="ident">sample</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>);
         <span class="kw">let</span> <span class="kw">_</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">samples</span>
             .<span class="ident">into_iter</span>()
@@ -348,7 +348,7 @@
         <span class="kw">let</span> <span class="ident">alpha</span> <span class="op">=</span> <span class="number">0.5f64</span>;
         <span class="kw">let</span> <span class="ident">size</span> <span class="op">=</span> <span class="number">2</span>;
         <span class="kw">let</span> <span class="ident">d</span> <span class="op">=</span> <span class="ident">Dirichlet::new_with_size</span>(<span class="ident">alpha</span>, <span class="ident">size</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">221</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>(<span class="number">221</span>);
         <span class="kw">let</span> <span class="ident">samples</span> <span class="op">=</span> <span class="ident">d</span>.<span class="ident">sample</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>);
         <span class="kw">let</span> <span class="kw">_</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">samples</span>
             .<span class="ident">into_iter</span>()

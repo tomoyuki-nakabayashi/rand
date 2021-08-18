@@ -223,8 +223,8 @@
 
 <span class="doccomment">//! The Bernoulli distribution.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::distributions::Distribution</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Rng</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::distributions::Distribution</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Rng</span>;
 <span class="kw">use</span> <span class="ident">core</span>::{<span class="ident">fmt</span>, <span class="ident">u64</span>};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde1&quot;</span>)]</span>
@@ -357,9 +357,9 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="kw">super</span><span class="ident">::Bernoulli</span>;
-    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::distributions::Distribution</span>;
-    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Rng</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::Bernoulli</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::distributions::Distribution</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Rng</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;serde1&quot;</span>)]</span>
@@ -375,7 +375,7 @@
         <span class="comment">// We prefer to be explicit here.</span>
         <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::bool_assert_comparison</span>)]</span>
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">1</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>(<span class="number">1</span>);
         <span class="kw">let</span> <span class="ident">always_false</span> <span class="op">=</span> <span class="ident">Bernoulli::new</span>(<span class="number">0.0</span>).<span class="ident">unwrap</span>();
         <span class="kw">let</span> <span class="ident">always_true</span> <span class="op">=</span> <span class="ident">Bernoulli::new</span>(<span class="number">1.0</span>).<span class="ident">unwrap</span>();
         <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">5</span> {
@@ -398,7 +398,7 @@
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sum1</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sum2</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">2</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>(<span class="number">2</span>);
         <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">N</span> {
             <span class="kw">if</span> <span class="ident">d1</span>.<span class="ident">sample</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>) {
                 <span class="ident">sum1</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
@@ -416,7 +416,7 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">value_stability</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">3</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>(<span class="number">3</span>);
         <span class="kw">let</span> <span class="ident">distr</span> <span class="op">=</span> <span class="ident">Bernoulli::new</span>(<span class="number">0.4532</span>).<span class="ident">unwrap</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> [<span class="bool-val">false</span>; <span class="number">10</span>];
         <span class="kw">for</span> <span class="ident">x</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span> {

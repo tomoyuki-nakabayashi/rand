@@ -282,7 +282,7 @@
 
 <span class="doccomment">//! Distribution trait and associates</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Rng</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Rng</span>;
 <span class="kw">use</span> <span class="ident">core::iter</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">alloc::string::String</span>;
@@ -482,13 +482,13 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::distributions</span>::{<span class="ident">Alphanumeric</span>, <span class="ident">Distribution</span>, <span class="ident">Standard</span>, <span class="ident">Uniform</span>};
-    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Rng</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::distributions</span>::{<span class="ident">Alphanumeric</span>, <span class="ident">Distribution</span>, <span class="ident">Standard</span>, <span class="ident">Uniform</span>};
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Rng</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_distributions_iter</span>() {
-        <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::distributions::Open01</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">210</span>);
+        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::distributions::Open01</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>(<span class="number">210</span>);
         <span class="kw">let</span> <span class="ident">distr</span> <span class="op">=</span> <span class="ident">Open01</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">iter</span> <span class="op">=</span> <span class="ident">Distribution</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span><span class="ident">::sample_iter</span>(<span class="ident">distr</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sum</span>: <span class="ident">f32</span> <span class="op">=</span> <span class="number">0.</span>;
@@ -502,7 +502,7 @@
     <span class="kw">fn</span> <span class="ident">test_distributions_map</span>() {
         <span class="kw">let</span> <span class="ident">dist</span> <span class="op">=</span> <span class="ident">Uniform::new_inclusive</span>(<span class="number">0</span>, <span class="number">5</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">val</span><span class="op">|</span> <span class="ident">val</span> <span class="op">+</span> <span class="number">15</span>);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">212</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>(<span class="number">212</span>);
         <span class="kw">let</span> <span class="ident">val</span> <span class="op">=</span> <span class="ident">dist</span>.<span class="ident">sample</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>);
         <span class="macro">assert!</span>(<span class="ident">val</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">15</span> <span class="op">&amp;&amp;</span> <span class="ident">val</span> <span class="op">&lt;</span><span class="op">=</span> <span class="number">20</span>);
     }
@@ -518,7 +518,7 @@
                 .<span class="ident">take</span>(<span class="number">10</span>)
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">211</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>(<span class="number">211</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">count</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="kw">for</span> <span class="ident">val</span> <span class="kw">in</span> <span class="ident">ten_dice_rolls_other_than_five</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>) {
             <span class="macro">assert!</span>((<span class="number">1</span>..<span class="op">=</span><span class="number">6</span>).<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="ident">val</span>) <span class="op">&amp;&amp;</span> <span class="ident">val</span> <span class="op">!</span><span class="op">=</span> <span class="number">5</span>);
@@ -531,8 +531,8 @@
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">test_dist_string</span>() {
         <span class="kw">use</span> <span class="ident">core::str</span>;
-        <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::distributions::DistString</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">213</span>);
+        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::distributions::DistString</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>(<span class="number">213</span>);
 
         <span class="kw">let</span> <span class="ident">s1</span> <span class="op">=</span> <span class="ident">Alphanumeric</span>.<span class="ident">sample_string</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>, <span class="number">20</span>);
         <span class="macro">assert_eq!</span>(<span class="ident">s1</span>.<span class="ident">len</span>(), <span class="number">20</span>);

@@ -249,8 +249,8 @@
 <span class="kw">mod</span> <span class="ident">test</span> {
     <span class="kw">use</span> <span class="ident">std::println</span>;
 
-    <span class="kw">use</span> <span class="kw">super</span><span class="ident">::ReadRng</span>;
-    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::RngCore</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::ReadRng</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::RngCore</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_reader_rng_u64</span>() {

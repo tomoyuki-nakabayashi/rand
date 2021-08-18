@@ -95,7 +95,7 @@
 
 <span class="kw">impl</span> <span class="ident">LazyUsize</span> {
     <span class="kw">pub</span> <span class="kw">const</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span>(<span class="ident">AtomicUsize::new</span>(<span class="self">Self</span><span class="ident">::UNINIT</span>))
+        <span class="self">Self</span>(<span class="ident">AtomicUsize::new</span>(<span class="ident"><span class="self">Self</span>::UNINIT</span>))
     }
 
     <span class="comment">// The initialization is not completed.</span>
@@ -107,7 +107,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unsync_init</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">init</span>: <span class="kw">impl</span> <span class="ident">FnOnce</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
         <span class="comment">// Relaxed ordering is fine, as we only have a single atomic variable.</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">val</span> <span class="op">=</span> <span class="self">self</span>.<span class="number">0</span>.<span class="ident">load</span>(<span class="ident">Relaxed</span>);
-        <span class="kw">if</span> <span class="ident">val</span> <span class="op">=</span><span class="op">=</span> <span class="self">Self</span><span class="ident">::UNINIT</span> {
+        <span class="kw">if</span> <span class="ident">val</span> <span class="op">=</span><span class="op">=</span> <span class="ident"><span class="self">Self</span>::UNINIT</span> {
             <span class="ident">val</span> <span class="op">=</span> <span class="ident">init</span>();
             <span class="self">self</span>.<span class="number">0</span>.<span class="ident">store</span>(<span class="ident">val</span>, <span class="ident">Relaxed</span>);
         }

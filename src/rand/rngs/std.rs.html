@@ -158,7 +158,7 @@
     <span class="kw">type</span> <span class="ident">Seed</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">Rng</span> <span class="kw">as</span> <span class="ident">SeedableRng</span><span class="op">&gt;</span><span class="ident">::Seed</span>;
 
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">from_seed</span>(<span class="ident">seed</span>: <span class="self">Self</span><span class="ident">::Seed</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">fn</span> <span class="ident">from_seed</span>(<span class="ident">seed</span>: <span class="ident"><span class="self">Self</span>::Seed</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="ident">StdRng</span>(<span class="ident">Rng::from_seed</span>(<span class="ident">seed</span>))
     }
 
@@ -173,7 +173,7 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::rngs::StdRng</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::rngs::StdRng</span>;
     <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">RngCore</span>, <span class="ident">SeedableRng</span>};
 
     <span class="attribute">#[<span class="ident">test</span>]</span>

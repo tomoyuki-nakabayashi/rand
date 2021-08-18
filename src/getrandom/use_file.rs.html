@@ -248,7 +248,7 @@
             <span class="macro">debug_assert_eq!</span>(<span class="ident">res</span>, <span class="number">1</span>); <span class="comment">// We only used one fd, and cannot timeout.</span>
             <span class="kw">return</span> <span class="prelude-val">Ok</span>(());
         }
-        <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::util_libc::last_os_error</span>();
+        <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::util_libc::last_os_error</span>();
         <span class="kw">match</span> <span class="ident">err</span>.<span class="ident">raw_os_error</span>() {
             <span class="prelude-val">Some</span>(<span class="ident">libc::EINTR</span>) <span class="op">|</span> <span class="prelude-val">Some</span>(<span class="ident">libc::EAGAIN</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw">continue</span>,
             <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">err</span>),

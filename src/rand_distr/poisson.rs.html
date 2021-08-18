@@ -257,7 +257,7 @@
             <span class="ident">exp_lambda</span>: (<span class="op">-</span><span class="ident">lambda</span>).<span class="ident">exp</span>(),
             <span class="ident">log_lambda</span>,
             <span class="ident">sqrt_2lambda</span>: (<span class="ident">F::from</span>(<span class="number">2.0</span>).<span class="ident">unwrap</span>() <span class="op">*</span> <span class="ident">lambda</span>).<span class="ident">sqrt</span>(),
-            <span class="ident">magic_val</span>: <span class="ident">lambda</span> <span class="op">*</span> <span class="ident">log_lambda</span> <span class="op">-</span> <span class="kw">crate</span><span class="ident">::utils::log_gamma</span>(<span class="ident">F::one</span>() <span class="op">+</span> <span class="ident">lambda</span>),
+            <span class="ident">magic_val</span>: <span class="ident">lambda</span> <span class="op">*</span> <span class="ident">log_lambda</span> <span class="op">-</span> <span class="ident"><span class="kw">crate</span>::utils::log_gamma</span>(<span class="ident">F::one</span>() <span class="op">+</span> <span class="ident">lambda</span>),
         })
     }
 }
@@ -310,7 +310,7 @@
                 <span class="kw">let</span> <span class="ident">check</span> <span class="op">=</span> <span class="ident">F::from</span>(<span class="number">0.9</span>).<span class="ident">unwrap</span>()
                     <span class="op">*</span> (<span class="ident">F::one</span>() <span class="op">+</span> <span class="ident">comp_dev</span> <span class="op">*</span> <span class="ident">comp_dev</span>)
                     <span class="op">*</span> (<span class="ident">result</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">log_lambda</span>
-                        <span class="op">-</span> <span class="kw">crate</span><span class="ident">::utils::log_gamma</span>(<span class="ident">F::one</span>() <span class="op">+</span> <span class="ident">result</span>)
+                        <span class="op">-</span> <span class="ident"><span class="kw">crate</span>::utils::log_gamma</span>(<span class="ident">F::one</span>() <span class="op">+</span> <span class="ident">result</span>)
                         <span class="op">-</span> <span class="self">self</span>.<span class="ident">magic_val</span>)
                         .<span class="ident">exp</span>();
 
@@ -332,7 +332,7 @@
         <span class="kw">where</span> <span class="ident">Standard</span>: <span class="ident">Distribution</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>
     {
         <span class="kw">let</span> <span class="ident">poisson</span> <span class="op">=</span> <span class="ident">Poisson::new</span>(<span class="ident">lambda</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">123</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>(<span class="number">123</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sum</span> <span class="op">=</span> <span class="ident">F::zero</span>();
         <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">1000</span> {
             <span class="ident">sum</span> <span class="op">=</span> <span class="ident">sum</span> <span class="op">+</span> <span class="ident">poisson</span>.<span class="ident">sample</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>);

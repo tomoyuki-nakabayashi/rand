@@ -324,7 +324,7 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">hidden_export</span> {
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::float::IntoFloat</span>; <span class="comment">// used by rand_distr</span>
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::float::IntoFloat</span>; <span class="comment">// used by rand_distr</span>
 }
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">uniform</span>;
 <span class="attribute">#[<span class="ident">deprecated</span>(
@@ -335,20 +335,20 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)))]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">weighted</span>;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::bernoulli</span>::{<span class="ident">Bernoulli</span>, <span class="ident">BernoulliError</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::distribution</span>::{<span class="ident">Distribution</span>, <span class="ident">DistIter</span>, <span class="ident">DistMap</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::bernoulli</span>::{<span class="ident">Bernoulli</span>, <span class="ident">BernoulliError</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::distribution</span>::{<span class="ident">Distribution</span>, <span class="ident">DistIter</span>, <span class="ident">DistMap</span>};
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::distribution::DistString</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::float</span>::{<span class="ident">Open01</span>, <span class="ident">OpenClosed01</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::other::Alphanumeric</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::slice::Slice</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::distribution::DistString</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::float</span>::{<span class="ident">Open01</span>, <span class="ident">OpenClosed01</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::other::Alphanumeric</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::slice::Slice</span>;
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">inline</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::uniform::Uniform</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::uniform::Uniform</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::weighted_index</span>::{<span class="ident">WeightedError</span>, <span class="ident">WeightedIndex</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::weighted_index</span>::{<span class="ident">WeightedError</span>, <span class="ident">WeightedIndex</span>};
 
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused</span>)]</span>
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Rng</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Rng</span>;
 
 <span class="doccomment">/// A generic random value distribution, implemented for many primitive types.</span>
 <span class="doccomment">/// Usually generates values with a numerically uniform distribution, and with a</span>

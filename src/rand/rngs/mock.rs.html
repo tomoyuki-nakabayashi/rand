@@ -163,7 +163,7 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde1&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">test_serialization_step_rng</span>() {
-        <span class="kw">use</span> <span class="kw">super</span><span class="ident">::StepRng</span>;
+        <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::StepRng</span>;
 
         <span class="kw">let</span> <span class="ident">some_rng</span> <span class="op">=</span> <span class="ident">StepRng::new</span>(<span class="number">42</span>, <span class="number">7</span>);
         <span class="kw">let</span> <span class="ident">de_some_rng</span>: <span class="ident">StepRng</span> <span class="op">=</span>

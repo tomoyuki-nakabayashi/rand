@@ -123,12 +123,12 @@
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
-    <span class="kw">use</span> <span class="kw">super</span><span class="ident">::UnitCircle</span>;
-    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Distribution</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::UnitCircle</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Distribution</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">norm</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">1</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>(<span class="number">1</span>);
         <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="number">1000</span> {
             <span class="kw">let</span> <span class="ident">x</span>: [<span class="ident">f64</span>; <span class="number">2</span>] <span class="op">=</span> <span class="ident">UnitCircle</span>.<span class="ident">sample</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>);
             <span class="macro">assert_almost_eq!</span>(<span class="ident">x</span>[<span class="number">0</span>] <span class="op">*</span> <span class="ident">x</span>[<span class="number">0</span>] <span class="op">+</span> <span class="ident">x</span>[<span class="number">1</span>] <span class="op">*</span> <span class="ident">x</span>[<span class="number">1</span>], <span class="number">1.</span>, <span class="number">1e-15</span>);

@@ -421,7 +421,7 @@
 </pre><pre class="rust">
 <span class="doccomment">//! The hypergeometric distribution.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Distribution</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Distribution</span>;
 <span class="kw">use</span> <span class="ident">rand::Rng</span>;
 <span class="kw">use</span> <span class="ident">rand::distributions::uniform::Uniform</span>;
 <span class="kw">use</span> <span class="ident">core::fmt</span>;
@@ -825,7 +825,7 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_hypergeometric</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">737</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>(<span class="number">737</span>);
 
         <span class="comment">// exercise algorithm HIN:</span>
         <span class="ident">test_hypergeometric_mean_and_variance</span>(<span class="number">500</span>, <span class="number">400</span>, <span class="number">30</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>);

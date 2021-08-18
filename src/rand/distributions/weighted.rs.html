@@ -68,7 +68,7 @@
     <span class="comment">// compile errors, but still fails to compile if ever used.</span>
     <span class="kw">use</span> <span class="ident">core::marker::PhantomData</span>;
     <span class="kw">use</span> <span class="ident">alloc::vec::Vec</span>;
-    <span class="kw">use</span> <span class="kw">super</span><span class="ident">::WeightedError</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::WeightedError</span>;
 
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WeightedIndex</span><span class="op">&lt;</span><span class="ident">W</span>: <span class="ident">Weight</span><span class="op">&gt;</span> {

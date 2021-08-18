@@ -237,7 +237,7 @@
 </pre><pre class="rust">
 <span class="doccomment">//! The geometric distribution.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Distribution</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Distribution</span>;
 <span class="kw">use</span> <span class="ident">rand::Rng</span>;
 <span class="kw">use</span> <span class="ident">core::fmt</span>;
 
@@ -441,7 +441,7 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_geometric</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">12345</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>(<span class="number">12345</span>);
 
         <span class="ident">test_geo_mean_and_variance</span>(<span class="number">0.10</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>);
         <span class="ident">test_geo_mean_and_variance</span>(<span class="number">0.25</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span>);
@@ -452,7 +452,7 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_standard_geometric</span>() {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::test::rng</span>(<span class="number">654321</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>(<span class="number">654321</span>);
 
         <span class="kw">let</span> <span class="ident">distr</span> <span class="op">=</span> <span class="ident">StandardGeometric</span>;
         <span class="kw">let</span> <span class="ident">expected_mean</span> <span class="op">=</span> <span class="number">1.0</span>;

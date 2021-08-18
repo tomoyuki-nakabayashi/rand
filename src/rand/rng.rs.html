@@ -611,8 +611,8 @@
 <span class="doccomment">//! [`Rng`] trait</span>
 
 <span class="kw">use</span> <span class="ident">rand_core</span>::{<span class="ident">Error</span>, <span class="ident">RngCore</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::distributions::uniform</span>::{<span class="ident">SampleRange</span>, <span class="ident">SampleUniform</span>};
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::distributions</span>::{<span class="self">self</span>, <span class="ident">Distribution</span>, <span class="ident">Standard</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::distributions::uniform</span>::{<span class="ident">SampleRange</span>, <span class="ident">SampleUniform</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::distributions</span>::{<span class="self">self</span>, <span class="ident">Distribution</span>, <span class="ident">Standard</span>};
 <span class="kw">use</span> <span class="ident">core::num::Wrapping</span>;
 <span class="kw">use</span> <span class="ident">core</span>::{<span class="ident">mem</span>, <span class="ident">slice</span>};
 
@@ -1032,8 +1032,8 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">test</span> {
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
-    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::test::rng</span>;
-    <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::rngs::mock::StepRng</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>;
+    <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::rngs::mock::StepRng</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span> <span class="kw">use</span> <span class="ident">alloc::boxed::Box</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -1159,7 +1159,7 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_rng_trait_object</span>() {
-        <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::distributions</span>::{<span class="ident">Distribution</span>, <span class="ident">Standard</span>};
+        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::distributions</span>::{<span class="ident">Distribution</span>, <span class="ident">Standard</span>};
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident">rng</span>(<span class="number">109</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">rng</span> <span class="kw">as</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> <span class="ident">RngCore</span>;
         <span class="ident">r</span>.<span class="ident">next_u32</span>();
@@ -1171,7 +1171,7 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">test_rng_boxed_trait</span>() {
-        <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::distributions</span>::{<span class="ident">Distribution</span>, <span class="ident">Standard</span>};
+        <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::distributions</span>::{<span class="ident">Distribution</span>, <span class="ident">Standard</span>};
         <span class="kw">let</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident">rng</span>(<span class="number">110</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r</span> <span class="op">=</span> <span class="ident">Box::new</span>(<span class="ident">rng</span>) <span class="kw">as</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">RngCore</span><span class="op">&gt;</span>;
         <span class="ident">r</span>.<span class="ident">next_u32</span>();

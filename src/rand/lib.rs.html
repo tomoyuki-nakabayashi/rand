@@ -319,11 +319,11 @@
 
 <span class="comment">// Public exports</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std_rng&quot;</span>))]</span>
-<span class="kw">pub</span> <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::rngs::thread::thread_rng</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::rngs::thread::thread_rng</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">rng</span>::{<span class="ident">Fill</span>, <span class="ident">Rng</span>};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std_rng&quot;</span>))]</span>
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::distributions</span>::{<span class="ident">Distribution</span>, <span class="ident">Standard</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::distributions</span>::{<span class="ident">Distribution</span>, <span class="ident">Standard</span>};
 
 <span class="doccomment">/// Generates a random value using the thread-local random number generator.</span>
 <span class="doccomment">///</span>
