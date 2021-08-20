@@ -18,8 +18,7 @@
 <span id="18">18</span>
 <span id="19">19</span>
 <span id="20">20</span>
-</pre><pre class="rust">
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frexp</span>(<span class="ident">x</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">f64</span>, <span class="ident">i32</span>) {
+</pre><pre class="rust"><code><span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frexp</span>(<span class="ident">x</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">f64</span>, <span class="ident">i32</span>) {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">to_bits</span>();
     <span class="kw">let</span> <span class="ident">ee</span> <span class="op">=</span> ((<span class="ident">y</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">52</span>) <span class="op">&amp;</span> <span class="number">0x7ff</span>) <span class="kw">as</span> <span class="ident">i32</span>;
 
@@ -39,7 +38,7 @@
     <span class="ident">y</span> <span class="op">|</span><span class="op">=</span> <span class="number">0x3fe0000000000000</span>;
     <span class="kw">return</span> (<span class="ident">f64::from_bits</span>(<span class="ident">y</span>), <span class="ident">e</span>);
 }
-</pre></div>
+</code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="libm" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
     <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
 </body></html>
