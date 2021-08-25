@@ -291,7 +291,7 @@
 
 <span class="kw">impl</span> <span class="ident">Geometric</span> {
     <span class="doccomment">/// Construct a new `Geometric` with the given shape parameter `p`</span>
-    <span class="doccomment">/// (probablity of success on each trial).</span>
+    <span class="doccomment">/// (probability of success on each trial).</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">p</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="op">!</span><span class="ident">p</span>.<span class="ident">is_finite</span>() <span class="op">|</span><span class="op">|</span> <span class="ident">p</span> <span class="op">&lt;</span> <span class="number">0.0</span> <span class="op">|</span><span class="op">|</span> <span class="ident">p</span> <span class="op">&gt;</span> <span class="number">1.0</span> {
             <span class="prelude-val">Err</span>(<span class="ident">Error::InvalidProbability</span>)

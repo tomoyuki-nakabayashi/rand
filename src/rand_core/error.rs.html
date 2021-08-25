@@ -310,7 +310,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This method is identical to `std::io::Error::raw_os_error()`, except</span>
     <span class="doccomment">/// that it works in `no_std` contexts. If this method returns `None`, the</span>
-    <span class="doccomment">/// error value can still be formatted via the `Diplay` implementation.</span>
+    <span class="doccomment">/// error value can still be formatted via the `Display` implementation.</span>
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">raw_os_error</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span> {
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>

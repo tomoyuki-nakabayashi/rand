@@ -346,7 +346,6 @@
 <span id="346">346</span>
 <span id="347">347</span>
 <span id="348">348</span>
-<span id="349">349</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2018 Developers of the Rand project.</span>
 <span class="comment">// Copyright 2016-2017 The Rust Project Developers.</span>
 <span class="comment">//</span>
@@ -422,8 +421,7 @@
     }
 }
 
-<span class="doccomment">/// Convert a `f64` to an `i64`, panicing on overflow.</span>
-<span class="comment">// In the future (Rust 1.34), this might be replaced with `TryFrom`.</span>
+<span class="doccomment">/// Convert a `f64` to an `i64`, panicking on overflow.</span>
 <span class="kw">fn</span> <span class="ident">f64_to_i64</span>(<span class="ident">x</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i64</span> {
     <span class="macro">assert!</span>(<span class="ident">x</span> <span class="op">&lt;</span> (<span class="ident">core::i64::MAX</span> <span class="kw">as</span> <span class="ident">f64</span>));
     <span class="ident">x</span> <span class="kw">as</span> <span class="ident">i64</span>
