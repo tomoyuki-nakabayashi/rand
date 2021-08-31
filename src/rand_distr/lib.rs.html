@@ -202,6 +202,9 @@
 <span id="202">202</span>
 <span id="203">203</span>
 <span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2019 Developers of the Rand project.</span>
 <span class="comment">//</span>
 <span class="comment">// Licensed under the Apache License, Version 2.0 &lt;LICENSE-APACHE or</span>
@@ -260,6 +263,7 @@
 <span class="doccomment">//!   - [`Poisson`] distribution</span>
 <span class="doccomment">//!   - [`Exp`]onential distribution, and [`Exp1`] as a primitive</span>
 <span class="doccomment">//!   - [`Weibull`] distribution</span>
+<span class="doccomment">//!   - [`Gumbel`] distribution</span>
 <span class="doccomment">//!   - [`Zeta`] distribution</span>
 <span class="doccomment">//!   - [`Zipf`] distribution</span>
 <span class="doccomment">//! - Gamma and derived distributions:</span>
@@ -308,6 +312,7 @@
     <span class="ident">Gamma</span>, <span class="ident">StudentT</span>,
 };
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::geometric</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">GeoError</span>, <span class="ident">Geometric</span>, <span class="ident">StandardGeometric</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gumbel</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">GumbelError</span>, <span class="ident">Gumbel</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::hypergeometric</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">HyperGeoError</span>, <span class="ident">Hypergeometric</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::inverse_gaussian</span>::{<span class="ident">InverseGaussian</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">InverseGaussianError</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::normal</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">NormalError</span>, <span class="ident">LogNormal</span>, <span class="ident">Normal</span>, <span class="ident">StandardNormal</span>};
@@ -390,6 +395,7 @@
 <span class="kw">mod</span> <span class="ident">exponential</span>;
 <span class="kw">mod</span> <span class="ident">gamma</span>;
 <span class="kw">mod</span> <span class="ident">geometric</span>;
+<span class="kw">mod</span> <span class="ident">gumbel</span>;
 <span class="kw">mod</span> <span class="ident">hypergeometric</span>;
 <span class="kw">mod</span> <span class="ident">inverse_gaussian</span>;
 <span class="kw">mod</span> <span class="ident">normal</span>;
