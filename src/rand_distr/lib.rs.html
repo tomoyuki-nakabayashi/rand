@@ -205,6 +205,9 @@
 <span id="205">205</span>
 <span id="206">206</span>
 <span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2019 Developers of the Rand project.</span>
 <span class="comment">//</span>
 <span class="comment">// Licensed under the Apache License, Version 2.0 &lt;LICENSE-APACHE or</span>
@@ -264,6 +267,7 @@
 <span class="doccomment">//!   - [`Exp`]onential distribution, and [`Exp1`] as a primitive</span>
 <span class="doccomment">//!   - [`Weibull`] distribution</span>
 <span class="doccomment">//!   - [`Gumbel`] distribution</span>
+<span class="doccomment">//!   - [`Frechet`] distribution</span>
 <span class="doccomment">//!   - [`Zeta`] distribution</span>
 <span class="doccomment">//!   - [`Zipf`] distribution</span>
 <span class="doccomment">//! - Gamma and derived distributions:</span>
@@ -307,6 +311,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">doc_cfg</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)))]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::dirichlet</span>::{<span class="ident">Dirichlet</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">DirichletError</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::exponential</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">ExpError</span>, <span class="ident">Exp</span>, <span class="ident">Exp1</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::frechet</span>::{<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">FrechetError</span>, <span class="ident">Frechet</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="self">self</span>::gamma</span>::{
     <span class="ident">Beta</span>, <span class="ident">BetaError</span>, <span class="ident">ChiSquared</span>, <span class="ident">ChiSquaredError</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">GammaError</span>, <span class="ident">FisherF</span>, <span class="ident">FisherFError</span>,
     <span class="ident">Gamma</span>, <span class="ident">StudentT</span>,
@@ -393,6 +398,7 @@
 <span class="kw">mod</span> <span class="ident">cauchy</span>;
 <span class="kw">mod</span> <span class="ident">dirichlet</span>;
 <span class="kw">mod</span> <span class="ident">exponential</span>;
+<span class="kw">mod</span> <span class="ident">frechet</span>;
 <span class="kw">mod</span> <span class="ident">gamma</span>;
 <span class="kw">mod</span> <span class="ident">geometric</span>;
 <span class="kw">mod</span> <span class="ident">gumbel</span>;
