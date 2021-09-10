@@ -694,11 +694,11 @@
 <span class="kw">use</span> <span class="ident">alloc::collections::BTreeSet</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span> <span class="kw">use</span> <span class="ident">std::collections::HashSet</span>;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::distributions</span>::{<span class="ident">uniform::SampleUniform</span>, <span class="ident">Distribution</span>, <span class="ident">Uniform</span>};
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::distributions::WeightedError</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::Rng</span>;
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Rng</span>, <span class="ident">distributions</span>::{<span class="ident">uniform::SampleUniform</span>, <span class="ident">Distribution</span>, <span class="ident">Uniform</span>}};
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde1&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>};
@@ -1058,7 +1058,7 @@
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;nightly&quot;</span>))]</span>
     {
-        <span class="kw">use</span> <span class="ident">std::collections::BinaryHeap</span>;
+        <span class="kw">use</span> <span class="ident">alloc::collections::BinaryHeap</span>;
 
         <span class="comment">// Partially sort the array such that the `amount` elements with the largest</span>
         <span class="comment">// keys are first using a binary max heap.</span>

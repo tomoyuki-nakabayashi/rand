@@ -1645,10 +1645,6 @@
 <span id="1645">1645</span>
 <span id="1646">1646</span>
 <span id="1647">1647</span>
-<span id="1648">1648</span>
-<span id="1649">1649</span>
-<span id="1650">1650</span>
-<span id="1651">1651</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2018-2020 Developers of the Rand project.</span>
 <span class="comment">// Copyright 2017 The Rust Project Developers.</span>
 <span class="comment">//</span>
@@ -1754,8 +1750,7 @@
 <span class="doccomment">//! [`UniformDuration`]: crate::distributions::uniform::UniformDuration</span>
 <span class="doccomment">//! [`SampleBorrow::borrow`]: crate::distributions::uniform::SampleBorrow::borrow</span>
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>))]</span> <span class="kw">use</span> <span class="ident">core::time::Duration</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span> <span class="kw">use</span> <span class="ident">std::time::Duration</span>;
+<span class="kw">use</span> <span class="ident">core::time::Duration</span>;
 <span class="kw">use</span> <span class="ident">core::ops</span>::{<span class="ident">Range</span>, <span class="ident">RangeInclusive</span>};
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::distributions::float::IntoFloat</span>;
@@ -2804,7 +2799,7 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde1&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">test_serialization_uniform_duration</span>() {
-        <span class="kw">let</span> <span class="ident">distr</span> <span class="op">=</span> <span class="ident">UniformDuration::new</span>(<span class="ident">std::time::Duration::from_secs</span>(<span class="number">10</span>), <span class="ident">std::time::Duration::from_secs</span>(<span class="number">60</span>));
+        <span class="kw">let</span> <span class="ident">distr</span> <span class="op">=</span> <span class="ident">UniformDuration::new</span>(<span class="ident">Duration::from_secs</span>(<span class="number">10</span>), <span class="ident">Duration::from_secs</span>(<span class="number">60</span>));
         <span class="kw">let</span> <span class="ident">de_distr</span>: <span class="ident">UniformDuration</span> <span class="op">=</span> <span class="ident">bincode::deserialize</span>(<span class="kw-2">&amp;</span><span class="ident">bincode::serialize</span>(<span class="kw-2">&amp;</span><span class="ident">distr</span>).<span class="ident">unwrap</span>()).<span class="ident">unwrap</span>();
         <span class="macro">assert_eq!</span>(
             <span class="ident">distr</span>.<span class="ident">offset</span>, <span class="ident">de_distr</span>.<span class="ident">offset</span>
@@ -3154,9 +3149,6 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">miri</span>, <span class="ident">ignore</span>)]</span> <span class="comment">// Miri is too slow</span>
     <span class="kw">fn</span> <span class="ident">test_durations</span>() {
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>))]</span> <span class="kw">use</span> <span class="ident">core::time::Duration</span>;
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;std&quot;</span>)]</span> <span class="kw">use</span> <span class="ident">std::time::Duration</span>;
-
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rng</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::test::rng</span>(<span class="number">253</span>);
 
         <span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="kw-2">&amp;</span>[
