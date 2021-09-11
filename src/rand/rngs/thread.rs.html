@@ -140,6 +140,7 @@
 <span id="140">140</span>
 <span id="141">141</span>
 <span id="142">142</span>
+<span id="143">143</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2018 Developers of the Rand project.</span>
 <span class="comment">//</span>
 <span class="comment">// Licensed under the Apache License, Version 2.0 &lt;LICENSE-APACHE or</span>
@@ -182,8 +183,9 @@
 <span class="doccomment">/// A reference to the thread-local generator</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// An instance can be obtained via [`thread_rng`] or via `ThreadRng::default()`.</span>
-<span class="doccomment">/// This handle is safe to use everywhere (including thread-local destructors)</span>
-<span class="doccomment">/// but cannot be passed between threads (is not `Send` or `Sync`).</span>
+<span class="doccomment">/// This handle is safe to use everywhere (including thread-local destructors),</span>
+<span class="doccomment">/// though it is recommended not to use inside a fork handler.</span>
+<span class="doccomment">/// The handle cannot be passed between threads (is not `Send` or `Sync`).</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// `ThreadRng` uses the same PRNG as [`StdRng`] for security and performance</span>
 <span class="doccomment">/// and is automatically seeded from [`OsRng`].</span>
