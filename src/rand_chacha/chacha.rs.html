@@ -624,12 +624,6 @@
 <span id="624">624</span>
 <span id="625">625</span>
 <span id="626">626</span>
-<span id="627">627</span>
-<span id="628">628</span>
-<span id="629">629</span>
-<span id="630">630</span>
-<span id="631">631</span>
-<span id="632">632</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2018 Developers of the Rand project.</span>
 <span class="comment">//</span>
 <span class="comment">// Licensed under the Apache License, Version 2.0 &lt;LICENSE-APACHE or</span>
@@ -719,13 +713,7 @@
             <span class="kw">type</span> <span class="ident">Results</span> <span class="op">=</span> <span class="ident">Array64</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>;
             <span class="attribute">#[<span class="ident">inline</span>]</span>
             <span class="kw">fn</span> <span class="ident">generate</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">r</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="self">Self</span>::Results</span>) {
-                <span class="comment">// Fill slice of words by writing to equivalent slice of bytes, then fixing endianness.</span>
-                <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">refill4</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rounds</span>, <span class="kw">unsafe</span> {
-                    <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="ident">r</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Array64</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> [<span class="ident">u8</span>; <span class="number">256</span>])
-                });
-                <span class="kw">for</span> <span class="ident">x</span> <span class="kw">in</span> <span class="ident">r</span>.<span class="ident">as_mut</span>() {
-                    <span class="kw-2">*</span><span class="ident">x</span> <span class="op">=</span> <span class="ident">x</span>.<span class="ident">to_le</span>();
-                }
+                <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">refill4</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rounds</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">r</span>.<span class="number">0</span>);
             }
         }
 

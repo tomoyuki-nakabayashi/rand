@@ -271,6 +271,15 @@
 <span id="271">271</span>
 <span id="272">272</span>
 <span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2019 The CryptoCorrosion Contributors</span>
 <span class="comment">// Copyright 2020 Developers of the Rand project.</span>
 <span class="comment">//</span>
@@ -287,7 +296,7 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ppv_lite86::Machine</span>;
 <span class="kw">use</span> <span class="ident">ppv_lite86</span>::{<span class="ident">vec128_storage</span>, <span class="ident">ArithOps</span>, <span class="ident">BitOps32</span>, <span class="ident">LaneWords4</span>, <span class="ident">MultiLane</span>, <span class="ident">StoreBytes</span>, <span class="ident">Vec4</span>};
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">BLOCK</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">64</span>;
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">BLOCK</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="number">16</span>;
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">BLOCK64</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="ident">BLOCK</span> <span class="kw">as</span> <span class="ident">u64</span>;
 <span class="kw">const</span> <span class="ident">LOG2_BUFBLOCKS</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">2</span>;
 <span class="kw">const</span> <span class="ident">BUFBLOCKS</span>: <span class="ident">u64</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">LOG2_BUFBLOCKS</span>;
@@ -354,7 +363,7 @@
 
     <span class="doccomment">/// Produce 4 blocks of output, advancing the state</span>
     <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">refill4</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">drounds</span>: <span class="ident">u32</span>, <span class="ident">out</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>; <span class="ident">BUFSZ</span>]) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">refill4</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">drounds</span>: <span class="ident">u32</span>, <span class="ident">out</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u32</span>; <span class="ident">BUFSZ</span>]) {
         <span class="ident">refill_wide</span>(<span class="self">self</span>, <span class="ident">drounds</span>, <span class="ident">out</span>)
     }
 
@@ -387,7 +396,7 @@
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::many_single_char_names</span>)]</span>
 <span class="attribute">#[<span class="ident">inline</span>(<span class="ident">always</span>)]</span>
 <span class="kw">fn</span> <span class="ident">refill_wide_impl</span><span class="op">&lt;</span><span class="ident">Mach</span>: <span class="ident">Machine</span><span class="op">&gt;</span>(
-    <span class="ident">m</span>: <span class="ident">Mach</span>, <span class="ident">state</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">ChaCha</span>, <span class="ident">drounds</span>: <span class="ident">u32</span>, <span class="ident">out</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>; <span class="ident">BUFSZ</span>],
+    <span class="ident">m</span>: <span class="ident">Mach</span>, <span class="ident">state</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">ChaCha</span>, <span class="ident">drounds</span>: <span class="ident">u32</span>, <span class="ident">out</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u32</span>; <span class="ident">BUFSZ</span>],
 ) {
     <span class="kw">let</span> <span class="ident">k</span> <span class="op">=</span> <span class="ident">m</span>.<span class="ident">vec</span>([<span class="number">0x6170_7865</span>, <span class="number">0x3320_646e</span>, <span class="number">0x7962_2d32</span>, <span class="number">0x6b20_6574</span>]);
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pos</span> <span class="op">=</span> <span class="ident">state</span>.<span class="ident">pos64</span>(<span class="ident">m</span>);
@@ -432,17 +441,26 @@
     <span class="kw">let</span> <span class="ident">sc</span> <span class="op">=</span> <span class="ident">m</span>.<span class="ident">unpack</span>(<span class="ident">state</span>.<span class="ident">c</span>);
     <span class="kw">let</span> <span class="ident">sd</span> <span class="op">=</span> [<span class="ident">m</span>.<span class="ident">unpack</span>(<span class="ident">state</span>.<span class="ident">d</span>), <span class="ident">d1</span>, <span class="ident">d2</span>, <span class="ident">d3</span>];
     <span class="ident">state</span>.<span class="ident">d</span> <span class="op">=</span> <span class="ident">d4</span>.<span class="ident">into</span>();
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">words</span> <span class="op">=</span> <span class="ident">out</span>.<span class="ident">chunks_exact_mut</span>(<span class="number">16</span>);
-    <span class="kw">for</span> ((((<span class="kw-2">&amp;</span><span class="ident">a</span>, <span class="kw-2">&amp;</span><span class="ident">b</span>), <span class="kw-2">&amp;</span><span class="ident">c</span>), <span class="kw-2">&amp;</span><span class="ident">d</span>), <span class="kw-2">&amp;</span><span class="ident">sd</span>) <span class="kw">in</span> <span class="ident">a</span>.<span class="ident">iter</span>().<span class="ident">zip</span>(<span class="kw-2">&amp;</span><span class="ident">b</span>).<span class="ident">zip</span>(<span class="kw-2">&amp;</span><span class="ident">c</span>).<span class="ident">zip</span>(<span class="kw-2">&amp;</span><span class="ident">d</span>).<span class="ident">zip</span>(<span class="kw-2">&amp;</span><span class="ident">sd</span>) {
-        (<span class="ident">a</span> <span class="op">+</span> <span class="ident">k</span>).<span class="ident">write_le</span>(<span class="ident">words</span>.<span class="ident">next</span>().<span class="ident">unwrap</span>());
-        (<span class="ident">b</span> <span class="op">+</span> <span class="ident">sb</span>).<span class="ident">write_le</span>(<span class="ident">words</span>.<span class="ident">next</span>().<span class="ident">unwrap</span>());
-        (<span class="ident">c</span> <span class="op">+</span> <span class="ident">sc</span>).<span class="ident">write_le</span>(<span class="ident">words</span>.<span class="ident">next</span>().<span class="ident">unwrap</span>());
-        (<span class="ident">d</span> <span class="op">+</span> <span class="ident">sd</span>).<span class="ident">write_le</span>(<span class="ident">words</span>.<span class="ident">next</span>().<span class="ident">unwrap</span>());
-    }
+    <span class="ident">out</span>[<span class="number">0</span>..<span class="number">4</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">a</span>[<span class="number">0</span>] <span class="op">+</span> <span class="ident">k</span>).<span class="ident">to_lanes</span>());
+    <span class="ident">out</span>[<span class="number">4</span>..<span class="number">8</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">b</span>[<span class="number">0</span>] <span class="op">+</span> <span class="ident">sb</span>).<span class="ident">to_lanes</span>());
+    <span class="ident">out</span>[<span class="number">8</span>..<span class="number">12</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">c</span>[<span class="number">0</span>] <span class="op">+</span> <span class="ident">sc</span>).<span class="ident">to_lanes</span>());
+    <span class="ident">out</span>[<span class="number">12</span>..<span class="number">16</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">d</span>[<span class="number">0</span>] <span class="op">+</span> <span class="ident">sd</span>[<span class="number">0</span>]).<span class="ident">to_lanes</span>());
+    <span class="ident">out</span>[<span class="number">16</span>..<span class="number">20</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">a</span>[<span class="number">1</span>] <span class="op">+</span> <span class="ident">k</span>).<span class="ident">to_lanes</span>());
+    <span class="ident">out</span>[<span class="number">20</span>..<span class="number">24</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">b</span>[<span class="number">1</span>] <span class="op">+</span> <span class="ident">sb</span>).<span class="ident">to_lanes</span>());
+    <span class="ident">out</span>[<span class="number">24</span>..<span class="number">28</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">c</span>[<span class="number">1</span>] <span class="op">+</span> <span class="ident">sc</span>).<span class="ident">to_lanes</span>());
+    <span class="ident">out</span>[<span class="number">28</span>..<span class="number">32</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">d</span>[<span class="number">1</span>] <span class="op">+</span> <span class="ident">sd</span>[<span class="number">1</span>]).<span class="ident">to_lanes</span>());
+    <span class="ident">out</span>[<span class="number">32</span>..<span class="number">36</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">a</span>[<span class="number">2</span>] <span class="op">+</span> <span class="ident">k</span>).<span class="ident">to_lanes</span>());
+    <span class="ident">out</span>[<span class="number">36</span>..<span class="number">40</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">b</span>[<span class="number">2</span>] <span class="op">+</span> <span class="ident">sb</span>).<span class="ident">to_lanes</span>());
+    <span class="ident">out</span>[<span class="number">40</span>..<span class="number">44</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">c</span>[<span class="number">2</span>] <span class="op">+</span> <span class="ident">sc</span>).<span class="ident">to_lanes</span>());
+    <span class="ident">out</span>[<span class="number">44</span>..<span class="number">48</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">d</span>[<span class="number">2</span>] <span class="op">+</span> <span class="ident">sd</span>[<span class="number">2</span>]).<span class="ident">to_lanes</span>());
+    <span class="ident">out</span>[<span class="number">48</span>..<span class="number">52</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">a</span>[<span class="number">3</span>] <span class="op">+</span> <span class="ident">k</span>).<span class="ident">to_lanes</span>());
+    <span class="ident">out</span>[<span class="number">52</span>..<span class="number">56</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">b</span>[<span class="number">3</span>] <span class="op">+</span> <span class="ident">sb</span>).<span class="ident">to_lanes</span>());
+    <span class="ident">out</span>[<span class="number">56</span>..<span class="number">60</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">c</span>[<span class="number">3</span>] <span class="op">+</span> <span class="ident">sc</span>).<span class="ident">to_lanes</span>());
+    <span class="ident">out</span>[<span class="number">60</span>..<span class="number">64</span>].<span class="ident">copy_from_slice</span>(<span class="kw-2">&amp;</span>(<span class="ident">d</span>[<span class="number">3</span>] <span class="op">+</span> <span class="ident">sd</span>[<span class="number">3</span>]).<span class="ident">to_lanes</span>());
 }
 
 <span class="macro">dispatch!</span>(<span class="ident">m</span>, <span class="ident">Mach</span>, {
-    <span class="kw">fn</span> <span class="ident">refill_wide</span>(<span class="ident">state</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">ChaCha</span>, <span class="ident">drounds</span>: <span class="ident">u32</span>, <span class="ident">out</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>; <span class="ident">BUFSZ</span>]) {
+    <span class="kw">fn</span> <span class="ident">refill_wide</span>(<span class="ident">state</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">ChaCha</span>, <span class="ident">drounds</span>: <span class="ident">u32</span>, <span class="ident">out</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u32</span>; <span class="ident">BUFSZ</span>]) {
         <span class="ident">refill_wide_impl</span>(<span class="ident">m</span>, <span class="ident">state</span>, <span class="ident">drounds</span>, <span class="ident">out</span>);
     }
 });
