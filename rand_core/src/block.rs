@@ -226,7 +226,7 @@ where
                 self.generate_and_set(0);
             }
             let (consumed_u32, filled_u8) =
-                fill_via_u32_chunks(&self.results.as_ref()[self.index..], &mut dest[read_len..]);
+                fill_via_u32_chunks(&mut self.results.as_mut()[self.index..], &mut dest[read_len..]);
 
             self.index += consumed_u32;
             read_len += filled_u8;
@@ -393,7 +393,7 @@ where
             }
 
             let (consumed_u64, filled_u8) = fill_via_u64_chunks(
-                &self.results.as_ref()[self.index as usize..],
+                &mut self.results.as_mut()[self.index as usize..],
                 &mut dest[read_len..],
             );
 
