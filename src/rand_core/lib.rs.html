@@ -500,6 +500,35 @@
 <span id="500">500</span>
 <span id="501">501</span>
 <span id="502">502</span>
+<span id="503">503</span>
+<span id="504">504</span>
+<span id="505">505</span>
+<span id="506">506</span>
+<span id="507">507</span>
+<span id="508">508</span>
+<span id="509">509</span>
+<span id="510">510</span>
+<span id="511">511</span>
+<span id="512">512</span>
+<span id="513">513</span>
+<span id="514">514</span>
+<span id="515">515</span>
+<span id="516">516</span>
+<span id="517">517</span>
+<span id="518">518</span>
+<span id="519">519</span>
+<span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
+<span id="530">530</span>
+<span id="531">531</span>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2018 Developers of the Rand project.</span>
 <span class="comment">// Copyright 2017-2018 The Rust Project Developers.</span>
 <span class="comment">//</span>
@@ -709,6 +738,35 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`BlockRngCore`]: block::BlockRngCore</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CryptoRng</span> {}
+
+<span class="doccomment">/// An extension trait that is automatically implemented for any type</span>
+<span class="doccomment">/// implementing [`RngCore`] and [`CryptoRng`].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// It may be used as a trait object, and supports upcasting to [`RngCore`] via</span>
+<span class="doccomment">/// the [`CryptoRngCore::as_rngcore`] method.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// # Example</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">/// use rand_core::CryptoRngCore;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// #[allow(unused)]</span>
+<span class="doccomment">/// fn make_token(rng: &amp;mut dyn CryptoRngCore) -&gt; [u8; 32] {</span>
+<span class="doccomment">///     let mut buf = [0u8; 32];</span>
+<span class="doccomment">///     rng.fill_bytes(&amp;mut buf);</span>
+<span class="doccomment">///     buf</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">/// ```</span>
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CryptoRngCore</span>: <span class="ident">RngCore</span> {
+    <span class="doccomment">/// Upcast to an [`RngCore`] trait object.</span>
+    <span class="kw">fn</span> <span class="ident">as_rngcore</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> <span class="ident">RngCore</span>;
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">CryptoRng</span> <span class="op">+</span> <span class="ident">RngCore</span><span class="op">&gt;</span> <span class="ident">CryptoRngCore</span> <span class="kw">for</span> <span class="ident">T</span> {
+    <span class="kw">fn</span> <span class="ident">as_rngcore</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> <span class="ident">RngCore</span> {
+        <span class="self">self</span>
+    }
+}
 
 <span class="doccomment">/// A random number generator that can be explicitly seeded.</span>
 <span class="doccomment">///</span>
@@ -950,10 +1008,10 @@
     }
 }
 
-<span class="comment">// Implement `CryptoRng` for references to an `CryptoRng`.</span>
+<span class="comment">// Implement `CryptoRng` for references to a `CryptoRng`.</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">R</span>: <span class="ident">CryptoRng</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span> <span class="ident">CryptoRng</span> <span class="kw">for</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="kw-2">mut</span> <span class="ident">R</span> {}
 
-<span class="comment">// Implement `CryptoRng` for boxed references to an `CryptoRng`.</span>
+<span class="comment">// Implement `CryptoRng` for boxed references to a `CryptoRng`.</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;alloc&quot;</span>)]</span>
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">CryptoRng</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span> <span class="ident">CryptoRng</span> <span class="kw">for</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> {}
 
