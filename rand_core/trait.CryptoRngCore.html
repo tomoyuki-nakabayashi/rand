@@ -4,11 +4,11 @@
 implementing <a href="trait.RngCore.html" title="RngCore"><code>RngCore</code></a> and <a href="trait.CryptoRng.html" title="CryptoRng"><code>CryptoRng</code></a>.</p>
 <p>It may be used as a trait object, and supports upcasting to <a href="trait.RngCore.html" title="RngCore"><code>RngCore</code></a> via
 the <a href="trait.CryptoRngCore.html#tymethod.as_rngcore" title="CryptoRngCore::as_rngcore"><code>CryptoRngCore::as_rngcore</code></a> method.</p>
-<h1 id="example" class="section-header"><a href="#example">Example</a></h1>
+<h2 id="example" class="section-header"><a href="#example">Example</a></h2>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">rand_core::CryptoRngCore</span>;
 
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused</span>)]</span>
-<span class="kw">fn</span> <span class="ident">make_token</span>(<span class="ident">rng</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> <span class="ident">CryptoRngCore</span>) <span class="op">-</span><span class="op">&gt;</span> [<span class="ident">u8</span>; <span class="number">32</span>] {
+<span class="kw">fn</span> <span class="ident">make_token</span>(<span class="ident">rng</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="kw">dyn</span> <span class="ident">CryptoRngCore</span>) -&gt; [<span class="ident">u8</span>; <span class="number">32</span>] {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> [<span class="number">0u8</span>; <span class="number">32</span>];
     <span class="ident">rng</span>.<span class="ident">fill_bytes</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>);
     <span class="ident">buf</span>
