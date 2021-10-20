@@ -87,5 +87,5 @@ rand_pcg = { path = "rand_pcg", version = "0.3.0" }
 bincode = "1.2.1"
 
 [[bench]]
-name = "uniform_int"
+name = "uniform"
 harness = false
