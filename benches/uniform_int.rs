@@ -40,6 +40,7 @@ fn bench_group<T: Copy + One + WrappingAdd + SampleUniform>(
         };
     }
 
+    do_group!("Old", sample_single_inclusive);
     do_group!("ONeill", sample_single_inclusive_oneill);
     do_group!("Canon", sample_single_inclusive_canon);
     do_group!("Canon-Lemire", sample_inclusive_canon_lemire);
