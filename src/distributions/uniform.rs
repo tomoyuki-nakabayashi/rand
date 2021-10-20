@@ -300,54 +300,6 @@ pub trait UniformSampler: Sized {
         let uniform: Self = UniformSampler::new_inclusive(low, high);
         uniform.sample(rng)
     }
-
-    /// Sample single inclusive, using ONeill's method
-    fn sample_single_inclusive_oneill<R: Rng + ?Sized, B1, B2>(
-        low_b: B1, high_b: B2, rng: &mut R,
-    ) -> Self::X
-    where
-        B1: SampleBorrow<Self::X> + Sized,
-        B2: SampleBorrow<Self::X> + Sized,
-    {
-        let _ = (low_b, high_b, rng);
-        unimplemented!()
-    }
-
-    /// Sample single inclusive, using Canon's method
-    fn sample_single_inclusive_canon<R: Rng + ?Sized, B1, B2>(
-        low_b: B1, high_b: B2, rng: &mut R,
-    ) -> Self::X
-    where
-        B1: SampleBorrow<Self::X> + Sized,
-        B2: SampleBorrow<Self::X> + Sized,
-    {
-        let _ = (low_b, high_b, rng);
-        unimplemented!()
-    }
-
-    /// Sample single inclusive, using Canon's method with Lemire's early-out
-    fn sample_inclusive_canon_lemire<R: Rng + ?Sized, B1, B2>(
-        low_b: B1, high_b: B2, rng: &mut R,
-    ) -> Self::X
-    where
-        B1: SampleBorrow<Self::X> + Sized,
-        B2: SampleBorrow<Self::X> + Sized,
-    {
-        let _ = (low_b, high_b, rng);
-        unimplemented!()
-    }
-
-    /// Sample single inclusive, using the Bitmask method
-    fn sample_single_inclusive_bitmask<R: Rng + ?Sized, B1, B2>(
-        low_b: B1, high_b: B2, rng: &mut R,
-    ) -> Self::X
-    where
-        B1: SampleBorrow<Self::X> + Sized,
-        B2: SampleBorrow<Self::X> + Sized,
-    {
-        let _ = (low_b, high_b, rng);
-        unimplemented!()
-    }
 }
 
 impl<X: SampleUniform> From<Range<X>> for Uniform<X> {
@@ -605,9 +557,12 @@ macro_rules! uniform_int_impl {
                     }
                 }
             }
+        }
 
+        impl UniformInt<$ty> {
+            /// Sample single inclusive, using ONeill's method
             #[inline]
-            fn sample_single_inclusive_oneill<R: Rng + ?Sized, B1, B2>(
+            pub fn sample_single_inclusive_oneill<R: Rng + ?Sized, B1, B2>(
                 low_b: B1, high_b: B2, rng: &mut R,
             ) -> $ty
             where
@@ -649,8 +604,9 @@ macro_rules! uniform_int_impl {
                 low.wrapping_add(hi as $ty)
             }
 
+            /// Sample single inclusive, using Canon's method
             #[inline]
-            fn sample_single_inclusive_canon<R: Rng + ?Sized, B1, B2>(
+            pub fn sample_single_inclusive_canon<R: Rng + ?Sized, B1, B2>(
                 low_b: B1, high_b: B2, rng: &mut R,
             ) -> $ty
             where
@@ -686,8 +642,9 @@ macro_rules! uniform_int_impl {
                 low.wrapping_add(result as $ty)
             }
 
+            /// Sample single inclusive, using Canon's method with Lemire's early-out
             #[inline]
-            fn sample_inclusive_canon_lemire<R: Rng + ?Sized, B1, B2>(
+            pub fn sample_inclusive_canon_lemire<R: Rng + ?Sized, B1, B2>(
                 low_b: B1, high_b: B2, rng: &mut R,
             ) -> $ty
             where
@@ -724,8 +681,9 @@ macro_rules! uniform_int_impl {
                 low.wrapping_add(result as $ty)
             }
 
+            /// Sample single inclusive, using the Bitmask method
             #[inline]
-            fn sample_single_inclusive_bitmask<R: Rng + ?Sized, B1, B2>(
+            pub fn sample_single_inclusive_bitmask<R: Rng + ?Sized, B1, B2>(
                 low_b: B1, high_b: B2, rng: &mut R,
             ) -> $ty
             where
