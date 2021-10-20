@@ -7,68 +7,61 @@
 // except according to those terms.
 
 use criterion::{criterion_group, criterion_main};
-use criterion::{BenchmarkGroup, BenchmarkId, Criterion};
-use num_traits::{One, WrappingAdd};
+use criterion::{BenchmarkId, Criterion};
 use rand::distributions::uniform::{SampleUniform, UniformSampler};
 use rand::prelude::*;
 
 type BenchRng = SmallRng;
 
-fn bench_group<T: Copy + One + WrappingAdd + SampleUniform>(
-    mut g: BenchmarkGroup<criterion::measurement::WallTime>, inputs: &[(&str, (T, T))],
-) {
-    macro_rules! do_group {
-        ($name:literal, $f:ident) => {
-            for input in inputs {
-                g.bench_with_input(
-                    BenchmarkId::new($name, input.0),
-                    &input.1,
-                    |b, (low, high)| {
-                        let mut rng = BenchRng::from_entropy();
-                        b.iter(|| T::Sampler::$f(low, high, &mut rng))
-                    },
-                );
-            }
-            g.bench_function(BenchmarkId::new($name, "varying"), |b| {
-                let (low, mut high) = (inputs[0].1 .0, inputs[1].1 .1);
-                let mut rng = BenchRng::from_entropy();
-                b.iter(|| {
-                    high = high.wrapping_add(&T::one());
-                    T::Sampler::$f(low, high, &mut rng)
-                })
-            });
-        };
-    }
-
-    do_group!("Old", sample_single_inclusive);
-    do_group!("ONeill", sample_single_inclusive_oneill);
-    do_group!("Canon", sample_single_inclusive_canon);
-    do_group!("Canon-Lemire", sample_inclusive_canon_lemire);
-    do_group!("Bitmask", sample_single_inclusive_bitmask);
-}
-
-macro_rules! bench {
-    ($name:ident, $high:expr) => {
-        fn $name(c: &mut Criterion) {
-            bench_group(c.benchmark_group(stringify!($name)), &[
-                ("high reject", $high),
-                ("low reject", (-1, 2)),
-            ]);
+macro_rules! bench_int_group {
+    ($name:literal, $T:ty, $f:ident, $g:expr, $inputs:expr) => {
+        for input in $inputs {
+            $g.bench_with_input(
+                BenchmarkId::new($name, input.0),
+                &input.1,
+                |b, (low, high)| {
+                    let mut rng = BenchRng::from_entropy();
+                    b.iter(|| <$T as SampleUniform>::Sampler::$f(low, high, &mut rng))
+                },
+            );
         }
+        $g.bench_function(BenchmarkId::new($name, "varying"), |b| {
+            let (low, mut high) = ($inputs[0].1 .0, $inputs[1].1 .1);
+            let mut rng = BenchRng::from_entropy();
+            b.iter(|| {
+                high = high.wrapping_add(1);
+                <$T as SampleUniform>::Sampler::$f(low, high, &mut rng)
+            })
+        });
     };
 }
 
-// for i8/i16, we use 32-bit integers internally so rejection is most common near full-size
-// the exact values were determined with an exhaustive search
-bench!(uniform_int_i8, (i8::MIN, 116));
-bench!(uniform_int_i16, (i16::MIN, 32407));
-bench!(uniform_int_i32, (i32::MIN, 1));
-bench!(uniform_int_i64, (i64::MIN, 1));
-bench!(uniform_int_i128, (i128::MIN, 1));
+macro_rules! bench_int {
+    ($c:expr, $T:ty, $high:expr) => {{
+        let mut g = $c.benchmark_group(concat!("uniform_int_", stringify!($T)));
+        let inputs = &[("high_reject", $high), ("low_reject", (-1, 2))];
+
+        bench_int_group!("Old", $T, sample_single_inclusive, g, inputs);
+        bench_int_group!("ONeill", $T, sample_single_inclusive_oneill, g, inputs);
+        bench_int_group!("Canon", $T, sample_single_inclusive_canon, g, inputs);
+        bench_int_group!("Canon-Lemire", $T, sample_inclusive_canon_lemire, g, inputs);
+        bench_int_group!("Bitmask", $T, sample_single_inclusive_bitmask, g, inputs);
+    }};
+}
+
+fn uniform_int(c: &mut Criterion) {
+    // for i8/i16, we use 32-bit integers internally so rejection is most common near full-size
+    // the exact values were determined with an exhaustive search
+    bench_int!(c, i8, (i8::MIN, 116));
+    bench_int!(c, i16, (i16::MIN, 32407));
+    bench_int!(c, i32, (i32::MIN, 1));
+    bench_int!(c, i64, (i64::MIN, 1));
+    bench_int!(c, i128, (i128::MIN, 1));
+}
 
 criterion_group! {
     name = benches;
     config = Criterion::default();
-    targets = uniform_int_i8, uniform_int_i16, uniform_int_i32, uniform_int_i64, uniform_int_i128
+    targets = uniform_int
 }
 criterion_main!(benches);
