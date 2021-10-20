@@ -298,6 +298,54 @@ pub trait UniformSampler: Sized {
         let uniform: Self = UniformSampler::new_inclusive(low, high);
         uniform.sample(rng)
     }
+
+    /// Sample single inclusive, using ONeill's method
+    fn sample_single_inclusive_oneill<R: Rng + ?Sized, B1, B2>(
+        low_b: B1, high_b: B2, rng: &mut R,
+    ) -> Self::X
+    where
+        B1: SampleBorrow<Self::X> + Sized,
+        B2: SampleBorrow<Self::X> + Sized,
+    {
+        let _ = (low_b, high_b, rng);
+        unimplemented!()
+    }
+
+    /// Sample single inclusive, using Canon's method
+    fn sample_single_inclusive_canon<R: Rng + ?Sized, B1, B2>(
+        low_b: B1, high_b: B2, rng: &mut R,
+    ) -> Self::X
+    where
+        B1: SampleBorrow<Self::X> + Sized,
+        B2: SampleBorrow<Self::X> + Sized,
+    {
+        let _ = (low_b, high_b, rng);
+        unimplemented!()
+    }
+
+    /// Sample single inclusive, using Canon's method with Lemire's early-out
+    fn sample_inclusive_canon_lemire<R: Rng + ?Sized, B1, B2>(
+        low_b: B1, high_b: B2, rng: &mut R,
+    ) -> Self::X
+    where
+        B1: SampleBorrow<Self::X> + Sized,
+        B2: SampleBorrow<Self::X> + Sized,
+    {
+        let _ = (low_b, high_b, rng);
+        unimplemented!()
+    }
+
+    /// Sample single inclusive, using the Bitmask method
+    fn sample_single_inclusive_bitmask<R: Rng + ?Sized, B1, B2>(
+        low_b: B1, high_b: B2, rng: &mut R,
+    ) -> Self::X
+    where
+        B1: SampleBorrow<Self::X> + Sized,
+        B2: SampleBorrow<Self::X> + Sized,
+    {
+        let _ = (low_b, high_b, rng);
+        unimplemented!()
+    }
 }
 
 impl<X: SampleUniform> From<Range<X>> for Uniform<X> {
