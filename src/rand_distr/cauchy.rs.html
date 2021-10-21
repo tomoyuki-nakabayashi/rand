@@ -257,8 +257,8 @@
 <span class="kw">mod</span> <span class="ident">test</span> {
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
 
-    <span class="kw">fn</span> <span class="ident">median</span>(<span class="kw-2">mut</span> <span class="ident">numbers</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">f64</span>]) -&gt; <span class="ident">f64</span> {
-        <span class="ident">sort</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">numbers</span>);
+    <span class="kw">fn</span> <span class="ident">median</span>(<span class="ident">numbers</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">f64</span>]) -&gt; <span class="ident">f64</span> {
+        <span class="ident">sort</span>(<span class="ident">numbers</span>);
         <span class="kw">let</span> <span class="ident">mid</span> <span class="op">=</span> <span class="ident">numbers</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="number">2</span>;
         <span class="ident">numbers</span>[<span class="ident">mid</span>]
     }
